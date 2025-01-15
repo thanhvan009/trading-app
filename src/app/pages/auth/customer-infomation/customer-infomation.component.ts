@@ -22,17 +22,21 @@ import { StoreService }        from '@services/store.service';
 
 @Component({
   selector    : 'app-login',
-  templateUrl : './login.component.html',
-  styleUrls   : ['./login.component.scss'],
+  templateUrl : './customer-infomation.component.html',
+  styleUrls   : ['./customer-infomation.component.scss'],
   standalone  : true,
   imports     : [FormsModule, ReactiveFormsModule, NgClass, NgIf, RouterLink, TranslateModule]
 })
-export class LoginComponent
+export class CustomerInfomationComponent
 {
   public appName : string = environment.appName;
   public formGroup !: FormGroup<{
-    email    : FormControl<string>,
+    yourname    : FormControl<string>,
+    email : FormControl<string>,
+    dateOfBirth : FormControl<string>,
+    username : FormControl<string>,
     password : FormControl<string>,
+    address : FormControl<string>,
   }>;
   public isLogin = true;
 
@@ -54,11 +58,27 @@ export class LoginComponent
   private initFormGroup() : void
   {
     this.formGroup = new FormGroup({
-      email      : new FormControl<string>({
+      yourname      : new FormControl<string>({
+        value    : '',
+        disabled : false
+      }, { validators : [Validators.required], nonNullable : true }),
+      email   : new FormControl<string>({
         value    : '',
         disabled : false
       }, { validators : [Validators.required, Validators.email], nonNullable : true }),
-      password   : new FormControl<string>({
+      dateOfBirth      : new FormControl<string>({
+        value    : '',
+        disabled : false
+      }, { validators : [Validators.required], nonNullable : true }),
+      username   : new FormControl<string>({
+        value    : '',
+        disabled : false
+      }, { validators : [Validators.required], nonNullable : true }),
+      password      : new FormControl<string>({
+        value    : '',
+        disabled : false
+      }, { validators : [Validators.required], nonNullable : true }),
+      address   : new FormControl<string>({
         value    : '',
         disabled : false
       }, { validators : [Validators.required], nonNullable : true })

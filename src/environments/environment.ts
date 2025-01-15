@@ -18,7 +18,7 @@ const baseUrl = scheme + host + port + path;
 export const environment = {
   production      : false,
   version         : packageInfo.version,
-  appName         : 'EasyAngular',
+  appName         : 'Trading app',
   envName         : EnvName.LOCAL,
   defaultLanguage : 'en',
   apiBaseUrl      : baseUrl,

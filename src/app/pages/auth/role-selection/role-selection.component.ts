@@ -22,12 +22,12 @@ import { StoreService }        from '@services/store.service';
 
 @Component({
   selector    : 'app-login',
-  templateUrl : './login.component.html',
-  styleUrls   : ['./login.component.scss'],
+  templateUrl : './role-selection.component.html',
+  styleUrls   : ['./role-selection.component.scss'],
   standalone  : true,
   imports     : [FormsModule, ReactiveFormsModule, NgClass, NgIf, RouterLink, TranslateModule]
 })
-export class LoginComponent
+export class RoleSelectionComponent
 {
   public appName : string = environment.appName;
   public formGroup !: FormGroup<{

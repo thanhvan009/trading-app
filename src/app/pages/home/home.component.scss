@@ -1,0 +1,34 @@
+.home {
+  height: 100vh;
+    background: #F5F7FA;
+    padding: 0;
+    margin: 0;
+}
+
+.dashboard-list {
+  display: flex
+  ;
+      margin: 0 15px;
+}
+
+.dashboard-item {
+  width: 350px;
+  background-color: #fff;
+  border-radius: 10px;
+  margin: 30px 15px;
+  display: flex
+;
+  padding: 15px;
+  align-items: center;
+  .text {
+    color: #718EBF;
+    font-weight: 400;
+    font-size: 16px;
+    margin-bottom: 5px;
+  }
+  .number {
+    font-size: 16px;
+    color: #232323;
+    font-weight: 600;
+  }
+}

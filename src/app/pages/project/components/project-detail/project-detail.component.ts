@@ -20,19 +20,30 @@ import { environment }         from '@env/environment';
 import { AppService }          from '@services/app.service';
 import { StoreService }        from '@services/store.service';
 
+import { PageLayoutComponent }  from '@layouts/page-layout/page-layout.component';
+
+import {MatTableDataSource, MatTableModule} from '@angular/material/table';
+
+import {MatCheckboxModule} from '@angular/material/checkbox';
+
+
 @Component({
   selector    : 'app-login',
-  templateUrl : './login.component.html',
-  styleUrls   : ['./login.component.scss'],
+  templateUrl : './project-detail.component.html',
+  styleUrls   : ['./project-detail.component.scss'],
   standalone  : true,
-  imports     : [FormsModule, ReactiveFormsModule, NgClass, NgIf, RouterLink, TranslateModule]
+  imports     : [PageLayoutComponent, MatTableModule, FormsModule, MatCheckboxModule, ReactiveFormsModule, NgClass, NgIf, RouterLink, TranslateModule]
 })
-export class LoginComponent
+export class ProjectDetailComponent
 {
+  displayedColumns: string[] = ['description', 'createdBy', 'date', 'tradeApproval', 'customerApproval'];
+  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
   public appName : string = environment.appName;
   public formGroup !: FormGroup<{
-    email    : FormControl<string>,
-    password : FormControl<string>,
+    name    : FormControl<string | null>,
+    id : FormControl<string | null>,
+    type : FormControl<string | null>,
+    status : FormControl<string | null>,
   }>;
   public isLogin = true;
 
@@ -54,14 +65,22 @@ export class LoginComponent
   private initFormGroup() : void
   {
     this.formGroup = new FormGroup({
-      email      : new FormControl<string>({
+      name      : new FormControl<string | null>({
         value    : '',
         disabled : false
-      }, { validators : [Validators.required, Validators.email], nonNullable : true }),
-      password   : new FormControl<string>({
+      }, { validators : [Validators.required], nonNullable : true }),
+      id   : new FormControl<string | null>({
         value    : '',
         disabled : false
-      }, { validators : [Validators.required], nonNullable : true })
+      }, { validators : [Validators.required], nonNullable : true }),
+      type      : new FormControl<string | null>({
+        value    : '',
+        disabled : false
+      }, { validators : [Validators.required], nonNullable : true }),
+      status   : new FormControl<string | null>({
+        value    : '',
+        disabled : false
+      })
     });
   }
 
@@ -80,17 +99,6 @@ export class LoginComponent
 
   private async authenticate() : Promise<void>
   {
-    this.storeService.isLoading.set(true);
-
-    const email    = this.formGroup.controls.email.getRawValue();
-    const password = this.formGroup.controls.password.getRawValue();
-    const success  = await this.appService.authenticate(email, password);
-
-    this.storeService.isLoading.set(false);
-
-    if (!success)
-      return;
-
     // NOTE Redirect to home
     this.router.navigate(['/home']);
   }
@@ -98,5 +106,23 @@ export class LoginComponent
   // -------------------------------------------------------------------------------
   // NOTE Helpers ------------------------------------------------------------------
   // -------------------------------------------------------------------------------
-
 }
+
+export interface PeriodicElement {
+  description: any;
+  createdBy: string;
+  date: string;
+}
+
+const ELEMENT_DATA: PeriodicElement[] = [
+  {description: 1, createdBy: 'Hydrogen', date: 'H'},
+  {description: 2, createdBy: 'Helium', date: 'He'},
+  {description: 3, createdBy: 'Lithium',date: 'Li'},
+  {description: 4, createdBy: 'Beryllium', date: 'Be'},
+  {description: 5, createdBy: 'Boron', date: 'B'},
+  {description: 6, createdBy: 'Carbon', date: 'C'},
+  {description: 7, createdBy: 'Nitrogen', date: 'N'},
+  {description: 8, createdBy: 'Oxygen', date: 'O'},
+  {description: 9, createdBy: 'Fluorine', date: 'F'},
+];
+

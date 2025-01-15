@@ -1,49 +1,69 @@
 <!-- NOTE Navbar -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid">
-    <a class="navbar-brand" [routerLink]="['/dashboard']">
-      <img src="./assets/img/project/logo.svg" [alt]="appName + ' Logo'" class="img-fluid me-2"/>
-      {{ appName }}
-    </a>
-    <button class="navbar-toggler" type="button" (click)="isMenuCollapsed = !isMenuCollapsed" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+<div class="header">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" [routerLink]="['/dashboard']">
+        <img [src]="'assets/img/project/logo-app.png'" [alt]="appName + ' Logo'" class="img-fluid me-2"/>
+      </a>
+      <button class="navbar-toggler" type="button" (click)="isMenuCollapsed = !isMenuCollapsed" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+  
+      <div class="collapse navbar-collapse" [ngbCollapse]="isMenuCollapsed" id="navbarSupportedContent">
+        <ul class="navbar-nav mb-2 mb-lg-0 w-100">
+          <li class="nav-item">
+          
 
-    <div class="collapse navbar-collapse" [ngbCollapse]="isMenuCollapsed" id="navbarSupportedContent">
-      <ul class="navbar-nav mb-2 mb-lg-0 w-100">
-
-        <mat-slide-toggle>Toggle me!</mat-slide-toggle>
-
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/dashboard']" [routerLinkActive]="['active']">{{ 'Dashboard' | translate }}</a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/projects']" [routerLinkActive]="['active']">{{ 'Projects' | translate }}</a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/ratings']" [routerLinkActive]="['active']">{{ 'Ratings' | translate }}</a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/settings']" [routerLinkActive]="['active']">{{ 'Settings' | translate }}</a>
-        </li>
-
-        <li class="nav-item dropdown" ngbDropdown>
-          <a class="nav-link dropdown-toggle" ngbDropdownToggle id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            {{ 'USER' | translate }}
-          </a>
-          <ul class="dropdown-menu dropdown-menu-end" ngbDropdownMenu aria-labelledby="navbarDropdown">
-            <!-- <li><a class="dropdown-item" [routerLink]="['/user']" [routerLinkActive]="['active']">{{ 'MY_ACCOUNT' | translate }}</a></li> -->
-            <li><a class="dropdown-item cursor-pointer" (click)="onClickLogout()">{{ 'LOGOUT' | translate }}</a></li>
-          </ul>
-        </li>
-
-      </ul>
+            <a class="nav-link" [routerLink]="['/dashboard']" [routerLinkActive]="['active']">
+              <img [src]="'assets/img/project/dashboard.png'" class="dashboard-icon mx-3" alt="dashboard-icon">
+              <span>{{ 'Dashboard' | translate }}</span>
+            </a>
+          </li>
+  
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/projects']" [routerLinkActive]="['active']">
+              <img [src]="'assets/img/project/project.png'" class="project-icon mx-3" alt="project-icon">
+              <span>{{ 'Projects' | translate }}</span>
+            </a>
+          </li>
+  
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/ratings']" [routerLinkActive]="['active']">
+              <img [src]="'assets/img/project/rating.png'" class="rating-icon mx-3" alt="rating-icon">
+              <span>{{ 'Ratings' | translate }}</span>
+            </a>
+          </li>
+  
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/settings']" [routerLinkActive]="['active']">
+              <img [src]="'assets/img/project/setting.png'" class="setting-icon mx-3" alt="setting-icon">
+              <span>{{ 'Settings' | translate }}</span>
+            </a>
+          </li>
+  
+          
+  
+        </ul>
+      </div>
     </div>
+  </nav>
+  <div class="container-right">
+    <div class="menu-top" ngbDropdown>
+      <div class="breadcrumb">Dashboard</div>
+      <div class="profile-item">
+        <a class="nav-link dropdown-toggle" ngbDropdownToggle id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <img [src]="'assets/img/project/notification-icon.png'" class="notification-icon mx-4" alt="notification-icon">
+        <img [src]="'assets/img/project/menu-user.png'" class="menu-user" alt="menu-user">
+        </a>
+        <ul class="dropdown-menu dropdown-menu-end" ngbDropdownMenu aria-labelledby="navbarDropdown">
+          <li><a class="dropdown-item" [routerLink]="['/user']" [routerLinkActive]="['active']">{{ 'MY_ACCOUNT' | translate }}</a></li>
+          <li><a class="dropdown-item cursor-pointer" (click)="onClickLogout()">{{ 'LOGOUT' | translate }}</a></li>
+        </ul>
+      </div>
+    </div>
+    <!-- NOTE Content -->
+    <ng-content></ng-content>
   </div>
-</nav>
+</div>
 
-<!-- NOTE Content -->
-<ng-content></ng-content>
+
