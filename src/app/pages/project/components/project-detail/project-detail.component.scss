@@ -61,17 +61,21 @@ table {
   padding: 30px 60px;
   margin-bottom: 50px;
   tr {
-
+    td:first-child {
+      text-align: left;
+    }
     th {
       &:first-child {
         border-top-left-radius: 10px;
+        text-align: left;
       }
       &:last-child {
         border-top-right-radius: 10px;
       }
     }
 
-    .trade-approval, .customer-approval {
+    .trade-approval,
+    .customer-approval {
       width: 200px;
     }
     &:last-child {
@@ -88,8 +92,7 @@ table {
     color: #232323;
     border-bottom-color: #e6eff5;
     padding: 20px;
-  text-align: center;
-
+    text-align: center;
   }
   .mat-mdc-header-cell {
     border-bottom-color: #e6eff5;
@@ -97,8 +100,7 @@ table {
     font-weight: 500;
     font-size: 16px;
     padding: 20px;
-  text-align: center;
-
+    text-align: center;
   }
 }
 
@@ -111,9 +113,9 @@ table {
   width: 250px;
   height: 56px;
   border-radius: 10px;
-  border: 1px solid #DFEAF2;
+  border: 1px solid #dfeaf2;
   margin-right: 15px;
-  background-color: #DFEAF2;
+  background-color: #dfeaf2;
   color: #fff;
 }
 
@@ -126,4 +128,3 @@ table {
   border-radius: 10px;
   border: none;
 }
-

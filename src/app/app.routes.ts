@@ -24,7 +24,11 @@ export const routes : Routes = [
   },
   {
     path          : 'ratings',
-    loadComponent : () => import('./pages/home/home.component').then(m => m.HomeComponent),
+    loadComponent : () => import('./pages/rating/components/rating-list/rating.component').then(m => m.RatingComponent),
+  },
+  {
+    path          : 'ratings/rating-detail',
+    loadComponent : () => import('./pages/rating/components/rating-detail/rating-detail.component').then(m => m.RatingDetailComponent),
   },
   {
     path          : 'settings',
