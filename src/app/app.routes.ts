@@ -32,7 +32,7 @@ export const routes : Routes = [
   },
   {
     path          : 'settings',
-    loadComponent : () => import('./pages/home/home.component').then(m => m.HomeComponent),
+    loadComponent : () => import('./pages/settings/settings.component').then(m => m.SettingsComponent),
   },
   { path : '', redirectTo : '/home', pathMatch : 'full' },
   {
