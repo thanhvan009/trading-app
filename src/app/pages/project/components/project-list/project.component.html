@@ -7,7 +7,11 @@
         <div class="header-group">
           <h1 class="title">Your projects</h1>
           <div class="action-buttons">
-            <button (click)="openDialog()" type="submit" class="btn btn-primary px-5 join-button">
+            <button
+              (click)="openDialog()"
+              type="submit"
+              class="btn btn-primary px-5 join-button"
+            >
               Join
             </button>
             <button type="submit" class="btn btn-primary px-5 create-button">
@@ -20,22 +24,25 @@
             <!-- Position Column -->
             <ng-container matColumnDef="description">
               <th mat-header-cell *matHeaderCellDef>Description</th>
-              <td mat-cell *matCellDef="let element">{{ element.description }}</td>
+              <td mat-cell *matCellDef="let element">
+                {{ element.description }}
+              </td>
             </ng-container>
-            
-  
+
             <!-- Name Column -->
             <ng-container matColumnDef="projectId">
               <th mat-header-cell *matHeaderCellDef>Project ID</th>
-              <td mat-cell *matCellDef="let element">{{ element.projectId }}</td>
+              <td mat-cell *matCellDef="let element">
+                {{ element.projectId }}
+              </td>
             </ng-container>
-  
+
             <!-- Weight Column -->
             <ng-container matColumnDef="type">
               <th mat-header-cell *matHeaderCellDef>Type</th>
               <td mat-cell *matCellDef="let element">{{ element.type }}</td>
             </ng-container>
-  
+
             <!-- Symbol Column -->
             <ng-container matColumnDef="owner">
               <th mat-header-cell *matHeaderCellDef>Owner</th>
@@ -50,18 +57,22 @@
             <ng-container matColumnDef="actions">
               <th mat-header-cell *matHeaderCellDef>Actions</th>
               <td mat-cell *matCellDef="let element">
-                <button md-raised-button class="edit-button" >Edit</button> 
-                <button md-raised-button class="share-button" >Share</button> 
+                <button md-raised-button class="edit-button">Edit</button>
+                <button md-raised-button class="share-button">Share</button>
               </td>
-            </ng-container> 
-  
+            </ng-container>
+
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
           </table>
-  
+
           <div class="pagination-list">
             <button class="prev-button">
-              <img [src]="'assets/img/project/prev-button.png'" class="prev-button-img" alt="prev-button">
+              <img
+                [src]="'assets/img/project/prev-button.png'"
+                class="prev-button-img"
+                alt="prev-button"
+              />
               <span class="text">Previous</span>
             </button>
             <button class="page-number active">1</button>
@@ -70,7 +81,11 @@
             <button class="page-number">4</button>
             <button class="next-button">
               <span class="text">Next</span>
-              <img [src]="'assets/img/project/next-button.png'" class="next-button-img" alt="next-button">
+              <img
+                [src]="'assets/img/project/next-button.png'"
+                class="next-button-img"
+                alt="next-button"
+              />
             </button>
           </div>
         </div>
