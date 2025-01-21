@@ -47,20 +47,10 @@ export class SettingsComponent {
     password: FormControl<string>;
     address: FormControl<string>;
   }>;
-  public isLogin = true;
 
-  constructor(
-    private router: Router,
-    private storeService: StoreService,
-    private appService: AppService
-  ) {
+  constructor(private router: Router) {
     this.initFormGroup();
-    this.isLogin = this.router.url === '/auth/login';
   }
-
-  // -------------------------------------------------------------------------------
-  // NOTE Init ---------------------------------------------------------------------
-  // -------------------------------------------------------------------------------
 
   private initFormGroup(): void {
     this.formGroup = new FormGroup({
@@ -112,34 +102,7 @@ export class SettingsComponent {
     });
   }
 
-  // -------------------------------------------------------------------------------
-  // NOTE Actions ------------------------------------------------------------------
-  // -------------------------------------------------------------------------------
-
   public async onClickSubmit(): Promise<void> {
-    await this.authenticate();
+    this.router.navigate(['/home']);
   }
-
-  // -------------------------------------------------------------------------------
-  // NOTE Requests -----------------------------------------------------------------
-  // -------------------------------------------------------------------------------
-
-  private async authenticate(): Promise<void> {
-    this.storeService.isLoading.set(true);
-
-    const email = this.formGroup.controls.email.getRawValue();
-    const password = this.formGroup.controls.password.getRawValue();
-    const success = await this.appService.authenticate(email, password);
-
-    this.storeService.isLoading.set(false);
-
-    if (!success) return;
-
-    // NOTE Redirect to home
-    this.router.navigate(['/settings']);
-  }
-
-  // -------------------------------------------------------------------------------
-  // NOTE Helpers ------------------------------------------------------------------
-  // -------------------------------------------------------------------------------
 }
