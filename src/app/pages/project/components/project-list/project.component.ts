@@ -19,6 +19,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { DialogJoinProject } from '../dialog-join-project/dialog-join-project';
 import { projectDataMock, IProject } from './configs/project.mock';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-project',
@@ -55,7 +56,7 @@ export class ProjectComponent implements OnInit {
     });
   }
 
-  constructor(public storeService: StoreService) {}
+  constructor(public storeService: StoreService, public router: Router) {}
 
   public ngOnInit(): void {
     setTimeout((_) => {
@@ -65,5 +66,12 @@ export class ProjectComponent implements OnInit {
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
+  }
+
+  onEdit() {
+    this.router.navigate(['/projects/project-detail', 1]);
+  }
+  onAddNew() {
+    this.router.navigate(['/projects/project-detail', 1]);
   }
 }

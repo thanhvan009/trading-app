@@ -19,7 +19,7 @@ export const routes : Routes = [
     loadComponent : () => import('./pages/project/components/project-list/project.component').then(m => m.ProjectComponent),
   },
   {
-    path          : 'projects/project-detail',
+    path          : 'projects/project-detail/:id',
     loadComponent : () => import('./pages/project/components/project-detail/project-detail.component').then(m => m.ProjectDetailComponent),
   },
   {
