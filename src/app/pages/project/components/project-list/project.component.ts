@@ -49,10 +49,11 @@ export class ProjectComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: any;
   dialog = inject(MatDialog);
 
-  openDialog() {
+  openDialog(link?: string) {
     this.dialog.open(DialogJoinProject, {
       width: '800px',
       panelClass: 'custom-dialog',
+      data: link ?? ''
     });
   }
 
@@ -68,10 +69,14 @@ export class ProjectComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
   }
 
-  onEdit() {
-    this.router.navigate(['/projects/project-detail', 1]);
+  onEdit(projectId: number) {
+    this.router.navigate(['/projects/project-detail', projectId]);
   }
   onAddNew() {
-    this.router.navigate(['/projects/project-detail', 1]);
+    this.router.navigate(['/projects/project-detail']);
+  }
+
+  onShare(element: IProject) {
+    this.openDialog(element?.link);
   }
 }

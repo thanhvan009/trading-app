@@ -16,10 +16,6 @@ import { TranslateModule } from '@ngx-translate/core';
 // Internal modules
 import { environment } from '@env/environment';
 
-// Services
-import { AppService } from '@services/app.service';
-import { StoreService } from '@services/store.service';
-
 import { PageLayoutComponent } from '@layouts/page-layout/page-layout.component';
 
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';

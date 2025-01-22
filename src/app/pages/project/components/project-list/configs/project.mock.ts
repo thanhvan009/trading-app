@@ -4,6 +4,7 @@ export interface IProject {
   type: number;
   owner: string;
   status: string;
+  link?: string;
 }
 
 export const projectDataMock: IProject[] = [
@@ -13,6 +14,7 @@ export const projectDataMock: IProject[] = [
     type: 1.0079,
     owner: 'H',
     status: 'Active',
+    link: 'https://assistant.neurond.com/',
   },
   {
     projectId: 2,
@@ -20,6 +22,7 @@ export const projectDataMock: IProject[] = [
     type: 4.0026,
     owner: 'He',
     status: 'Active',
+    link: 'https://assistant.neurond.com/',
   },
   {
     projectId: 3,
@@ -27,6 +30,7 @@ export const projectDataMock: IProject[] = [
     type: 6.941,
     owner: 'Li',
     status: 'Active',
+    link: 'https://assistant.neurond.com/',
   },
   {
     projectId: 4,
@@ -34,6 +38,7 @@ export const projectDataMock: IProject[] = [
     type: 9.0122,
     owner: 'Be',
     status: 'Active',
+    link: 'https://assistant.neurond.com/',
   },
   {
     projectId: 5,
@@ -41,6 +46,7 @@ export const projectDataMock: IProject[] = [
     type: 10.811,
     owner: 'B',
     status: 'Active',
+    link: 'https://assistant.neurond.com/',
   },
   {
     projectId: 6,
@@ -48,6 +54,7 @@ export const projectDataMock: IProject[] = [
     type: 12.0107,
     owner: 'C',
     status: 'Active',
+    link: 'https://assistant.neurond.com/',
   },
   {
     projectId: 7,
@@ -55,6 +62,7 @@ export const projectDataMock: IProject[] = [
     type: 14.0067,
     owner: 'N',
     status: 'Active',
+    link: 'https://assistant.neurond.com/',
   },
   {
     projectId: 8,
@@ -62,6 +70,7 @@ export const projectDataMock: IProject[] = [
     type: 15.9994,
     owner: 'O',
     status: 'Active',
+    link: 'https://assistant.neurond.com/',
   },
   {
     projectId: 9,
@@ -69,6 +78,7 @@ export const projectDataMock: IProject[] = [
     type: 18.9984,
     owner: 'F',
     status: 'Active',
+    link: 'https://assistant.neurond.com/',
   },
   {
     projectId: 10,
@@ -76,6 +86,7 @@ export const projectDataMock: IProject[] = [
     type: 20.1797,
     owner: 'Ne',
     status: 'Active',
+    link: 'https://assistant.neurond.com/',
   },
   {
     projectId: 11,
@@ -83,6 +94,7 @@ export const projectDataMock: IProject[] = [
     type: 22.9897,
     owner: 'Na',
     status: 'Active',
+    link: 'https://assistant.neurond.com/',
   },
   {
     projectId: 12,
@@ -90,6 +102,7 @@ export const projectDataMock: IProject[] = [
     type: 24.305,
     owner: 'Mg',
     status: 'Active',
+    link: 'https://assistant.neurond.com/',
   },
   {
     projectId: 13,
@@ -97,6 +110,7 @@ export const projectDataMock: IProject[] = [
     type: 26.9815,
     owner: 'Al',
     status: 'Active',
+    link: 'https://assistant.neurond.com/',
   },
   {
     projectId: 14,
@@ -104,6 +118,7 @@ export const projectDataMock: IProject[] = [
     type: 28.0855,
     owner: 'Si',
     status: 'Active',
+    link: 'https://assistant.neurond.com/',
   },
   {
     projectId: 15,
@@ -111,6 +126,7 @@ export const projectDataMock: IProject[] = [
     type: 30.9738,
     owner: 'P',
     status: 'Active',
+    link: 'https://assistant.neurond.com/',
   },
   {
     projectId: 16,
@@ -118,6 +134,7 @@ export const projectDataMock: IProject[] = [
     type: 32.065,
     owner: 'S',
     status: 'Active',
+    link: 'https://assistant.neurond.com/',
   },
   {
     projectId: 17,
@@ -125,6 +142,7 @@ export const projectDataMock: IProject[] = [
     type: 35.453,
     owner: 'Cl',
     status: 'Active',
+    link: 'https://assistant.neurond.com/',
   },
   {
     projectId: 18,
@@ -132,6 +150,7 @@ export const projectDataMock: IProject[] = [
     type: 39.948,
     owner: 'Ar',
     status: 'Active',
+    link: 'https://assistant.neurond.com/',
   },
   {
     projectId: 19,
@@ -139,6 +158,7 @@ export const projectDataMock: IProject[] = [
     type: 39.0983,
     owner: 'K',
     status: 'Active',
+    link: 'https://assistant.neurond.com/',
   },
   {
     projectId: 20,
@@ -146,5 +166,6 @@ export const projectDataMock: IProject[] = [
     type: 40.078,
     owner: 'Ca',
     status: 'Active',
+    link: 'https://assistant.neurond.com/',
   },
 ];

@@ -1,8 +1,8 @@
 import {
-  MatDialog,
   MAT_DIALOG_DATA,
   MatDialogTitle,
   MatDialogContent,
+  MatDialogRef,
 } from '@angular/material/dialog';
 
 import {Component, inject} from '@angular/core';
@@ -19,4 +19,10 @@ import {Component, inject} from '@angular/core';
 
 export class DialogJoinProject {
   data = inject(MAT_DIALOG_DATA);
+  constructor(public dialogRef: MatDialogRef<DialogJoinProject>) {}
+
+
+  onClose() {
+    this.dialogRef.close();
+  }
 }

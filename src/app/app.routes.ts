@@ -19,6 +19,10 @@ export const routes : Routes = [
     loadComponent : () => import('./pages/project/components/project-list/project.component').then(m => m.ProjectComponent),
   },
   {
+    path          : 'projects/project-detail',
+    loadComponent : () => import('./pages/project/components/project-detail/project-detail.component').then(m => m.ProjectDetailComponent),
+  },
+  {
     path          : 'projects/project-detail/:id',
     loadComponent : () => import('./pages/project/components/project-detail/project-detail.component').then(m => m.ProjectDetailComponent),
   },
@@ -27,7 +31,7 @@ export const routes : Routes = [
     loadComponent : () => import('./pages/rating/components/rating-list/rating.component').then(m => m.RatingComponent),
   },
   {
-    path          : 'ratings/rating-detail',
+    path          : 'ratings/rating-detail/:id',
     loadComponent : () => import('./pages/rating/components/rating-detail/rating-detail.component').then(m => m.RatingDetailComponent),
   },
   {
