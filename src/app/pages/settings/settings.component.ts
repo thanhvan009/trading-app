@@ -56,14 +56,14 @@ export class SettingsComponent {
     this.formGroup = new FormGroup({
       yourname: new FormControl<string>(
         {
-          value: '',
+          value: 'John',
           disabled: false,
         },
         { validators: [Validators.required], nonNullable: true }
       ),
       email: new FormControl<string>(
         {
-          value: '',
+          value: 'john@gmail.com',
           disabled: false,
         },
         {
@@ -73,28 +73,28 @@ export class SettingsComponent {
       ),
       dateOfBirth: new FormControl<string>(
         {
-          value: '',
+          value: '31/12/1998',
           disabled: false,
         },
         { validators: [Validators.required], nonNullable: true }
       ),
       username: new FormControl<string>(
         {
-          value: '',
+          value: 'john1998',
           disabled: false,
         },
         { validators: [Validators.required], nonNullable: true }
       ),
       password: new FormControl<string>(
         {
-          value: '',
+          value: 'xxxxxx',
           disabled: false,
         },
         { validators: [Validators.required], nonNullable: true }
       ),
       address: new FormControl<string>(
         {
-          value: '',
+          value: '123 Street 1',
           disabled: false,
         },
         { validators: [Validators.required], nonNullable: true }
