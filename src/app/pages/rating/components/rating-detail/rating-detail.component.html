@@ -1,0 +1,69 @@
+<app-page-layout>
+  <div class="project-detail">
+    <div class="project-detail-wrapper">
+      <h1 class="title">Rating your projects</h1>
+      <form [formGroup]="formGroup" (ngSubmit)="onClickSubmit()">
+        <div class="form-wrapper">
+          <div class="info-left">
+            <div class="mb-5">
+              <label for="name" class="form-label text-start w-100">Project Name</label>
+              <input type="text" class="form-control" id="projectName"
+                formControlName="projectName"
+                placeholder="Enter your project name"
+                [ngClass]="{ 'is-invalid' : formGroup.controls.projectName.errors && formGroup.controls.projectName.touched }">
+              <!-- NOTE Errors -->
+              <div class="invalid-feedback" *ngIf="formGroup.controls.projectName.hasError('required')">
+                {{ 'FIELD_REQUIRED' | translate }}
+              </div>
+              <div class="invalid-feedback" *ngIf="formGroup.controls.projectName.hasError('name')">
+                projectName
+              </div>
+            </div>
+            <div class="mb-5">
+              <label for="ratings" class="form-label text-start w-100">Ratings</label>
+              <div class="star-rating">
+                <span class="material-icons">
+                  star_rate
+                  </span>
+                  <span class="material-icons">
+                    star_rate
+                    </span>
+                    <span class="material-icons">
+                      star_rate
+                      </span>
+                      <span class="material-icons">
+                        star_rate
+                        </span>
+                        <span class="material-icons">
+                          star_rate
+                          </span>
+              </div>
+            </div>
+            <div class="mb-5">
+              <label for="yourReview" class="form-label text-start w-100">Your Review</label>
+              
+              <textarea type="text" class="form-control" id="type"
+                formControlName="type"
+                placeholder="Enter your type"
+                [ngClass]="{ 'is-invalid' : formGroup.controls.yourReview.errors && formGroup.controls.yourReview.touched }"></textarea>
+              <!-- NOTE Errors -->
+              <div class="invalid-feedback" *ngIf="formGroup.controls.yourReview.hasError('required')">
+                {{ 'FIELD_REQUIRED' | translate }}
+              </div>
+              <div class="invalid-feedback" *ngIf="formGroup.controls.yourReview.hasError('yourReview')">
+                yourReview
+              </div>
+            </div>
+            <div class="action-buttons mb-5">
+              <button class="cancel-button">Cancel</button>
+              <button type="submit" class="btn btn-primary px-5 submit-button" [disabled]="!formGroup.valid">
+                Submit
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+      
+    </div>
+  </div>
+</app-page-layout>

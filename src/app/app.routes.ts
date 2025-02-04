@@ -16,15 +16,27 @@ export const routes : Routes = [
   },
   {
     path          : 'projects',
-    loadComponent : () => import('./pages/home/home.component').then(m => m.HomeComponent),
+    loadComponent : () => import('./pages/project/components/project-list/project.component').then(m => m.ProjectComponent),
+  },
+  {
+    path          : 'projects/project-detail',
+    loadComponent : () => import('./pages/project/components/project-detail/project-detail.component').then(m => m.ProjectDetailComponent),
+  },
+  {
+    path          : 'projects/project-detail/:id',
+    loadComponent : () => import('./pages/project/components/project-detail/project-detail.component').then(m => m.ProjectDetailComponent),
   },
   {
     path          : 'ratings',
-    loadComponent : () => import('./pages/home/home.component').then(m => m.HomeComponent),
+    loadComponent : () => import('./pages/rating/components/rating-list/rating.component').then(m => m.RatingComponent),
+  },
+  {
+    path          : 'ratings/rating-detail/:id',
+    loadComponent : () => import('./pages/rating/components/rating-detail/rating-detail.component').then(m => m.RatingDetailComponent),
   },
   {
     path          : 'settings',
-    loadComponent : () => import('./pages/home/home.component').then(m => m.HomeComponent),
+    loadComponent : () => import('./pages/settings/settings.component').then(m => m.SettingsComponent),
   },
   { path : '', redirectTo : '/home', pathMatch : 'full' },
   {

@@ -34,6 +34,7 @@ export class LoginComponent
     email    : FormControl<string>,
     password : FormControl<string>,
   }>;
+  public isLogin = true;
 
   constructor
   (
@@ -43,6 +44,7 @@ export class LoginComponent
   )
   {
     this.initFormGroup();
+    this.isLogin = this.router.url === '/auth/login';
   }
 
   // -------------------------------------------------------------------------------

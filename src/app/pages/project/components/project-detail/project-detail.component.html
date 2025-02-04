@@ -1,0 +1,197 @@
+<app-page-layout>
+  <div class="project-detail">
+    <div class="project-detail-wrapper">
+      <h1 class="title">Your projects</h1>
+      <form [formGroup]="formGroup">
+        <div class="form-wrapper">
+          <div class="info-left">
+            <div class="mb-5">
+              <label for="name" class="form-label text-start w-100">Name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="name"
+                formControlName="name"
+                placeholder="Enter your name"
+                [ngClass]="{
+                  'is-invalid':
+                    formGroup.controls.name.errors &&
+                    formGroup.controls.name.touched
+                }"
+              />
+              <!-- NOTE Errors -->
+              <div
+                class="invalid-feedback"
+                *ngIf="formGroup.controls.name.hasError('required')"
+              >
+                {{ "FIELD_REQUIRED" | translate }}
+              </div>
+              <div
+                class="invalid-feedback"
+                *ngIf="formGroup.controls.name.hasError('name')"
+              >
+                name
+              </div>
+            </div>
+            <div class="mb-5">
+              <label for="type" class="form-label text-start w-100">Type</label>
+              <input
+                type="text"
+                class="form-control"
+                id="type"
+                formControlName="type"
+                placeholder="Enter your type"
+                [ngClass]="{
+                  'is-invalid':
+                    formGroup.controls.type.errors &&
+                    formGroup.controls.type.touched
+                }"
+              />
+              <!-- NOTE Errors -->
+              <div
+                class="invalid-feedback"
+                *ngIf="formGroup.controls.type.hasError('required')"
+              >
+                {{ "FIELD_REQUIRED" | translate }}
+              </div>
+              <div
+                class="invalid-feedback"
+                *ngIf="formGroup.controls.type.hasError('type')"
+              >
+                type
+              </div>
+            </div>
+          </div>
+          <div class="info-right">
+            <div class="mb-5">
+              <label for="id" class="form-label text-start w-100">ID</label>
+              <input
+                type="id"
+                class="form-control"
+                id="id"
+                formControlName="id"
+                placeholder="Enter your id"
+                [ngClass]="{
+                  'is-invalid':
+                    formGroup.controls.id.errors &&
+                    formGroup.controls.id.touched
+                }"
+              />
+              <!-- NOTE Errors -->
+              <div
+                class="invalid-feedback"
+                *ngIf="formGroup.controls.id.hasError('required')"
+              >
+                id
+              </div>
+              <div
+                class="invalid-feedback"
+                *ngIf="formGroup.controls.id.hasError('id')"
+              >
+                {{ "FIELD_id" | translate }}
+              </div>
+            </div>
+
+            <div class="mb-5">
+              <label for="status" class="form-label text-start w-100"
+                >Status</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                id="status"
+                formControlName="status"
+                placeholder="Enter your status"
+                [ngClass]="{
+                  'is-invalid':
+                    formGroup.controls.status.errors &&
+                    formGroup.controls.status.touched
+                }"
+              />
+              <!-- NOTE Errors -->
+              <div
+                class="invalid-feedback"
+                *ngIf="formGroup.controls.status.hasError('required')"
+              >
+                {{ "FIELD_REQUIRED" | translate }}
+              </div>
+              <div
+                class="invalid-feedback"
+                *ngIf="formGroup.controls.status.hasError('status')"
+              >
+                status
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+      <div class="table-list">
+        <div class="mat-elevation-z8 table-list">
+          <table mat-table [dataSource]="dataSource">
+            <!-- Name Column -->
+            <ng-container matColumnDef="createdBy">
+              <th mat-header-cell *matHeaderCellDef>Created By</th>
+              <td mat-cell *matCellDef="let element">
+                {{ element.createdBy }}
+              </td>
+            </ng-container>
+
+            <!-- Position Column -->
+            <ng-container matColumnDef="description">
+              <th mat-header-cell *matHeaderCellDef>Description</th>
+              <td mat-cell *matCellDef="let element">
+                {{ element.description }}
+              </td>
+            </ng-container>
+
+            <!-- Weight Column -->
+            <ng-container matColumnDef="date">
+              <th mat-header-cell *matHeaderCellDef>Date</th>
+              <td mat-cell *matCellDef="let element">{{ element.date }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="tradeApproval">
+              <th class="trade-approval" mat-header-cell *matHeaderCellDef>
+                Trade Approval
+              </th>
+              <td mat-cell *matCellDef="let element">
+                <section class="example-section">
+                  <mat-checkbox
+                    md-raised-button
+                    class="example-margin"
+                  ></mat-checkbox>
+                </section>
+              </td>
+            </ng-container>
+            <ng-container matColumnDef="customerApproval">
+              <th class="customer-approval" mat-header-cell *matHeaderCellDef>
+                Customer Approval
+              </th>
+              <td mat-cell *matCellDef="let element">
+                <section class="example-section">
+                  <mat-checkbox
+                    md-raised-button
+                    class="example-margin"
+                  ></mat-checkbox>
+                </section>
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+          </table>
+        </div>
+      </div>
+      <div class="action-buttons">
+        <button (click)="onCancel()" class="back-button">Back</button>
+        <button
+          (click)="onSave()"
+          type="submit"
+          class="btn btn-primary px-5 save-button"
+        >
+          Save
+        </button>
+      </div>
+    </div>
+  </div>
+</app-page-layout>
