@@ -31,9 +31,7 @@
           <form [formGroup]="formGroup" (ngSubmit)="onClickSubmit()">
             <!-- NOTE Email -->
             <div class="mb-5">
-              <label for="email" class="form-label text-start w-100">{{
-                "EMAIL" | translate
-              }}</label>
+              <label for="email" class="form-label text-start w-100">Email</label>
               <input
                 type="email"
                 class="form-control"
@@ -97,7 +95,11 @@
               }}</a>
             </div>
 
-            <div class="text-center mb-5">
+            <div class="text-center mb-5 login-signup-btn"
+              [ngClass]="{
+                'disabled': !formGroup.valid,
+              }"
+            >
               <button
                 type="submit"
                 class="btn btn-primary mb-3 px-5"
@@ -113,7 +115,7 @@
               <span class="text">{{
                 isLogin
                   ? "Already have an account ?"
-                  : "Don’t have an account ?"
+                  : "Don't have an account ?"
               }}</span>
               <a
                 routerLink="{{ isLogin ? '/auth/sign-up' : '/auth/login' }}"

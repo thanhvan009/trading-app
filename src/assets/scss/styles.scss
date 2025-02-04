@@ -82,4 +82,10 @@
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
+button {
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
 @import 'material-icons/iconfont/material-icons.css';
