@@ -16,14 +16,10 @@ import { TranslateModule } from '@ngx-translate/core';
 // Internal modules
 import { environment } from '@env/environment';
 
-// Services
-import { AppService } from '@services/app.service';
-import { StoreService } from '@services/store.service';
-
 import { PageLayoutComponent } from '@layouts/page-layout/page-layout.component';
 
 @Component({
-  selector: 'app-login',
+  selector: 'app-setting',
   templateUrl: './settings.component.html',
   styleUrls: ['./settings.component.scss'],
   standalone: true,

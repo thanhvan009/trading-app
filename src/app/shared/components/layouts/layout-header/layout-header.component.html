@@ -31,11 +31,19 @@
           <li class="nav-item">
             <a
               class="nav-link"
+              [ngClass]="{'active': breadcrumbText == 'dashboard'}"
               [routerLink]="['/dashboard']"
               [routerLinkActive]="['active']"
             >
               <img
+                *ngIf="breadcrumbText != 'dashboard'"
                 [src]="'assets/img/project/dashboard.png'"
+                class="dashboard-icon mx-3"
+                alt="dashboard-icon"
+              />
+              <img
+                *ngIf="breadcrumbText == 'dashboard'"
+                [src]="'assets/img/project/dashboard-active.png'"
                 class="dashboard-icon mx-3"
                 alt="dashboard-icon"
               />
@@ -46,11 +54,19 @@
           <li class="nav-item">
             <a
               class="nav-link"
+              [ngClass]="{'active': breadcrumbText == 'projects'}"
               [routerLink]="['/projects']"
               [routerLinkActive]="['active']"
             >
               <img
+                *ngIf="breadcrumbText != 'projects'"
                 [src]="'assets/img/project/project.png'"
+                class="project-icon mx-3"
+                alt="project-icon"
+              />
+              <img
+                *ngIf="breadcrumbText == 'projects'"
+                [src]="'assets/img/project/project-active.png'"
                 class="project-icon mx-3"
                 alt="project-icon"
               />
@@ -61,11 +77,19 @@
           <li class="nav-item">
             <a
               class="nav-link"
+              [ngClass]="{'active': breadcrumbText == 'ratings'}"
               [routerLink]="['/ratings']"
               [routerLinkActive]="['active']"
             >
               <img
+                *ngIf="breadcrumbText != 'ratings'"
                 [src]="'assets/img/project/rating.png'"
+                class="rating-icon mx-3"
+                alt="rating-icon"
+              />
+              <img
+                *ngIf="breadcrumbText == 'ratings'"
+                [src]="'assets/img/project/rating-active.png'"
                 class="rating-icon mx-3"
                 alt="rating-icon"
               />
@@ -76,11 +100,19 @@
           <li class="nav-item">
             <a
               class="nav-link"
+              [ngClass]="{'active': breadcrumbText == 'settings'}"
               [routerLink]="['/settings']"
               [routerLinkActive]="['active']"
             >
               <img
+                *ngIf="breadcrumbText != 'settings'"
                 [src]="'assets/img/project/setting.png'"
+                class="setting-icon mx-3"
+                alt="setting-icon"
+              />
+              <img
+                *ngIf="breadcrumbText == 'settings'"
+                [src]="'assets/img/project/setting-active.png'"
                 class="setting-icon mx-3"
                 alt="setting-icon"
               />
