@@ -10,6 +10,7 @@ import { NgbDropdownMenu } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateModule } from '@ngx-translate/core';
 import { environment } from '@env/environment';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { NgClass, NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-layout-header',
@@ -25,6 +26,8 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     NgbDropdownMenu,
     TranslateModule,
     MatSlideToggleModule,
+    NgClass,
+    NgIf
   ],
 })
 export class LayoutHeaderComponent implements OnInit {
