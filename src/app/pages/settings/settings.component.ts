@@ -18,6 +18,10 @@ import { environment } from '@env/environment';
 
 import { PageLayoutComponent } from '@layouts/page-layout/page-layout.component';
 
+import { PaymentsComponent } from './components/payments/payments.component';
+
+import {MatTabsModule} from '@angular/material/tabs';
+
 @Component({
   selector: 'app-setting',
   templateUrl: './settings.component.html',
@@ -31,6 +35,8 @@ import { PageLayoutComponent } from '@layouts/page-layout/page-layout.component'
     NgIf,
     RouterLink,
     TranslateModule,
+    MatTabsModule,
+    PaymentsComponent,
   ],
 })
 export class SettingsComponent {
