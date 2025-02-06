@@ -20,15 +20,6 @@
   }
 }
 
-.title {
-  color: #333b69;
-  font-weight: 500;
-  font-size: 22px;
-  margin-bottom: 50px;
-  padding-bottom: 10px;
-  border-bottom: 1px solid #f4f5f7;
-}
-
 .form-wrapper {
   display: flex;
   align-items: center;
@@ -83,4 +74,30 @@ form {
   height: 56px;
   border-radius: 10px;
   border: none;
+}
+
+:host ::ng-deep {
+  .mat-mdc-tab-label-container {
+    margin-bottom: 25px;
+  }
+  .mat-mdc-tab.mdc-tab {
+    flex-grow: 0 !important;
+    color: #333b69;
+    font-weight: 500;
+    font-size: 16px;
+    padding-bottom: 10px;
+    padding-left: 0;
+    margin-right: 15px;
+    .mdc-tab__text-label {
+      color: #b1b1b1;
+    }
+  }
+
+  .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label {
+    color: #092c4c;
+  }
+
+  .mat-mdc-tab .mdc-tab-indicator__content--underline {
+    border-color: #092c4c;
+  }
 }

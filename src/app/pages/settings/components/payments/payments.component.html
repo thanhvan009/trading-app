@@ -1,0 +1,84 @@
+<div class="payments">
+  <div class="my-cards">
+    <div class="title">My cards</div>
+    <div class="card-list">
+      <div class="card-item">
+        <img src="assets/img/project/card-1.png" />
+      </div>
+      <div class="card-item">
+        <img src="assets/img/project/card-2.png" />
+      </div>
+      <div class="card-item">
+        <img src="assets/img/project/card-3.png" />
+      </div>
+    </div>
+  </div>
+  <div class="add-card">
+    <div class="title">Add Card</div>
+    <div class="description">
+      Credit Card generally means a plastic card issued by Scheduled Commercial
+      Banks assigned to a Cardholder, with a credit limit, that can be used to
+      purchase goods and services on credit or obtain cash advances.
+    </div>
+    <form>
+      <div class="row mb-4">
+        <div class="col-md-4">
+          <label for="cardType" class="form-label text-start w-100"
+            >Card Type</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            id="cardType"
+            formControlName="cardType"
+            placeholder="Enter your card type"
+          />
+        </div>
+        <div class="col-md-4">
+          <label for="nameCard" class="form-label text-start w-100"
+            >Name On Card</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            id="nameCard"
+            formControlName="nameCard"
+            placeholder="Enter your name on card"
+          />
+        </div>
+      </div>
+      <div class="row mb-5">
+        <div class="col-md-4">
+          <label for="cardNumber" class="form-label text-start w-100"
+            >Card Number</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            id="cardNumber"
+            formControlName="cardNumber"
+            placeholder="Enter your card number"
+          />
+        </div>
+        <div class="col-md-4">
+          <label for="expirationDate" class="form-label text-start w-100"
+            >Expiration Date</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            id="expirationDate"
+            formControlName="expirationDate"
+            placeholder="Enter your expiration date"
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4"></div>
+        <div class="submit-btn col-md-4">
+          <button>Add card</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
