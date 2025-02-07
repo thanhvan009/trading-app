@@ -1,6 +1,4 @@
 .payments {
-  .my-cards {
-  }
   .title {
     color: #333b69;
     font-size: 22px;
@@ -11,11 +9,12 @@
     display: flex;
     margin-bottom: 60px;
     .card-item {
-      margin-right: 35px;
+      margin-bottom: 35px;
+      padding-right: 30px;
     }
     img {
-      width: 350px;
-      height: 100%;
+      width: 100%;
+      height: auto;
     }
   }
 
