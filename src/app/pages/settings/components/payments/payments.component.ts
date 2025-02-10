@@ -35,7 +35,41 @@ export class PaymentsComponent {
     expirationDate: FormControl<string>;
   }>;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router) {
+    this.formGroup = new FormGroup({
+      cardType: new FormControl<string>(
+        {
+          value: '',
+          disabled: false,
+        },
+        {
+          validators: [Validators.required],
+          nonNullable: true,
+        }
+      ),
+      nameOnCard: new FormControl<string>(
+        {
+          value: '',
+          disabled: false,
+        },
+        { validators: [Validators.required], nonNullable: true }
+      ),
+      cardNumber: new FormControl<string>(
+        {
+          value: '',
+          disabled: false,
+        },
+        { validators: [Validators.required], nonNullable: true }
+      ),
+      expirationDate: new FormControl<string>(
+        {
+          value: '',
+          disabled: false,
+        },
+        { validators: [Validators.required], nonNullable: true }
+      ),
+    });
+  }
 
   // -------------------------------------------------------------------------------
   // NOTE Init ---------------------------------------------------------------------
@@ -46,7 +80,7 @@ export class PaymentsComponent {
   // -------------------------------------------------------------------------------
 
   public async onClickSubmit(): Promise<void> {
-    //
+    this.router.navigate(['/home']);
   }
 
   // -------------------------------------------------------------------------------

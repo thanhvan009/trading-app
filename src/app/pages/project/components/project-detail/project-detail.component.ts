@@ -7,8 +7,8 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormControl } from '@angular/forms';
 import { Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { RouterLink } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 // External modules
 import { TranslateModule } from '@ngx-translate/core';
@@ -51,47 +51,52 @@ export class ProjectDetailComponent {
   public appName: string = environment.appName;
   public formGroup!: FormGroup<{
     name: FormControl<string | null>;
-    id: FormControl<string | null>;
+    id: FormControl<number | string>;
     type: FormControl<string | null>;
     status: FormControl<string | null>;
   }>;
+  private projectId: number;
 
-  constructor(private router: Router) {
-    this.initFormGroup();
+  constructor(private router: Router, private activatedRoute: ActivatedRoute) {
+    this.projectId = +this.activatedRoute.snapshot.params['id'];
   }
 
   // -------------------------------------------------------------------------------
   // NOTE Init ---------------------------------------------------------------------
   // -------------------------------------------------------------------------------
 
-  private initFormGroup(): void {
+  private initFormGroup(projectId?: number): void {
     this.formGroup = new FormGroup({
       name: new FormControl<string | null>(
         {
-          value: '',
+          value: projectId ? 'Hydrogen' : '',
           disabled: false,
         },
         { validators: [Validators.required], nonNullable: true }
       ),
-      id: new FormControl<string | null>(
+      id: new FormControl<number | string>(
         {
-          value: '',
+          value: projectId ?? '',
           disabled: false,
         },
         { validators: [Validators.required], nonNullable: true }
       ),
       type: new FormControl<string | null>(
         {
-          value: '',
+          value: projectId ? '1.0079' : '',
           disabled: false,
         },
         { validators: [Validators.required], nonNullable: true }
       ),
       status: new FormControl<string | null>({
-        value: '',
+        value: projectId ? 'Active' : 'Not started yet',
         disabled: false,
       }),
     });
+  }
+
+  ngOnInit(): void {
+    this.initFormGroup(this.projectId);
   }
 
   onCancel() {
