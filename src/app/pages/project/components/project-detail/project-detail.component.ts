@@ -92,10 +92,13 @@ export class ProjectDetailComponent {
         },
         { validators: [Validators.required], nonNullable: true }
       ),
-      status: new FormControl<string | null>({
-        value: projectId ? 'Active' : 'Not started yet',
-        disabled: false,
-      }),
+      status: new FormControl<string | null>(
+        {
+          value: projectId ? 'Active' : 'Not started yet',
+          disabled: false,
+        },
+        { validators: [Validators.required], nonNullable: true }
+      ),
     });
   }
 
@@ -106,14 +109,17 @@ export class ProjectDetailComponent {
     }, 2000);
   }
 
-  public ngAfterView(): void {
-  }
+  public ngAfterView(): void {}
 
   onCancel() {
     this.router.navigate(['/projects']);
   }
 
   onSave() {
+    this.formGroup.markAllAsTouched();
+    if (this.formGroup.invalid) {
+      return;
+    }
     this.router.navigate(['/projects']);
   }
 }
