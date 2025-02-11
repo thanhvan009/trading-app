@@ -1,5 +1,5 @@
 // Angular modules
-import { NgIf } from '@angular/common';
+import { NgClass, NgFor, NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { inject } from '@angular/core';
@@ -29,6 +29,8 @@ import { Router } from '@angular/router';
   imports: [
     PageLayoutComponent,
     NgIf,
+    NgClass,
+    NgFor,
     ProgressBarComponent,
     MatTableModule,
     MatPaginatorModule,
@@ -48,6 +50,7 @@ export class ProjectComponent implements OnInit {
   dataSource = new MatTableDataSource<IProject>(projectDataMock);
   @ViewChild(MatPaginator) paginator: any;
   dialog = inject(MatDialog);
+  public selectedPage = 0;
 
   openDialog(link?: string) {
     this.dialog.open(DialogJoinProject, {
@@ -78,5 +81,19 @@ export class ProjectComponent implements OnInit {
 
   onShare(element: IProject) {
     this.openDialog(element?.link);
+  }
+
+  onClickPage(item: number | string) {
+    if (typeof item == 'number') {
+      this.storeService.isLoading.set(true);
+      this.selectedPage = item;
+      setTimeout((_) => {
+        this.storeService.isLoading.set(false);
+      }, 2000);
+    } else if (item == 'prev') {
+      // 
+    } else {
+      //
+    }
   }
 }
