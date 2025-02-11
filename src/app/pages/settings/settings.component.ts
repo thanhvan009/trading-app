@@ -20,7 +20,9 @@ import { PageLayoutComponent } from '@layouts/page-layout/page-layout.component'
 
 import { PaymentsComponent } from './components/payments/payments.component';
 
-import {MatTabsModule} from '@angular/material/tabs';
+import { MatTabsModule } from '@angular/material/tabs';
+import { StoreService } from '@services/store.service';
+import { ProgressBarComponent } from '@blocks/progress-bar/progress-bar.component';
 
 @Component({
   selector: 'app-setting',
@@ -37,6 +39,7 @@ import {MatTabsModule} from '@angular/material/tabs';
     TranslateModule,
     MatTabsModule,
     PaymentsComponent,
+    ProgressBarComponent,
   ],
 })
 export class SettingsComponent {
@@ -50,8 +53,8 @@ export class SettingsComponent {
     address: FormControl<string>;
   }>;
 
-  constructor(private router: Router) {
-    this.initFormGroup();
+  constructor(public storeService: StoreService, public router: Router) {
+    this.storeService.isLoading.set(true);
   }
 
   private initFormGroup(): void {
@@ -73,9 +76,9 @@ export class SettingsComponent {
           nonNullable: true,
         }
       ),
-      dateOfBirth: new FormControl<string>(
+      dateOfBirth: new FormControl<any>(
         {
-          value: '31/12/1998',
+          value: new Date('12/12/1998'),
           disabled: false,
         },
         { validators: [Validators.required], nonNullable: true }
@@ -104,7 +107,18 @@ export class SettingsComponent {
     });
   }
 
+  public ngOnInit(): void {
+    setTimeout((_) => {
+      this.storeService.isLoading.set(false);
+    }, 2000);
+    this.initFormGroup();
+  }
+
   public async onClickSubmit(): Promise<void> {
-    this.router.navigate(['/home']);
+    this.storeService.isLoading.set(true);
+    setTimeout((_) => {
+      this.storeService.isLoading.set(false);
+    }, 2000);
+    this.router.navigate(['/settings']);
   }
 }

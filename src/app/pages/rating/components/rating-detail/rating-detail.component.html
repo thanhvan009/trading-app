@@ -42,9 +42,9 @@
             <div class="mb-5">
               <label for="yourReview" class="form-label text-start w-100">Your Review</label>
               
-              <textarea type="text" class="form-control" id="type"
-                formControlName="type"
-                placeholder="Enter your type"
+              <textarea type="text" class="form-control" id="yourReview"
+                formControlName="yourReview"
+                placeholder="Enter your review"
                 [ngClass]="{ 'is-invalid' : formGroup.controls.yourReview.errors && formGroup.controls.yourReview.touched }"></textarea>
               <!-- NOTE Errors -->
               <div class="invalid-feedback" *ngIf="formGroup.controls.yourReview.hasError('required')">

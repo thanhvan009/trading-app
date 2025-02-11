@@ -18,7 +18,9 @@ import { PageLayoutComponent } from '@layouts/page-layout/page-layout.component'
   imports: [PageLayoutComponent, NgIf, ProgressBarComponent],
 })
 export class HomeComponent implements OnInit {
-  constructor(public storeService: StoreService) {}
+  constructor(public storeService: StoreService) {
+    this.storeService.isLoading.set(true);
+  }
 
   public ngOnInit(): void {
     setTimeout((_) => {
