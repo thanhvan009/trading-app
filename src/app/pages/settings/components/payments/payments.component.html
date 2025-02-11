@@ -20,7 +20,7 @@
       Banks assigned to a Cardholder, with a credit limit, that can be used to
       purchase goods and services on credit or obtain cash advances.
     </div>
-    <form>
+    <form [formGroup]="formGroup" (ngSubmit)="onClickSubmit()">
       <div class="row mb-4">
         <div class="col-md-5 col-sm-6">
           <label for="cardType" class="form-label text-start w-100"
@@ -32,7 +32,24 @@
             id="cardType"
             formControlName="cardType"
             placeholder="Enter your card type"
+            [ngClass]="{
+              'is-invalid':
+                formGroup.controls.cardType.errors &&
+                formGroup.controls.cardType.touched
+            }"
           />
+          <div
+            class="invalid-feedback"
+            *ngIf="formGroup.controls.cardType.hasError('cardType')"
+          >
+            {{ "FIELD_EMAIL" | translate }}
+          </div>
+          <div
+            class="invalid-feedback"
+            *ngIf="formGroup.controls.cardType.hasError('required')"
+          >
+            {{ "FIELD_REQUIRED" | translate }}
+          </div>
         </div>
         <div class="col-md-5 col-sm-6">
           <label for="nameCard" class="form-label text-start w-100"
@@ -44,7 +61,24 @@
             id="nameCard"
             formControlName="nameCard"
             placeholder="Enter your name on card"
+            [ngClass]="{
+              'is-invalid':
+                formGroup.controls.cardType.errors &&
+                formGroup.controls.cardType.touched
+            }"
           />
+          <div
+            class="invalid-feedback"
+            *ngIf="formGroup.controls.nameOnCard.hasError('nameOnCard')"
+          >
+            {{ "FIELD_EMAIL" | translate }}
+          </div>
+          <div
+            class="invalid-feedback"
+            *ngIf="formGroup.controls.nameOnCard.hasError('required')"
+          >
+            {{ "FIELD_REQUIRED" | translate }}
+          </div>
         </div>
       </div>
       <div class="row mb-5">
@@ -58,25 +92,59 @@
             id="cardNumber"
             formControlName="cardNumber"
             placeholder="Enter your card number"
+            [ngClass]="{
+              'is-invalid':
+                formGroup.controls.cardType.errors &&
+                formGroup.controls.cardType.touched
+            }"
           />
+          <div
+            class="invalid-feedback"
+            *ngIf="formGroup.controls.cardNumber.hasError('cardNumber')"
+          >
+            {{ "FIELD_EMAIL" | translate }}
+          </div>
+          <div
+            class="invalid-feedback"
+            *ngIf="formGroup.controls.cardNumber.hasError('required')"
+          >
+            {{ "FIELD_REQUIRED" | translate }}
+          </div>
         </div>
         <div class="col-md-5 col-sm-6">
           <label for="expirationDate" class="form-label text-start w-100"
             >Expiration Date</label
           >
           <input
-            type="text"
+            type="date"
             class="form-control"
             id="expirationDate"
             formControlName="expirationDate"
             placeholder="Enter your expiration date"
+            [ngClass]="{
+              'is-invalid':
+                formGroup.controls.cardType.errors &&
+                formGroup.controls.cardType.touched
+            }"
           />
+          <div
+            class="invalid-feedback"
+            *ngIf="formGroup.controls.expirationDate.hasError('expirationDate')"
+          >
+            {{ "FIELD_EMAIL" | translate }}
+          </div>
+          <div
+            class="invalid-feedback"
+            *ngIf="formGroup.controls.expirationDate.hasError('required')"
+          >
+            {{ "FIELD_REQUIRED" | translate }}
+          </div>
         </div>
       </div>
       <div class="row">
         <div class="col-md-5 col-sm-6"></div>
         <div class="submit-btn col-md-6">
-          <button>Add card</button>
+          <button type="submit">Add card</button>
         </div>
       </div>
     </form>
