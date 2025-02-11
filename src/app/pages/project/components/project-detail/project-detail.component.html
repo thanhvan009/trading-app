@@ -28,12 +28,6 @@
                 >
                   {{ "FIELD_REQUIRED" | translate }}
                 </div>
-                <div
-                  class="invalid-feedback"
-                  *ngIf="formGroup.controls.name.hasError('name')"
-                >
-                  name
-                </div>
               </div>
               <div class="mb-5">
                 <label for="type" class="form-label text-start w-100">Type</label>
@@ -55,12 +49,6 @@
                   *ngIf="formGroup.controls.type.hasError('required')"
                 >
                   {{ "FIELD_REQUIRED" | translate }}
-                </div>
-                <div
-                  class="invalid-feedback"
-                  *ngIf="formGroup.controls.type.hasError('type')"
-                >
-                  type
                 </div>
               </div>
             </div>
@@ -84,13 +72,7 @@
                   class="invalid-feedback"
                   *ngIf="formGroup.controls.id.hasError('required')"
                 >
-                  id
-                </div>
-                <div
-                  class="invalid-feedback"
-                  *ngIf="formGroup.controls.id.hasError('id')"
-                >
-                  This field is required
+                This field is required
                 </div>
               </div>
   
@@ -116,12 +98,6 @@
                   *ngIf="formGroup.controls.status.hasError('required')"
                 >
                   {{ "FIELD_REQUIRED" | translate }}
-                </div>
-                <div
-                  class="invalid-feedback"
-                  *ngIf="formGroup.controls.status.hasError('status')"
-                >
-                  status
                 </div>
               </div>
             </div>

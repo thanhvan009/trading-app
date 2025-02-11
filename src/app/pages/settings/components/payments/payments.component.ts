@@ -24,7 +24,7 @@ import { StoreService } from '@services/store.service';
     NgIf,
     RouterLink,
     TranslateModule,
-    ProgressBarComponent
+    ProgressBarComponent,
   ],
 })
 export class PaymentsComponent {
@@ -71,7 +71,11 @@ export class PaymentsComponent {
     });
   }
 
-  public async onClickSubmit(): Promise<void> {
+  public onClickSubmit() {
+    this.formGroup.markAllAsTouched();
+    if (this.formGroup.invalid) {
+      return;
+    }
     this.storeService.isLoading.set(true);
     setTimeout((_) => {
       this.storeService.isLoading.set(false);

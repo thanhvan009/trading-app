@@ -78,7 +78,7 @@ export class SettingsComponent {
       ),
       dateOfBirth: new FormControl<any>(
         {
-          value: new Date('12/12/1998'),
+          value: '',
           disabled: false,
         },
         { validators: [Validators.required], nonNullable: true }
@@ -114,7 +114,12 @@ export class SettingsComponent {
     this.initFormGroup();
   }
 
-  public async onClickSubmit(): Promise<void> {
+  public onClickSubmit() {
+    this.formGroup.markAllAsTouched();
+    console.log("🚀 ~ SettingsComponent ~ onClickSubmit ~ this.formGroup:", this.formGroup)
+    if (this.formGroup.invalid) {
+      return;
+    }
     this.storeService.isLoading.set(true);
     setTimeout((_) => {
       this.storeService.isLoading.set(false);

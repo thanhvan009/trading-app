@@ -7,7 +7,7 @@
           <mat-tab-group>
             <mat-tab>
               <ng-template mat-tab-label> Edit Profile </ng-template>
-              <form [formGroup]="formGroup" (ngSubmit)="onClickSubmit()">
+              <form [formGroup]="formGroup">
                 <div class="form-wrapper">
                   <div class="info-left">
                     <div class="mb-4">
@@ -41,12 +41,6 @@
                       >
                         {{ "FIELD_REQUIRED" | translate }}
                       </div>
-                      <div
-                        class="invalid-feedback"
-                        *ngIf="formGroup.controls.yourname.hasError('yourname')"
-                      >
-                        {{ "FIELD_EMAIL" | translate }}
-                      </div>
                     </div>
                     <div class="mb-5">
                       <label for="email" class="form-label text-start w-100"
@@ -79,7 +73,9 @@
                       </div>
                     </div>
                     <div class="mb-5">
-                      <label for="dateOfBirth" class="form-label text-start w-100"
+                      <label
+                        for="dateOfBirth"
+                        class="form-label text-start w-100"
                         >Date of Birth</label
                       >
                       <input
@@ -102,14 +98,6 @@
                         "
                       >
                         {{ "FIELD_REQUIRED" | translate }}
-                      </div>
-                      <div
-                        class="invalid-feedback"
-                        *ngIf="
-                          formGroup.controls.dateOfBirth.hasError('dateOfBirth')
-                        "
-                      >
-                        {{ "FIELD_EMAIL" | translate }}
                       </div>
                     </div>
                   </div>
@@ -137,12 +125,6 @@
                       >
                         {{ "FIELD_REQUIRED" | translate }}
                       </div>
-                      <div
-                        class="invalid-feedback"
-                        *ngIf="formGroup.controls.username.hasError('username')"
-                      >
-                        {{ "FIELD_EMAIL" | translate }}
-                      </div>
                     </div>
                     <div class="mb-5">
                       <label for="password" class="form-label text-start w-100"
@@ -166,12 +148,6 @@
                         *ngIf="formGroup.controls.password.hasError('required')"
                       >
                         {{ "FIELD_REQUIRED" | translate }}
-                      </div>
-                      <div
-                        class="invalid-feedback"
-                        *ngIf="formGroup.controls.password.hasError('password')"
-                      >
-                        {{ "FIELD_EMAIL" | translate }}
                       </div>
                     </div>
                     <div class="mb-5">
@@ -197,23 +173,21 @@
                       >
                         {{ "FIELD_REQUIRED" | translate }}
                       </div>
-                      <div
-                        class="invalid-feedback"
-                        *ngIf="formGroup.controls.address.hasError('address')"
-                      >
-                        {{ "FIELD_EMAIL" | translate }}
-                      </div>
                     </div>
                   </div>
                 </div>
                 <div class="action-buttons">
-                  <button type="submit" class="btn btn-primary px-5 save-button">
+                  <button
+                    type="submit"
+                    class="btn btn-primary px-5 save-button"
+                    (click)="onClickSubmit()"
+                  >
                     Save Profile
                   </button>
                 </div>
               </form>
             </mat-tab>
-  
+
             <mat-tab>
               <ng-template mat-tab-label> Payments </ng-template>
               <setting-payments />

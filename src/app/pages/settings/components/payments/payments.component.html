@@ -20,7 +20,7 @@
       Banks assigned to a Cardholder, with a credit limit, that can be used to
       purchase goods and services on credit or obtain cash advances.
     </div>
-    <form [formGroup]="formGroup" (ngSubmit)="onClickSubmit()">
+    <form [formGroup]="formGroup">
       <div class="row mb-4">
         <div class="col-md-5 col-sm-6">
           <label for="cardType" class="form-label text-start w-100"
@@ -40,39 +40,27 @@
           />
           <div
             class="invalid-feedback"
-            *ngIf="formGroup.controls.cardType.hasError('cardType')"
-          >
-            {{ "FIELD_EMAIL" | translate }}
-          </div>
-          <div
-            class="invalid-feedback"
             *ngIf="formGroup.controls.cardType.hasError('required')"
           >
             {{ "FIELD_REQUIRED" | translate }}
           </div>
         </div>
         <div class="col-md-5 col-sm-6">
-          <label for="nameCard" class="form-label text-start w-100"
+          <label for="nameOnCard" class="form-label text-start w-100"
             >Name On Card</label
           >
           <input
             type="text"
             class="form-control"
-            id="nameCard"
-            formControlName="nameCard"
+            id="nameOnCard"
+            formControlName="nameOnCard"
             placeholder="Enter your name on card"
             [ngClass]="{
               'is-invalid':
-                formGroup.controls.cardType.errors &&
-                formGroup.controls.cardType.touched
+                formGroup.controls.nameOnCard.errors &&
+                formGroup.controls.nameOnCard.touched
             }"
           />
-          <div
-            class="invalid-feedback"
-            *ngIf="formGroup.controls.nameOnCard.hasError('nameOnCard')"
-          >
-            {{ "FIELD_EMAIL" | translate }}
-          </div>
           <div
             class="invalid-feedback"
             *ngIf="formGroup.controls.nameOnCard.hasError('required')"
@@ -94,16 +82,10 @@
             placeholder="Enter your card number"
             [ngClass]="{
               'is-invalid':
-                formGroup.controls.cardType.errors &&
-                formGroup.controls.cardType.touched
+                formGroup.controls.cardNumber.errors &&
+                formGroup.controls.cardNumber.touched
             }"
           />
-          <div
-            class="invalid-feedback"
-            *ngIf="formGroup.controls.cardNumber.hasError('cardNumber')"
-          >
-            {{ "FIELD_EMAIL" | translate }}
-          </div>
           <div
             class="invalid-feedback"
             *ngIf="formGroup.controls.cardNumber.hasError('required')"
@@ -123,16 +105,10 @@
             placeholder="Enter your expiration date"
             [ngClass]="{
               'is-invalid':
-                formGroup.controls.cardType.errors &&
-                formGroup.controls.cardType.touched
+                formGroup.controls.expirationDate.errors &&
+                formGroup.controls.expirationDate.touched
             }"
           />
-          <div
-            class="invalid-feedback"
-            *ngIf="formGroup.controls.expirationDate.hasError('expirationDate')"
-          >
-            {{ "FIELD_EMAIL" | translate }}
-          </div>
           <div
             class="invalid-feedback"
             *ngIf="formGroup.controls.expirationDate.hasError('required')"
@@ -144,7 +120,7 @@
       <div class="row">
         <div class="col-md-5 col-sm-6"></div>
         <div class="submit-btn col-md-6">
-          <button type="submit">Add card</button>
+          <button type="submit" (click)="onClickSubmit()">Add card</button>
         </div>
       </div>
     </form>
