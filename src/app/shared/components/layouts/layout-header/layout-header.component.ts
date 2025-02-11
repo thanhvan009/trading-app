@@ -42,6 +42,7 @@ export class LayoutHeaderComponent implements OnInit {
   }
 
   public async onClickLogout(): Promise<void> {
+    localStorage.clear();
     this.router.navigate(['/auth/login']);
   }
 }

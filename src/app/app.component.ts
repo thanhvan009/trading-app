@@ -2,7 +2,7 @@
 import { NgIf }             from '@angular/common';
 import { Component }        from '@angular/core';
 import { OnInit }           from '@angular/core';
-import { RouterOutlet }     from '@angular/router';
+import { Router, RouterOutlet }     from '@angular/router';
 
 // Services
 import { StoreService }     from '@services/store.service';
@@ -22,6 +22,7 @@ export class AppComponent implements OnInit
   constructor
   (
     public storeService : StoreService,
+    private router: Router,
   )
   {
   }
@@ -32,6 +33,9 @@ export class AppComponent implements OnInit
 
   public ngOnInit() : void
   {
+    if (!localStorage.getItem('token')) {
+      this.router.navigate(['/auth/login']);
+    }
   }
 
   // -------------------------------------------------------------------------------
