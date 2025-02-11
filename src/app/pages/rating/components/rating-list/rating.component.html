@@ -56,7 +56,10 @@
           </table>
 
           <div class="pagination-list">
-            <button class="prev-button">
+            <button
+              class="prev-button"
+              (click)="onClickPage('prev')"
+            >
               <img
                 [src]="'assets/img/project/prev-button.png'"
                 class="prev-button-img"
@@ -64,11 +67,22 @@
               />
               <span class="text">Previous</span>
             </button>
-            <button class="page-number active">1</button>
-            <button class="page-number">2</button>
-            <button class="page-number">3</button>
-            <button class="page-number">4</button>
-            <button class="next-button">
+
+            <button
+              *ngFor="let item of [1, 2, 3, 4]"
+              class="page-number"
+              (click)="onClickPage(item)"
+              [textContent]="item"
+              [ngClass]="{
+                'active': item == selectedPage
+              }"
+            >
+              {{item}}
+            </button>
+            <button
+              class="next-button"
+              (click)="onClickPage('next')"
+            >
               <span class="text">Next</span>
               <img
                 [src]="'assets/img/project/next-button.png'"

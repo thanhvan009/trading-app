@@ -1,5 +1,5 @@
 // Angular modules
-import { NgIf } from '@angular/common';
+import { NgClass, NgFor, NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { inject } from '@angular/core';
@@ -27,6 +27,8 @@ import { Router } from '@angular/router';
   imports: [
     PageLayoutComponent,
     NgIf,
+    NgFor,
+    NgClass,
     ProgressBarComponent,
     MatTableModule,
     MatPaginatorModule,
@@ -43,20 +45,15 @@ export class RatingComponent implements OnInit {
     'actions',
   ];
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+  public selectedPage = 1;
 
   @ViewChild(MatPaginator) paginator: any;
 
   dialog = inject(MatDialog);
 
-  openDialog() {
-    //
+  constructor(public storeService: StoreService, public router: Router) {
+    this.storeService.isLoading.set(true);
   }
-
-  constructor(public storeService: StoreService, public router: Router) {}
-
-  // -------------------------------------------------------------------------------
-  // NOTE Init ---------------------------------------------------------------------
-  // -------------------------------------------------------------------------------
 
   public ngOnInit(): void {
     setTimeout((_) => {
@@ -72,29 +69,19 @@ export class RatingComponent implements OnInit {
     this.router.navigate(['/ratings/rating-detail', id]);
   }
 
-  // -------------------------------------------------------------------------------
-  // NOTE Actions ------------------------------------------------------------------
-  // -------------------------------------------------------------------------------
-
-  // -------------------------------------------------------------------------------
-  // NOTE Computed props -----------------------------------------------------------
-  // -------------------------------------------------------------------------------
-
-  // -------------------------------------------------------------------------------
-  // NOTE Helpers ------------------------------------------------------------------
-  // -------------------------------------------------------------------------------
-
-  // -------------------------------------------------------------------------------
-  // NOTE Requests -----------------------------------------------------------------
-  // -------------------------------------------------------------------------------
-
-  // -------------------------------------------------------------------------------
-  // NOTE Subscriptions ------------------------------------------------------------
-  // -------------------------------------------------------------------------------
-}
-
-export interface DialogData {
-  animal: 'panda' | 'unicorn' | 'lion';
+  onClickPage(item: number | string) {
+    if (typeof item == 'number') {
+      this.storeService.isLoading.set(true);
+      this.selectedPage = item;
+      setTimeout((_) => {
+        this.storeService.isLoading.set(false);
+      }, 2000);
+    } else if (item == 'prev') {
+      //
+    } else {
+      //
+    }
+  }
 }
 
 export interface PeriodicElement {

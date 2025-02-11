@@ -50,17 +50,19 @@ export class ProjectComponent implements OnInit {
   dataSource = new MatTableDataSource<IProject>(projectDataMock);
   @ViewChild(MatPaginator) paginator: any;
   dialog = inject(MatDialog);
-  public selectedPage = 0;
+  public selectedPage = 1;
 
   openDialog(link?: string) {
     this.dialog.open(DialogJoinProject, {
       width: '800px',
       panelClass: 'custom-dialog',
-      data: link ?? ''
+      data: link ?? '',
     });
   }
 
-  constructor(public storeService: StoreService, public router: Router) {}
+  constructor(public storeService: StoreService, public router: Router) {
+    this.storeService.isLoading.set(true);
+  }
 
   public ngOnInit(): void {
     setTimeout((_) => {
@@ -91,7 +93,7 @@ export class ProjectComponent implements OnInit {
         this.storeService.isLoading.set(false);
       }, 2000);
     } else if (item == 'prev') {
-      // 
+      //
     } else {
       //
     }

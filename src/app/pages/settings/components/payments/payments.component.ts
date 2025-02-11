@@ -1,4 +1,3 @@
-// Angular modules
 import { NgClass } from '@angular/common';
 import { NgIf } from '@angular/common';
 import { Component } from '@angular/core';
@@ -9,9 +8,9 @@ import { FormControl } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RouterLink } from '@angular/router';
-
-// External modules
+import { ProgressBarComponent } from '@blocks/progress-bar/progress-bar.component';
 import { TranslateModule } from '@ngx-translate/core';
+import { StoreService } from '@services/store.service';
 
 @Component({
   selector: 'setting-payments',
@@ -25,6 +24,7 @@ import { TranslateModule } from '@ngx-translate/core';
     NgIf,
     RouterLink,
     TranslateModule,
+    ProgressBarComponent
   ],
 })
 export class PaymentsComponent {
@@ -35,7 +35,7 @@ export class PaymentsComponent {
     expirationDate: FormControl<string>;
   }>;
 
-  constructor(private router: Router) {
+  constructor(private router: Router, public storeService: StoreService) {
     this.formGroup = new FormGroup({
       cardType: new FormControl<string>(
         {
@@ -71,23 +71,11 @@ export class PaymentsComponent {
     });
   }
 
-  // -------------------------------------------------------------------------------
-  // NOTE Init ---------------------------------------------------------------------
-  // -------------------------------------------------------------------------------
-
-  // -------------------------------------------------------------------------------
-  // NOTE Actions ------------------------------------------------------------------
-  // -------------------------------------------------------------------------------
-
   public async onClickSubmit(): Promise<void> {
-    this.router.navigate(['/home']);
+    this.storeService.isLoading.set(true);
+    setTimeout((_) => {
+      this.storeService.isLoading.set(false);
+    }, 2000);
+    this.router.navigate(['/settings']);
   }
-
-  // -------------------------------------------------------------------------------
-  // NOTE Requests -----------------------------------------------------------------
-  // -------------------------------------------------------------------------------
-
-  // -------------------------------------------------------------------------------
-  // NOTE Helpers ------------------------------------------------------------------
-  // -------------------------------------------------------------------------------
 }

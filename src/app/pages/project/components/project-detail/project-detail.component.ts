@@ -1,7 +1,7 @@
 // Angular modules
 import { NgClass } from '@angular/common';
 import { NgIf } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -21,6 +21,8 @@ import { PageLayoutComponent } from '@layouts/page-layout/page-layout.component'
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { StoreService } from '@services/store.service';
+import { ProgressBarComponent } from '@blocks/progress-bar/progress-bar.component';
 
 @Component({
   selector: 'app-project-detail',
@@ -37,6 +39,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     NgIf,
     RouterLink,
     TranslateModule,
+    ProgressBarComponent,
   ],
 })
 export class ProjectDetailComponent {
@@ -57,13 +60,14 @@ export class ProjectDetailComponent {
   }>;
   private projectId: number;
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute) {
+  constructor(
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
+    public storeService: StoreService
+  ) {
+    this.storeService.isLoading.set(true);
     this.projectId = +this.activatedRoute.snapshot.params['id'];
   }
-
-  // -------------------------------------------------------------------------------
-  // NOTE Init ---------------------------------------------------------------------
-  // -------------------------------------------------------------------------------
 
   private initFormGroup(projectId?: number): void {
     this.formGroup = new FormGroup({
@@ -76,7 +80,7 @@ export class ProjectDetailComponent {
       ),
       id: new FormControl<number | string>(
         {
-          value: projectId ?? '',
+          value: projectId ? projectId : '',
           disabled: false,
         },
         { validators: [Validators.required], nonNullable: true }
@@ -95,13 +99,18 @@ export class ProjectDetailComponent {
     });
   }
 
-  ngOnInit(): void {
-    this.initFormGroup(this.projectId);
+  public ngOnInit(): void {
+    setTimeout((_) => {
+      this.storeService.isLoading.set(false);
+      this.initFormGroup(this.projectId);
+    }, 2000);
+  }
+
+  public ngAfterView(): void {
   }
 
   onCancel() {
     this.router.navigate(['/projects']);
-
   }
 
   onSave() {
