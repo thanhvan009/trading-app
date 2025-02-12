@@ -116,7 +116,6 @@ export class SettingsComponent {
 
   public onClickSubmit() {
     this.formGroup.markAllAsTouched();
-    console.log("🚀 ~ SettingsComponent ~ onClickSubmit ~ this.formGroup:", this.formGroup)
     if (this.formGroup.invalid) {
       return;
     }

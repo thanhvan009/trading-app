@@ -7,10 +7,6 @@ export const routes : Routes = [
     loadChildren : () => import('./pages/auth/auth.routes').then(m => m.routes),
   },
   {
-    path          : 'home',
-    loadComponent : () => import('./pages/home/home.component').then(m => m.HomeComponent),
-  },
-  {
     path          : 'dashboard',
     loadComponent : () => import('./pages/home/home.component').then(m => m.HomeComponent),
   },
@@ -38,7 +34,7 @@ export const routes : Routes = [
     path          : 'settings',
     loadComponent : () => import('./pages/settings/settings.component').then(m => m.SettingsComponent),
   },
-  { path : '', redirectTo : '/home', pathMatch : 'full' },
+  { path : '', redirectTo : '/dashboard', pathMatch : 'full' },
   {
     path          : '**',
     loadComponent : () => import('./pages/not-found/not-found.component').then(m => m.NotFoundComponent),

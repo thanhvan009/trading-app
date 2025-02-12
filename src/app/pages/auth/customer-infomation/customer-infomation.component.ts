@@ -85,7 +85,7 @@ export class CustomerInfomationComponent {
     setTimeout((_) => {
       this.storeService.isLoading.set(false);
     }, 2000);
-    this.router.navigate(['/home']);
+    this.router.navigate(['/dashboard']);
   }
 
 }

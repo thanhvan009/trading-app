@@ -3,7 +3,7 @@
     <app-progress-bar *ngIf="storeService.isLoading()"></app-progress-bar>
     <ng-container *ngIf="!storeService.isLoading()">
       <div class="project-detail-wrapper">
-        <h1 class="title">Your projects</h1>
+        <h1 class="title" [textContent]="title"></h1>
         <form [formGroup]="formGroup">
           <div class="form-wrapper">
             <div class="info-left">
