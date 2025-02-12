@@ -9,14 +9,8 @@ import { FormControl } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RouterLink } from '@angular/router';
-
-// External modules
 import { TranslateModule } from '@ngx-translate/core';
-
-// Internal modules
 import { environment } from '@env/environment';
-
-// Services
 import { AppService } from '@services/app.service';
 import { StoreService } from '@services/store.service';
 
@@ -49,11 +43,10 @@ export class LoginComponent {
   ) {
     this.initFormGroup();
     this.isLogin = this.router.url === '/auth/login';
+    if (localStorage.getItem('token') && localStorage.getItem('role')) {
+      this.router.navigate(['/home']);
+    }
   }
-
-  // -------------------------------------------------------------------------------
-  // NOTE Init ---------------------------------------------------------------------
-  // -------------------------------------------------------------------------------
 
   private initFormGroup(): void {
     this.formGroup = new FormGroup({
@@ -77,17 +70,9 @@ export class LoginComponent {
     });
   }
 
-  // -------------------------------------------------------------------------------
-  // NOTE Actions ------------------------------------------------------------------
-  // -------------------------------------------------------------------------------
-
   public async onClickSubmit(): Promise<void> {
     await this.authenticate();
   }
-
-  // -------------------------------------------------------------------------------
-  // NOTE Requests -----------------------------------------------------------------
-  // -------------------------------------------------------------------------------
 
   private async authenticate(): Promise<void> {
     this.storeService.isLoading.set(true);
@@ -99,12 +84,7 @@ export class LoginComponent {
     this.storeService.isLoading.set(false);
 
     if (!success) return;
-
-    // NOTE Redirect to home
-    this.router.navigate(['/home']);
+    localStorage.setItem('token', 'Mock Token');
+    this.router.navigate(['/auth/customer-infomation']);
   }
-
-  // -------------------------------------------------------------------------------
-  // NOTE Helpers ------------------------------------------------------------------
-  // -------------------------------------------------------------------------------
 }
