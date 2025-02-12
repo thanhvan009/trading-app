@@ -80,7 +80,6 @@ export class CustomerInfomationComponent {
     if (this.formGroup.invalid) {
       return;
     }
-    localStorage.setItem('role', 'Role Name');
     this.storeService.isLoading.set(true);
     setTimeout((_) => {
       this.storeService.isLoading.set(false);
@@ -88,4 +87,7 @@ export class CustomerInfomationComponent {
     this.router.navigate(['/dashboard']);
   }
 
+  onBack() {
+    this.router.navigate(['/auth/role-selection']);
+  }
 }
