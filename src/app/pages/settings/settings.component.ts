@@ -52,6 +52,7 @@ export class SettingsComponent {
     password: FormControl<string>;
     address: FormControl<string>;
   }>;
+  public model: any = {};
   public role: string = '';
 
   constructor(public storeService: StoreService, public router: Router) {
@@ -62,14 +63,14 @@ export class SettingsComponent {
     this.formGroup = new FormGroup({
       yourname: new FormControl<string>(
         {
-          value: 'John',
+          value: this.model.yourname,
           disabled: false,
         },
         { validators: [Validators.required], nonNullable: true }
       ),
       email: new FormControl<string>(
         {
-          value: 'john@gmail.com',
+          value: this.model.email,
           disabled: false,
         },
         {
@@ -79,28 +80,28 @@ export class SettingsComponent {
       ),
       dateOfBirth: new FormControl<any>(
         {
-          value: '',
+          value: this.model.dateOfBirth,
           disabled: false,
         },
         { validators: [Validators.required], nonNullable: true }
       ),
       username: new FormControl<string>(
         {
-          value: 'john1998',
+          value: this.model.username,
           disabled: false,
         },
         { validators: [Validators.required], nonNullable: true }
       ),
       password: new FormControl<string>(
         {
-          value: 'xxxxxx',
+          value: this.model.password,
           disabled: false,
         },
         { validators: [Validators.required], nonNullable: true }
       ),
       address: new FormControl<string>(
         {
-          value: '123 Street 1',
+          value: this.model.address,
           disabled: false,
         },
         { validators: [Validators.required], nonNullable: true }
@@ -113,6 +114,7 @@ export class SettingsComponent {
       this.storeService.isLoading.set(false);
     }, 2000);
     this.role = localStorage.getItem('role') ?? '';
+    this.model = JSON.parse(localStorage.getItem('user') ?? '');
     this.initFormGroup();
   }
 
