@@ -2,18 +2,33 @@
   <div class="header">
     <img [src]="'assets/img/project/logo-app.png'" class="logo-app" alt="logo">
   </div>
-  <div class="customer-wrapper">
+  <div class="customer-wrapper container">
     <h1 class="title">
-      Customer information
+      {{title}}
     </h1>
-    <div class="wrapper">
-      <div class="profile-avatar">
+    <div class="wrapper row">
+      <div class="profile-avatar col-md-3 col-sm-12">
         <img [src]="'assets/img/project/profile-avatar.png'" alt="Profile Avatar" class="">
+        <h2 class="subtitle">
+          {{subtitle}}
+        </h2>
       </div>
-      <div class="info">
+      <div class="info col-md-9 col-sm-12">
         <form [formGroup]="formGroup" (ngSubmit)="onClickSubmit()">
-          <div class="form-wrapper">
-            <div class="info-left">
+          <div class="form-wrapper row">
+            <div class="info-left col-md-6 col-sm-12">
+              <div
+                class="mb-5"
+                *ngIf="role !== 'Customer'"
+              >
+                <label for="licenseNumber" class="form-label text-start w-100">License Number</label>
+                <input type="text" class="form-control" id="licenseNumber" formControlName="licenseNumber"
+                  placeholder="Enter your license number"
+                  [ngClass]="{ 'is-invalid' : formGroup.controls.licenseNumber.errors && formGroup.controls.licenseNumber.touched }">
+                <div class="invalid-feedback" *ngIf="formGroup.controls.licenseNumber.hasError('required')">
+                  {{ 'FIELD_REQUIRED' | translate }}
+                </div>
+              </div>
               <div class="mb-5">
                 <label for="yourname" class="form-label text-start w-100">Your Name</label>
                 <input type="text" class="form-control" id="yourname" formControlName="yourname"
@@ -44,7 +59,8 @@
                 </div>
               </div>
             </div>
-            <div class="info-right">
+            <div class="info-right col-md-6 col-sm-12">
+              <div class="space-tmp" *ngIf="role !== 'Customer'"></div>
               <div class="mb-5">
                 <label for="username" class="form-label text-start w-100">User Name</label>
                 <input type="text" class="form-control" id="username" formControlName="username"

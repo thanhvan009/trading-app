@@ -52,6 +52,7 @@ export class SettingsComponent {
     password: FormControl<string>;
     address: FormControl<string>;
   }>;
+  public role: string = '';
 
   constructor(public storeService: StoreService, public router: Router) {
     this.storeService.isLoading.set(true);
@@ -111,6 +112,7 @@ export class SettingsComponent {
     setTimeout((_) => {
       this.storeService.isLoading.set(false);
     }, 2000);
+    this.role = localStorage.getItem('role') ?? '';
     this.initFormGroup();
   }
 

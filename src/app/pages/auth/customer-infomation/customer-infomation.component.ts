@@ -30,6 +30,7 @@ import { StoreService } from '@services/store.service';
 export class CustomerInfomationComponent {
   public appName: string = environment.appName;
   public formGroup !: FormGroup<{
+    licenseNumber: FormControl<string>,
     yourname: FormControl<string>,
     email: FormControl<string>,
     dateOfBirth: FormControl<string>,
@@ -37,17 +38,23 @@ export class CustomerInfomationComponent {
     password: FormControl<string>,
     address: FormControl<string>,
   }>;
+  public role: string = '';
+  public title: string = '';
+  public subtitle: string = '';
 
   constructor
     (
       private router: Router,
       private storeService: StoreService,
     ) {
-    this.initFormGroup();
   }
 
   private initFormGroup(): void {
     this.formGroup = new FormGroup({
+      licenseNumber: new FormControl<string>({
+        value: '',
+        disabled: this.role == 'Customer'
+      }, { validators: [Validators.required], nonNullable: true }),
       yourname: new FormControl<string>({
         value: '',
         disabled: false
@@ -75,6 +82,15 @@ export class CustomerInfomationComponent {
     });
   }
 
+  ngOnInit() {
+    this.role = localStorage.getItem('role') ?? '';
+    this.title = this.role + ' Information';
+    this.subtitle = this.role + ' Profile';
+    
+    
+    this.initFormGroup();
+  }
+
   public onClickSubmit() {
     this.formGroup.markAllAsTouched();
     if (this.formGroup.invalid) {
@@ -84,6 +100,11 @@ export class CustomerInfomationComponent {
     setTimeout((_) => {
       this.storeService.isLoading.set(false);
     }, 2000);
+    const user = {
+      role: this.role,
+      ...this.formGroup.getRawValue(),
+    }
+    localStorage.setItem('user',  JSON.stringify(user))
     this.router.navigate(['/dashboard']);
   }
 
