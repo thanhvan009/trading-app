@@ -85,6 +85,6 @@ export class LoginComponent {
 
     if (!success) return;
     localStorage.setItem('token', 'Mock Token');
-    this.router.navigate(['/auth/customer-infomation']);
+    this.router.navigate(['/auth/role-selection']);
   }
 }

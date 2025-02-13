@@ -2,40 +2,16 @@
   background: #f5f7fa;
   padding: 0;
   margin: 0;
-  height: 100vh;
 }
 
 .settings-wrapper {
-  padding: 50px;
+  padding: 50px 10px;
 }
 
 .settings-inner {
   background: #fff;
   border-radius: 10px;
-  padding: 50px;
-
-  form {
-    width: 80%;
-    margin: 0 auto;
-  }
-}
-
-.form-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 30px;
-}
-
-.info-left {
-  width: 50%;
-  padding-right: 30px;
-}
-
-.info-right {
-  width: 50%;
-  padding-left: 30px;
-  padding-top: 80px;
+  padding: 20px;
 }
 
 form {
@@ -61,16 +37,11 @@ form {
   }
 }
 
-.action-buttons {
-  display: flex;
-  justify-content: end;
-}
-
 .save-button {
   background-color: #092c4c;
   opacity: 1;
   color: #fff;
-  width: 250px;
+  width: 100%;
   height: 56px;
   border-radius: 10px;
   border: none;
@@ -103,5 +74,71 @@ form {
 
   .mat-mdc-tab-body-content {
     overflow-x: hidden;
+  }
+}
+
+.space-tmp {
+  display: none;
+}
+
+
+@media only screen and (min-width: 768px) {
+  .space-tmp {
+    display: block;
+    height: 80px;
+  }
+
+  .info-left {
+    padding-right: 15px;
+  }
+
+  .info-right {
+    padding-left: 15px;
+  }
+
+  .settings {
+    height: 100vh;
+  }
+
+  .settings-inner {
+    padding: 50px;
+  }
+
+  .action-buttons {
+    display: flex;
+    justify-content: end;
+  }
+
+  .save-button {
+    width: 250px;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  // iPad and iPad pro
+}
+
+@media only screen and (min-width: 1024px) {
+
+  form {
+    padding: 0 30px;
+  }
+
+  .settings-wrapper {
+    padding: 50px 100px;
+  }
+}
+
+@media only screen and (min-width: 1440px) {
+  form {
+    padding: 0 50px;
+  }
+
+  .info-left {
+    padding-right: 30px;
+  }
+
+  .info-right {
+    padding-left: 30px;
   }
 }
