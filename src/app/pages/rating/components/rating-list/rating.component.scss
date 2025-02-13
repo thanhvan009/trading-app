@@ -67,18 +67,12 @@ table {
 .edit-button {
   color: #718ebf;
   border: 1px solid #718ebf;
-  width: 140px;
-  height: 51px;
-  border-radius: 51px;
   margin: 0 6px;
 }
 
 .share-button {
   color: #123288;
   border: 1px solid #123288;
-  width: 140px;
-  height: 51px;
-  border-radius: 51px;
   margin: 0 6px;
 }
 
@@ -114,6 +108,30 @@ table {
     color: #fff;
     margin: 0 3px;
     border-radius: 5px;
+  }
+}
+
+
+table {
+  .mat-mdc-cell {
+    button {
+      width: 70px;
+      height: 30px;
+      border-radius: 30px;
+    }
+  }
+}
+
+@media screen and (min-width: 991px) {
+  table {
+    .mat-mdc-cell {
+      padding: 20px;
+      button {
+        border-radius: 51px;
+        width: 140px;
+        height: 51px;
+      }
+    }
   }
 }
 

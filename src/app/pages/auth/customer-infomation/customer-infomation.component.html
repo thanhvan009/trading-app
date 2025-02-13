@@ -14,7 +14,7 @@
         </h2>
       </div>
       <div class="info col-md-9 col-sm-12">
-        <form [formGroup]="formGroup" (ngSubmit)="onClickSubmit()">
+        <form [formGroup]="formGroup">
           <div class="form-wrapper row">
             <div class="info-left col-md-6 col-sm-12">
               <div
@@ -94,8 +94,8 @@
             </div>
           </div>
           <div class="action-buttons">
-            <button (click)="onBack()" class="back-button">Back</button>
-            <button type="submit" class="btn btn-primary px-5 submit-button">
+            <button (click)="onBack()" type="primary" class="back-button">Back</button>
+            <button (click)="onClickSubmit()" type="submit" class="btn btn-primary px-5 submit-button">
               Submit
             </button>
           </div>
