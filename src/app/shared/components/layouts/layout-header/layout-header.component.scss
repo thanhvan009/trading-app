@@ -1,5 +1,5 @@
 .navbar-brand {
-  margin: 20px 0 20px 30px;
+  margin: 0 0 30px 0;
   padding: 0;
   img {
     width: 100%;
@@ -21,24 +21,14 @@
     }
   }
 }
-app-layout-header {
-  display: flex;
-}
-
-nav {
-  width: 200px;
-  height: 100%;
-  position: fixed;
-  background-color: #fff !important;
+.header {
+  width: 100%;
 }
 
 .container-fluid {
-  border-left: 1px solid #E6EFF5;
   display: flex;
-  align-items: center;
-  flex-direction: column;
+  align-items: self-start;
   padding: 20px;
-  height: 100vh;
 }
 
 .navbar-nav {
@@ -47,7 +37,7 @@ nav {
   margin-top: 30px;
   height: 100%;
   .nav-link {
-    color: #B1B1B1;
+    color: #b1b1b1;
     &.active {
       color: #092c4c;
       font-weight: 500;
@@ -66,11 +56,6 @@ nav {
   }
 }
 
-.header {
-  display: flex;
-  flex: 1;
-}
-
 .menu-top {
   display: flex;
   align-items: center;
@@ -87,7 +72,33 @@ nav {
   text-transform: capitalize;
 }
 
-.container-right {
-  width: calc(100% - 200px);
-  margin-left: 200px;
+@media only screen and (min-width: 992px) {
+  nav {
+    width: 200px;
+    position: fixed;
+    background-color: #fff !important;
+  }
+  .container-fluid {
+    border-left: 1px solid #e6eff5;
+    height: 100vh;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  .header {
+    display: flex;
+    flex: 1;
+  }
+  .container-right {
+    width: calc(100% - 200px);
+    margin-left: 200px;
+  }
+  nav {
+    height: 100%;
+  }
+
+  .navbar-brand {
+    margin: 20px 0 20px 30px;
+  }
 }
