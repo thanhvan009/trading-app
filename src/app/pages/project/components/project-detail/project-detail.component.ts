@@ -1,4 +1,3 @@
-// Angular modules
 import { NgClass } from '@angular/common';
 import { NgIf } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
@@ -9,17 +8,10 @@ import { FormControl } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { ActivatedRoute, Router } from '@angular/router';
-
-// External modules
 import { TranslateModule } from '@ngx-translate/core';
-
-// Internal modules
 import { environment } from '@env/environment';
-
 import { PageLayoutComponent } from '@layouts/page-layout/page-layout.component';
-
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { StoreService } from '@services/store.service';
 import { ProgressBarComponent } from '@blocks/progress-bar/progress-bar.component';
@@ -59,7 +51,7 @@ export class ProjectDetailComponent {
     status: FormControl<string | null>;
   }>;
   private projectId: number;
-
+  public title = '';
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
@@ -100,9 +92,13 @@ export class ProjectDetailComponent {
         { validators: [Validators.required], nonNullable: true }
       ),
     });
+    if (this.projectId) {
+      this.title = 'Edit - ' + this.formGroup.controls.name.value;
+    }
   }
 
   public ngOnInit(): void {
+    
     setTimeout((_) => {
       this.storeService.isLoading.set(false);
       this.initFormGroup(this.projectId);

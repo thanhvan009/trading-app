@@ -44,7 +44,7 @@ export class LoginComponent {
     this.initFormGroup();
     this.isLogin = this.router.url === '/auth/login';
     if (localStorage.getItem('token') && localStorage.getItem('role')) {
-      this.router.navigate(['/home']);
+      this.router.navigate(['/dashboard']);
     }
   }
 

@@ -100,4 +100,8 @@ form {
   .mat-mdc-tab .mdc-tab-indicator__content--underline {
     border-color: #092c4c;
   }
+
+  .mat-mdc-tab-body-content {
+    overflow-x: hidden;
+  }
 }
