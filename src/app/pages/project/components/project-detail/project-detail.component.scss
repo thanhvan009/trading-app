@@ -128,3 +128,26 @@ table {
   border-radius: 10px;
   border: none;
 }
+
+table {
+  .mat-mdc-cell {
+    button {
+      width: 70px;
+      height: 30px;
+      border-radius: 30px;
+    }
+  }
+}
+
+@media screen and (min-width: 991px) {
+  table {
+    .mat-mdc-cell {
+      padding: 20px;
+      button {
+        border-radius: 51px;
+        width: 140px;
+        height: 51px;
+      }
+    }
+  }
+}

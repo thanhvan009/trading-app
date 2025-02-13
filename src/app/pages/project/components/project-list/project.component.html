@@ -56,7 +56,7 @@
 
             <ng-container matColumnDef="actions">
               <th mat-header-cell *matHeaderCellDef>Actions</th>
-              <td mat-cell *matCellDef="let element">
+              <td class="button-groups" mat-cell *matCellDef="let element">
                 <button md-raised-button (click)="onEdit(element.projectId)" class="edit-button">Edit</button>
                 <button md-raised-button class="share-button" (click)="onShare(element)">Share</button>
               </td>
