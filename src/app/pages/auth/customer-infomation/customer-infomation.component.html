@@ -7,16 +7,16 @@
       {{title}}
     </h1>
     <div class="wrapper row">
-      <div class="profile-avatar col-md-3 col-sm-12">
+      <div class="profile-avatar col-lg-3 col-md-3 col-sm-12 col-xs-12">
         <img [src]="'assets/img/project/profile-avatar.png'" alt="Profile Avatar" class="">
         <h2 class="subtitle">
           {{subtitle}}
         </h2>
       </div>
-      <div class="info col-md-9 col-sm-12">
+      <div class="info col-lg-9 col-md-9 col-sm-12 col-xs-12">
         <form [formGroup]="formGroup">
           <div class="form-wrapper row">
-            <div class="info-left col-md-6 col-sm-12">
+            <div class="info-left col-lg-6 col-md-6 col-sm-12 col-xs-12">
               <div
                 class="mb-5"
                 *ngIf="role !== 'Customer'"
@@ -59,7 +59,7 @@
                 </div>
               </div>
             </div>
-            <div class="info-right col-md-6 col-sm-12">
+            <div class="info-right col-lg-6 col-md-6 col-sm-12 col-xs-12">
               <div class="space-tmp" *ngIf="role !== 'Customer'"></div>
               <div class="mb-5">
                 <label for="username" class="form-label text-start w-100">User Name</label>

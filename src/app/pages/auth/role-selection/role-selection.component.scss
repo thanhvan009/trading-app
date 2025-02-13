@@ -1,38 +1,32 @@
 .role-selection {
   background: #F5F7FA;
-  height: 100vh;
   .header {
     background: #fff;
     padding: 20px 30px;
   }
+
   .role-selection-wrapper {
-    padding: 80px 100px;
+    padding: 50px 0;
   }
+  
   .title {
     color: #092C4C;
-    font-size: 16px;
+    font-size: 22px;
     text-align: center;
-    font-weight: 400;
+    font-weight: 500;
     margin-bottom: 50px;
   }
-  .wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
   .role-item {
-    max-width: 325px;
-    margin: 0 50px;
     background-color: #fff;
     border-radius: 6px;
     img {
-      width: 325px;
+      width: 100%;
       height: auto;
     }
     .content {
       padding: 20px 20px 30px;
     }
-    h2.subtitle {
+    .subtitle {
       color: #092C4C;
       font-size: 24px;
       margin-bottom: 5px;
@@ -54,3 +48,21 @@
     }
   }
 }
+
+@media only screen and (min-width: 768px) {
+  .role-selection {
+    height: 100vh;
+  }
+  .role-item {
+    margin: 0 10px;
+  }
+  .role-selection-wrapper {
+    padding: 50px 0;
+  }
+} 
+
+@media only screen and (min-width: 992px) {
+  .role-item {
+    margin: 0 15px;
+  }
+} 
