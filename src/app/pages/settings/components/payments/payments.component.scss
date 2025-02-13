@@ -5,19 +5,7 @@
     font-weight: 600;
     margin-bottom: 20px;
   }
-  .card-list {
-    display: flex;
-    margin-bottom: 20px;
-    .card-item {
-      margin-bottom: 35px;
-      padding-right: 30px;
-    }
-    img {
-      width: 100%;
-      height: auto;
-    }
-  }
-
+  
   .add-card {
     .description {
       color: #718ebf;
@@ -58,3 +46,17 @@
     }
   }
 }
+
+.card-list {
+  display: flex;
+  margin-bottom: 20px;
+  .card-item {
+    margin-bottom: 35px;
+    padding-right: 30px;
+  }
+  img {
+    width: 100%;
+    height: auto;
+  }
+}
+
