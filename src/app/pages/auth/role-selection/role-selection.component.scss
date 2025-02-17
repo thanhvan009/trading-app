@@ -52,6 +52,7 @@
 @media only screen and (min-width: 768px) {
   .role-selection {
     height: 100vh;
+    overflow-y: auto;
   }
   .role-item {
     margin: 0 10px;
