@@ -38,6 +38,7 @@ form {
     font-size: 16px;
     font-weight: 400;
   }
+  select,
   input {
     border-color: #dfeaf2;
     height: 50px;
@@ -52,14 +53,42 @@ form {
 
 .table-list {
   box-shadow: none;
+  position: relative;
+}
+
+.row-add {
+  margin: 0 60px;
+  margin-top: -160px;
+  height: 80px;
+  border-top: 1px solid #e6eff5;
+  border-bottom: 1px solid #e6eff5;
+  display: flex
+;
+  align-items: center;
+  mat-icon {
+    margin: 0 20px;
+  background: #333b69;
+  color: #fff;
+  border-radius: 50%;
+  font-size: 22px;
+  width: 28px;
+  height: 28px;
+  display: flex
+;
+  justify-content: center;
+  align-items: center;
+  }
 }
 
 table {
   background-color: #fff;
   border-collapse: inherit;
   border-radius: 10px;
-  padding: 30px 60px;
-  margin-bottom: 50px;
+  padding: 30px 60px 160px;
+  margin-bottom: 0;
+
+  
+  
   tr {
     td:first-child {
       text-align: left;
@@ -136,6 +165,30 @@ table {
       height: 30px;
       border-radius: 30px;
     }
+  }
+
+  input {
+    width: 100%;
+    height: 40px;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 5px;
+    color: #718ebf;
+    &::placeholder {
+      color: #bdbdbd;
+    }
+    &:focus {
+      outline: 0;
+    }
+  }
+}
+
+.select-row {
+  position: relative;
+  mat-icon {
+    position: absolute;
+    top: 45px;
+    right: 20px;
   }
 }
 

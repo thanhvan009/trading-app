@@ -15,7 +15,7 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { StoreService } from '@services/store.service';
 import { ProgressBarComponent } from '@blocks/progress-bar/progress-bar.component';
-
+import {MatIconModule} from '@angular/material/icon';
 @Component({
   selector: 'app-project-detail',
   templateUrl: './project-detail.component.html',
@@ -32,6 +32,7 @@ import { ProgressBarComponent } from '@blocks/progress-bar/progress-bar.componen
     RouterLink,
     TranslateModule,
     ProgressBarComponent,
+    MatIconModule
   ],
 })
 export class ProjectDetailComponent {
@@ -42,7 +43,7 @@ export class ProjectDetailComponent {
     'tradeApproval',
     'customerApproval',
   ];
-  dataSource = new MatTableDataSource<IDescription>(descriptionMockData);
+  dataSource: any = new MatTableDataSource<IDescription>(descriptionMockData);
   public appName: string = environment.appName;
   public formGroup!: FormGroup<{
     name: FormControl<string | null>;
@@ -79,14 +80,14 @@ export class ProjectDetailComponent {
       ),
       type: new FormControl<string | null>(
         {
-          value: projectId ? '1.0079' : '',
+          value: projectId ? 'Shopping' : '',
           disabled: false,
         },
         { validators: [Validators.required], nonNullable: true }
       ),
       status: new FormControl<string | null>(
         {
-          value: projectId ? 'Active' : 'Not started yet',
+          value: projectId ? 'Active' : 'Pending',
           disabled: false,
         },
         { validators: [Validators.required], nonNullable: true }
@@ -98,7 +99,6 @@ export class ProjectDetailComponent {
   }
 
   public ngOnInit(): void {
-    
     setTimeout((_) => {
       this.storeService.isLoading.set(false);
       this.initFormGroup(this.projectId);
@@ -118,12 +118,27 @@ export class ProjectDetailComponent {
     }
     this.router.navigate(['/projects']);
   }
+
+  addRow() {
+    let newRow = {
+      description: 'Please enter new description...',
+      createdBy: 'Admin',
+      date: '17/2/2025',
+      editing: true
+    };
+    this.dataSource = new MatTableDataSource<IDescription>( [
+      ...this.dataSource.data,
+      newRow
+    ])
+  }
 }
 
 export interface IDescription {
   description: any;
   createdBy: string;
   date: string;
+  isAdd?: boolean;
+  editing?: boolean
 }
 
 const descriptionMockData: IDescription[] = [
@@ -131,54 +146,54 @@ const descriptionMockData: IDescription[] = [
     description:
       'Lorem Ipsum has been the industrys standard dummy text ever since the 1500s',
     createdBy: 'Hydrogen',
-    date: 'H',
+    date: '31/12/2022'
   },
   {
     description:
       'Lorem Ipsum has been the industrys standard dummy text ever since the 1500s',
     createdBy: 'Helium',
-    date: 'He',
+    date: '31/12/2022'
   },
   {
     description:
       'Lorem Ipsum has been the industrys standard dummy text ever since the 1500s',
     createdBy: 'Lithium',
-    date: 'Li',
+    date: '31/12/2022'
   },
   {
     description:
       'Lorem Ipsum has been the industrys standard dummy text ever since the 1500s',
     createdBy: 'Beryllium',
-    date: 'Be',
+    date: '31/12/2022'
   },
   {
     description:
       'Lorem Ipsum has been the industrys standard dummy text ever since the 1500s',
     createdBy: 'Boron',
-    date: 'B',
+    date: '31/12/2022'
   },
   {
     description:
       'Lorem Ipsum has been the industrys standard dummy text ever since the 1500s',
     createdBy: 'Carbon',
-    date: 'C',
+    date: '31/12/2022'
   },
   {
     description:
       'Lorem Ipsum has been the industrys standard dummy text ever since the 1500s',
     createdBy: 'Nitrogen',
-    date: 'N',
+    date: '31/12/2022'
   },
   {
     description:
       'Lorem Ipsum has been the industrys standard dummy text ever since the 1500s',
     createdBy: 'Oxygen',
-    date: 'O',
+    date: '31/12/2022'
   },
   {
     description:
       'Lorem Ipsum has been the industrys standard dummy text ever since the 1500s',
     createdBy: 'Fluorine',
-    date: 'F',
+    date: '31/12/2022'
   },
 ];
