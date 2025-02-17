@@ -93,6 +93,11 @@ form {
     padding-left: 15px;
   }
 
+  .settings-wrapper {
+    height: 100vh;
+    overflow-y: auto;
+  }
+
   .settings-inner {
     padding: 50px;
   }
