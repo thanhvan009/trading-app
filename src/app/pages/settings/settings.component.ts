@@ -1,5 +1,5 @@
 // Angular modules
-import { NgClass } from '@angular/common';
+import { formatDate, NgClass } from '@angular/common';
 import { NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormGroup } from '@angular/forms';
@@ -7,7 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormControl } from '@angular/forms';
 import { Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { RouterLink } from '@angular/router';
 
 // External modules
@@ -54,8 +54,9 @@ export class SettingsComponent {
   }>;
   public model: any = {};
   public role: string = '';
+  public selectedIndex = 0;
 
-  constructor(public storeService: StoreService, public router: Router) {
+  constructor(public storeService: StoreService, public router: Router,  private activatedRoute: ActivatedRoute,) {
     this.storeService.isLoading.set(true);
   }
 
@@ -80,7 +81,7 @@ export class SettingsComponent {
       ),
       dateOfBirth: new FormControl<any>(
         {
-          value: this.model.dateOfBirth,
+          value: formatDate(this.model.dateOfBirth, 'yyyy-MM-dd', 'en'),
           disabled: false,
         },
         { validators: [Validators.required], nonNullable: true }
@@ -118,6 +119,14 @@ export class SettingsComponent {
     this.initFormGroup();
   }
 
+  onClickTab(index: number) {
+    this.selectedIndex = index;
+  }
+
+  ngAfterViewInit() {
+    this.selectedIndex = this.activatedRoute.snapshot.queryParams['tab'] || 0;
+  }
+
   public onClickSubmit() {
     this.formGroup.markAllAsTouched();
     if (this.formGroup.invalid) {
@@ -127,6 +136,6 @@ export class SettingsComponent {
     setTimeout((_) => {
       this.storeService.isLoading.set(false);
     }, 2000);
-    this.router.navigate(['/settings']);
+    this.router.navigateByUrl('/settings?tab=0');
   }
 }
