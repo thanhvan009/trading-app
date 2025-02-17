@@ -48,33 +48,26 @@ form {
   border: none;
 }
 
-:host ::ng-deep {
-  .mat-mdc-tab-label-container {
-    margin-bottom: 25px;
-  }
-  .mat-mdc-tab.mdc-tab {
-    flex-grow: 0 !important;
-    color: #333b69;
+.tab-labels {
+  display: flex;
+    border-bottom: 1px solid #e0e2ec;
+    margin-bottom: 30px;
+  > div {
     font-weight: 500;
     font-size: 16px;
-    padding-bottom: 10px;
+    color: #b1b1b1;
+    padding-bottom: 15px;
     padding-left: 0;
-    margin-right: 15px;
-    .mdc-tab__text-label {
-      color: #b1b1b1;
+    padding-right: 30px;
+    cursor: pointer;
+    &:hover {
+      opacity: 0.8;
+      color: #092c4c;
     }
-  }
-
-  .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label {
-    color: #092c4c;
-  }
-
-  .mat-mdc-tab .mdc-tab-indicator__content--underline {
-    border-color: #092c4c;
-  }
-
-  .mat-mdc-tab-body-content {
-    overflow-x: hidden;
+    &.active {
+      color: #092c4c;
+      border-bottom: 2px solid #092c4c;
+    }
   }
 }
 
@@ -98,10 +91,6 @@ form {
 
   .info-right {
     padding-left: 15px;
-  }
-
-  .settings {
-    height: 100vh;
   }
 
   .settings-inner {

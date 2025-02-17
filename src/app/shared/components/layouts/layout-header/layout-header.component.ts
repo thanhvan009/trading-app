@@ -38,7 +38,8 @@ export class LayoutHeaderComponent implements OnInit {
   constructor(private router: Router) {}
 
   public ngOnInit(): void {
-    this.breadcrumbText = this.router.url.split('/')[1];
+    const pathName = this.router.url.split('/')[1].toString().split('?')[0];
+    this.breadcrumbText = pathName.substring(0, pathName.length);
   }
 
   public async onClickLogout(): Promise<void> {

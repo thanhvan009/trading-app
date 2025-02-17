@@ -6,7 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormControl } from '@angular/forms';
 import { Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { RouterLink } from '@angular/router';
 import { ProgressBarComponent } from '@blocks/progress-bar/progress-bar.component';
 import { TranslateModule } from '@ngx-translate/core';
@@ -34,8 +34,9 @@ export class PaymentsComponent {
     cardNumber: FormControl<string>;
     expirationDate: FormControl<string>;
   }>;
+  public selectedIndex = 1;
 
-  constructor(private router: Router, public storeService: StoreService) {
+  constructor(private router: Router, public storeService: StoreService, private activatedRoute: ActivatedRoute) {
     this.formGroup = new FormGroup({
       cardType: new FormControl<string>(
         {
@@ -71,6 +72,10 @@ export class PaymentsComponent {
     });
   }
 
+  ngAfterViewInit() {
+    this.selectedIndex = this.activatedRoute.snapshot.queryParams['tab'] || 1;
+  }
+
   public onClickSubmit() {
     this.formGroup.markAllAsTouched();
     if (this.formGroup.invalid) {
@@ -80,6 +85,6 @@ export class PaymentsComponent {
     setTimeout((_) => {
       this.storeService.isLoading.set(false);
     }, 2000);
-    this.router.navigate(['/settings']);
+    this.router.navigateByUrl('/settings?tab=1');
   }
 }
