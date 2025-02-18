@@ -1,5 +1,5 @@
 // Angular modules
-import { NgClass } from '@angular/common';
+import { NgClass, NgFor } from '@angular/common';
 import { NgIf } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
@@ -12,6 +12,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { environment } from '@env/environment';
 import { PageLayoutComponent } from '@layouts/page-layout/page-layout.component';
 import { StoreService } from '@services/store.service';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-rating-detail',
@@ -24,7 +25,9 @@ import { StoreService } from '@services/store.service';
     ReactiveFormsModule,
     NgClass,
     NgIf,
+    NgFor,
     TranslateModule,
+    MatIconModule,
   ],
 })
 export class RatingDetailComponent {
@@ -35,13 +38,15 @@ export class RatingDetailComponent {
     'tradeApproval',
     'customerApproval',
   ];
+  selectedIndex: number = 0;
   public appName: string = environment.appName;
   public formGroup!: FormGroup<{
     yourReview: FormControl<string | null>;
     projectName: FormControl<string | null>;
-    rating: FormControl<string | null>;
+    ratingNumber: FormControl<number | null>;
   }>;
   private ratingId: number;
+  model: any = {};
 
   constructor(
     private router: Router,
@@ -57,25 +62,35 @@ export class RatingDetailComponent {
     this.formGroup = new FormGroup({
       projectName: new FormControl<string | null>(
         {
-          value: this.ratingId ? 'Rating Project' : '',
+          value: this.ratingId ? 'Test Case Project' : '',
           disabled: false,
         },
         { validators: [Validators.required], nonNullable: true }
       ),
       yourReview: new FormControl<string | null>(
         {
-          value: this.ratingId ? 'Rating Review' : '',
+          value: this.ratingId ? `It's so good, suggest to use` : '',
           disabled: false,
         },
         { validators: [Validators.required], nonNullable: true }
       ),
-      rating: new FormControl<string | null>({
-        value: this.ratingId ? 'Rating Review' : '',
+      ratingNumber: new FormControl<number | null>({
+        value: this.ratingId ? 4 : 0,
         disabled: false,
       }),
     });
+    if (this.ratingId) {
+      this.selectedIndex = this.formGroup.controls.ratingNumber.value ?? 0;
+    }
   }
 
+  onClickStar(index: number) {
+    this.selectedIndex = index;
+  }
+
+  public onCancel() {
+    this.router.navigate(['/ratings']);
+  }
   public onClickSubmit() {
     this.router.navigate(['/ratings']);
   }
