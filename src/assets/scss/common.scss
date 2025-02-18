@@ -3,4 +3,17 @@ button {
     opacity: 0.8;
   }
 }
+form {
+  input, select {
+    &:focus, &:hover {
+      outline: 0 !important;
+      box-shadow: 1px 1px 1px 0 #ddd !important;
+      opacity: 0.8;
+    }
+  }
+}
 
+.mdc-checkbox__native-control:enabled:checked~.mdc-checkbox__background, .mdc-checkbox__native-control:enabled:indeterminate~.mdc-checkbox__background {
+  background-color: #092c4c !important;
+  border-color: #092c4c !important;
+}

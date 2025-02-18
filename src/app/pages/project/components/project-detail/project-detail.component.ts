@@ -16,6 +16,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { StoreService } from '@services/store.service';
 import { ProgressBarComponent } from '@blocks/progress-bar/progress-bar.component';
 import {MatIconModule} from '@angular/material/icon';
+import moment from 'moment';
 @Component({
   selector: 'app-project-detail',
   templateUrl: './project-detail.component.html',
@@ -123,12 +124,33 @@ export class ProjectDetailComponent {
     let newRow = {
       description: 'Please enter new description...',
       createdBy: 'Admin',
-      date: '17/2/2025',
+      date: moment(new Date()).format('DD/MM/YYYY'),
+      tradeApproval: true,
+      customerApproval: false,
       editing: true
     };
     this.dataSource = new MatTableDataSource<IDescription>( [
       ...this.dataSource.data,
       newRow
+    ])
+  }
+
+  update(checked: boolean, index: any, type?: string) {
+    if (type === 'tradeApproval') {
+      this.dataSource.data[index] = {
+        ...this.dataSource.data[index],
+        tradeApproval: checked,
+        customerApproval: !checked,
+      }
+    } else {
+      this.dataSource.data[index] = {
+        ...this.dataSource.data[index],
+        tradeApproval: !checked,
+        customerApproval: checked,
+      }
+    }
+    this.dataSource = new MatTableDataSource<IDescription>( [
+      ...this.dataSource.data,
     ])
   }
 }
@@ -137,8 +159,9 @@ export interface IDescription {
   description: any;
   createdBy: string;
   date: string;
-  isAdd?: boolean;
-  editing?: boolean
+  tradeApproval?: boolean;
+  customerApproval?: boolean;
+  editing?: boolean;
 }
 
 const descriptionMockData: IDescription[] = [
@@ -146,54 +169,72 @@ const descriptionMockData: IDescription[] = [
     description:
       'Lorem Ipsum has been the industrys standard dummy text ever since the 1500s',
     createdBy: 'Hydrogen',
-    date: '31/12/2022'
+    date: '31/12/2022',
+    tradeApproval: true,
+    customerApproval: false,
   },
   {
     description:
       'Lorem Ipsum has been the industrys standard dummy text ever since the 1500s',
     createdBy: 'Helium',
-    date: '31/12/2022'
+    date: '31/12/2022',
+    tradeApproval: false,
+    customerApproval: true,
   },
   {
     description:
       'Lorem Ipsum has been the industrys standard dummy text ever since the 1500s',
     createdBy: 'Lithium',
-    date: '31/12/2022'
+    date: '31/12/2022',
+    tradeApproval: true,
+    customerApproval: false,
   },
   {
     description:
       'Lorem Ipsum has been the industrys standard dummy text ever since the 1500s',
     createdBy: 'Beryllium',
-    date: '31/12/2022'
+    date: '31/12/2022',
+    tradeApproval: false,
+    customerApproval: true,
   },
   {
     description:
       'Lorem Ipsum has been the industrys standard dummy text ever since the 1500s',
     createdBy: 'Boron',
-    date: '31/12/2022'
+    date: '31/12/2022',
+    tradeApproval: true,
+    customerApproval: false,
   },
   {
     description:
       'Lorem Ipsum has been the industrys standard dummy text ever since the 1500s',
     createdBy: 'Carbon',
-    date: '31/12/2022'
+    date: '31/12/2022',
+    tradeApproval: false,
+    customerApproval: true,
   },
   {
     description:
       'Lorem Ipsum has been the industrys standard dummy text ever since the 1500s',
     createdBy: 'Nitrogen',
-    date: '31/12/2022'
+    date: '31/12/2022',
+    tradeApproval: true,
+    customerApproval: false,
   },
   {
     description:
       'Lorem Ipsum has been the industrys standard dummy text ever since the 1500s',
     createdBy: 'Oxygen',
-    date: '31/12/2022'
+    date: '31/12/2022',
+    tradeApproval: false,
+    customerApproval: true,
   },
   {
     description:
       'Lorem Ipsum has been the industrys standard dummy text ever since the 1500s',
     createdBy: 'Fluorine',
-    date: '31/12/2022'
+    date: '31/12/2022',
+    tradeApproval: true,
+    customerApproval: false,
   },
 ];
