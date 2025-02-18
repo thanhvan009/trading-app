@@ -18,7 +18,7 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { DialogJoinProject } from '../dialog-join-project/dialog-join-project';
-import { projectDataMock, IProject } from './configs/project.mock';
+import { mockProjectListData, IProject } from '../../../../shared/mock-data/project.mock';
 import { Router } from '@angular/router';
 
 @Component({
@@ -40,14 +40,14 @@ import { Router } from '@angular/router';
 })
 export class ProjectComponent implements OnInit {
   displayedColumns: string[] = [
-    'projectId',
     'description',
+    'projectId',
     'type',
     'owner',
     'status',
     'actions',
   ];
-  dataSource = new MatTableDataSource<IProject>(projectDataMock);
+  dataSource = new MatTableDataSource<IProject>(mockProjectListData);
   @ViewChild(MatPaginator) paginator: any;
   dialog = inject(MatDialog);
   public selectedPage = 1;
@@ -67,7 +67,7 @@ export class ProjectComponent implements OnInit {
   public ngOnInit(): void {
     setTimeout((_) => {
       this.storeService.isLoading.set(false);
-    }, 2000);
+    }, 1000)
   }
 
   ngAfterViewInit() {
@@ -91,7 +91,7 @@ export class ProjectComponent implements OnInit {
       this.selectedPage = item;
       setTimeout((_) => {
         this.storeService.isLoading.set(false);
-      }, 2000);
+      }, 1000)
     } else if (item == 'prev') {
       //
     } else {

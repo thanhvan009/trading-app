@@ -99,7 +99,7 @@ export class CustomerInfomationComponent {
     this.storeService.isLoading.set(true);
     setTimeout((_) => {
       this.storeService.isLoading.set(false);
-    }, 2000);
+    }, 1000)
     const user = {
       role: this.role,
       ...this.formGroup.getRawValue(),

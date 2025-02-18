@@ -32,7 +32,7 @@ export class HomeComponent implements OnInit {
   public ngOnInit(): void {
     setTimeout((_) => {
       this.storeService.isLoading.set(false);
-    }, 2000);
+    }, 1000)
   }
 
   onClick(label: string) {
