@@ -113,7 +113,7 @@ export class SettingsComponent {
   public ngOnInit(): void {
     setTimeout((_) => {
       this.storeService.isLoading.set(false);
-    }, 2000);
+    }, 1000)
     this.role = localStorage.getItem('role') ?? '';
     this.model = JSON.parse(localStorage.getItem('user') ?? '');
     this.initFormGroup();
@@ -135,7 +135,7 @@ export class SettingsComponent {
     this.storeService.isLoading.set(true);
     setTimeout((_) => {
       this.storeService.isLoading.set(false);
-    }, 2000);
+    }, 1000)
     this.router.navigateByUrl('/settings?tab=0');
   }
 }

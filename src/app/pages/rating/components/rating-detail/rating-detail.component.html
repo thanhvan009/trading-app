@@ -2,77 +2,56 @@
   <div class="project-detail">
     <div class="project-detail-wrapper">
       <h1 class="title">Rating your projects</h1>
-      <form [formGroup]="formGroup" (ngSubmit)="onClickSubmit()">
+      <form [formGroup]="formGroup">
         <div class="form-wrapper">
           <div class="info-left">
             <div class="mb-5">
-              <label for="name" class="form-label text-start w-100"
-                >Project Name</label
-              >
-              <input
-                type="text"
-                class="form-control"
-                id="projectName"
-                formControlName="projectName"
-                placeholder="Enter your project name"
-                [ngClass]="{
+              <label for="name" class="form-label text-start w-100">Project Name</label>
+              <input type="text" class="form-control" id="projectName" formControlName="projectName"
+                placeholder="Enter your project name" [ngClass]="{
                   'is-invalid':
                     formGroup.controls.projectName.errors &&
                     formGroup.controls.projectName.touched
-                }"
-              />
+                }" />
               <!-- NOTE Errors -->
-              <div
-                class="invalid-feedback"
-                *ngIf="formGroup.controls.projectName.hasError('required')"
-              >
+              <div class="invalid-feedback" *ngIf="formGroup.controls.projectName.hasError('required')">
                 {{ "FIELD_REQUIRED" | translate }}
               </div>
             </div>
             <div class="mb-5">
-              <label for="ratings" class="form-label text-start w-100"
-                >Ratings</label
-              >
+              <label for="ratings" class="form-label text-start w-100">Ratings</label>
               <div class="star-rating">
-                <span class="material-icons"> star_rate </span>
-                <span class="material-icons"> star_rate </span>
-                <span class="material-icons"> star_rate </span>
-                <span class="material-icons"> star_rate </span>
-                <span class="material-icons"> star_rate </span>
+                <button *ngFor="let index of [1, 2, 3, 4, 5]" (click)="onClickStar(index)">
+                  <div *ngIf="selectedIndex != 0 && index <= selectedIndex; then ratingStar else emptyStar"></div>
+
+                  <ng-template #ratingStar>
+                    <img [src]="'assets/img/project/rating-star.png'" alt="star" class="">
+                  </ng-template>
+                  <ng-template #emptyStar>
+                    <img [src]="'assets/img/project/empty-star.png'" alt="star" class="">
+                  </ng-template>
+                </button>
+
               </div>
             </div>
             <div class="mb-5">
-              <label for="yourReview" class="form-label text-start w-100"
-                >Your Review</label
-              >
+              <label for="yourReview" class="form-label text-start w-100">Your Review</label>
 
-              <textarea
-                type="text"
-                class="form-control"
-                id="yourReview"
-                formControlName="yourReview"
-                placeholder="Enter your review"
-                [ngClass]="{
+              <textarea type="text" class="form-control" id="yourReview" formControlName="yourReview"
+                placeholder="Enter your review" [ngClass]="{
                   'is-invalid':
                     formGroup.controls.yourReview.errors &&
                     formGroup.controls.yourReview.touched
-                }"
-              ></textarea>
+                }"></textarea>
               <!-- NOTE Errors -->
-              <div
-                class="invalid-feedback"
-                *ngIf="formGroup.controls.yourReview.hasError('required')"
-              >
+              <div class="invalid-feedback" *ngIf="formGroup.controls.yourReview.hasError('required')">
                 {{ "FIELD_REQUIRED" | translate }}
               </div>
             </div>
             <div class="action-buttons mb-5">
-              <button class="cancel-button">Cancel</button>
-              <button
-                type="submit"
-                class="btn btn-primary px-5 submit-button"
-                [disabled]="!formGroup.valid"
-              >
+              <button (click)="onCancel()" class="cancel-button">Cancel</button>
+              <button (click)="onClickSubmit()" type="submit" class="btn btn-primary px-5 submit-button"
+                [disabled]="!formGroup.valid">
                 Submit
               </button>
             </div>

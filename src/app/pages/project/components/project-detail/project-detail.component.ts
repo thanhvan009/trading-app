@@ -15,7 +15,9 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { StoreService } from '@services/store.service';
 import { ProgressBarComponent } from '@blocks/progress-bar/progress-bar.component';
-import {MatIconModule} from '@angular/material/icon';
+import { MatIconModule } from '@angular/material/icon';
+import moment from 'moment';
+import { IDescription, mockDescriptionsData, mockProjectDetailData } from 'src/app/shared/mock-data/project.mock';
 @Component({
   selector: 'app-project-detail',
   templateUrl: './project-detail.component.html',
@@ -43,7 +45,7 @@ export class ProjectDetailComponent {
     'tradeApproval',
     'customerApproval',
   ];
-  dataSource: any = new MatTableDataSource<IDescription>(descriptionMockData);
+  dataSource: any = new MatTableDataSource<IDescription>(mockDescriptionsData);
   public appName: string = environment.appName;
   public formGroup!: FormGroup<{
     name: FormControl<string | null>;
@@ -53,6 +55,7 @@ export class ProjectDetailComponent {
   }>;
   private projectId: number;
   public title = '';
+  model: any = {};
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
@@ -62,50 +65,75 @@ export class ProjectDetailComponent {
     this.projectId = +this.activatedRoute.snapshot.params['id'];
   }
 
-  private initFormGroup(projectId?: number): void {
+  private initForm(): void {
     this.formGroup = new FormGroup({
       name: new FormControl<string | null>(
         {
-          value: projectId ? 'Hydrogen' : '',
+          value: this.model.name,
           disabled: false,
         },
         { validators: [Validators.required], nonNullable: true }
       ),
       id: new FormControl<number | string>(
         {
-          value: projectId ? projectId : '',
+          value: this.model.id,
           disabled: false,
         },
         { validators: [Validators.required], nonNullable: true }
       ),
       type: new FormControl<string | null>(
         {
-          value: projectId ? 'Shopping' : '',
+          value: this.model.type,
           disabled: false,
         },
         { validators: [Validators.required], nonNullable: true }
       ),
       status: new FormControl<string | null>(
         {
-          value: projectId ? 'Active' : 'Pending',
+          value: this.model.status,
           disabled: false,
         },
         { validators: [Validators.required], nonNullable: true }
       ),
     });
+  }
+
+  changeStatus(e: any) {
+    this.model.status = e.target.value;
+    this.formGroup.controls.status.setValue(e.target.value);
+  }
+
+  changeType(e: any) {
+    this.model.type = e.target.value;
+    this.formGroup.controls.type.setValue(e.target.value);
+  }
+
+  public ngOnInit(): void {
+    if (this.projectId) {
+      this.model = {
+        ...mockProjectDetailData
+      };
+    } else {
+      this.model = {
+        id: '',
+        name: '',
+        type: null,
+        owner: '',
+        status: null,
+        link: '',
+      }
+    }
+    setTimeout((_) => {
+      this.storeService.isLoading.set(false);
+      this.initForm();
+    }, 1000)
+  }
+
+  public ngAfterView(): void {
     if (this.projectId) {
       this.title = 'Edit - ' + this.formGroup.controls.name.value;
     }
   }
-
-  public ngOnInit(): void {
-    setTimeout((_) => {
-      this.storeService.isLoading.set(false);
-      this.initFormGroup(this.projectId);
-    }, 2000);
-  }
-
-  public ngAfterView(): void {}
 
   onCancel() {
     this.router.navigate(['/projects']);
@@ -121,79 +149,37 @@ export class ProjectDetailComponent {
 
   addRow() {
     let newRow = {
-      description: 'Please enter new description...',
+      description: '',
       createdBy: 'Admin',
-      date: '17/2/2025',
+      date: moment(new Date()).format('DD/MM/YYYY'),
+      tradeApproval: true,
+      customerApproval: false,
       editing: true
     };
-    this.dataSource = new MatTableDataSource<IDescription>( [
+    this.dataSource = new MatTableDataSource<IDescription>([
       ...this.dataSource.data,
       newRow
     ])
   }
+
+  update(checked: boolean, index: any, type?: string) {
+    if (type === 'tradeApproval') {
+      this.dataSource.data[index] = {
+        ...this.dataSource.data[index],
+        tradeApproval: checked,
+        customerApproval: !checked,
+      }
+    } else {
+      this.dataSource.data[index] = {
+        ...this.dataSource.data[index],
+        tradeApproval: !checked,
+        customerApproval: checked,
+      }
+    }
+    this.dataSource = new MatTableDataSource<IDescription>([
+      ...this.dataSource.data,
+    ])
+  }
 }
 
-export interface IDescription {
-  description: any;
-  createdBy: string;
-  date: string;
-  isAdd?: boolean;
-  editing?: boolean
-}
 
-const descriptionMockData: IDescription[] = [
-  {
-    description:
-      'Lorem Ipsum has been the industrys standard dummy text ever since the 1500s',
-    createdBy: 'Hydrogen',
-    date: '31/12/2022'
-  },
-  {
-    description:
-      'Lorem Ipsum has been the industrys standard dummy text ever since the 1500s',
-    createdBy: 'Helium',
-    date: '31/12/2022'
-  },
-  {
-    description:
-      'Lorem Ipsum has been the industrys standard dummy text ever since the 1500s',
-    createdBy: 'Lithium',
-    date: '31/12/2022'
-  },
-  {
-    description:
-      'Lorem Ipsum has been the industrys standard dummy text ever since the 1500s',
-    createdBy: 'Beryllium',
-    date: '31/12/2022'
-  },
-  {
-    description:
-      'Lorem Ipsum has been the industrys standard dummy text ever since the 1500s',
-    createdBy: 'Boron',
-    date: '31/12/2022'
-  },
-  {
-    description:
-      'Lorem Ipsum has been the industrys standard dummy text ever since the 1500s',
-    createdBy: 'Carbon',
-    date: '31/12/2022'
-  },
-  {
-    description:
-      'Lorem Ipsum has been the industrys standard dummy text ever since the 1500s',
-    createdBy: 'Nitrogen',
-    date: '31/12/2022'
-  },
-  {
-    description:
-      'Lorem Ipsum has been the industrys standard dummy text ever since the 1500s',
-    createdBy: 'Oxygen',
-    date: '31/12/2022'
-  },
-  {
-    description:
-      'Lorem Ipsum has been the industrys standard dummy text ever since the 1500s',
-    createdBy: 'Fluorine',
-    date: '31/12/2022'
-  },
-];

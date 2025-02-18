@@ -50,7 +50,6 @@ table {
       }
       &:last-child {
         border-top-right-radius: 10px;
-        width: 400px;
       }
     }
     &:last-child {
@@ -74,6 +73,27 @@ table {
     font-weight: 500;
     font-size: 16px;
     padding: 20px;
+  }
+}
+
+table {
+  .description-col {
+    width: 20%;
+  }
+  .projectId-col {
+    width: 16%;
+  }
+  .type-col {
+    width: 16%;
+
+  }
+  .owner-col {
+    width: 16%;
+
+  }
+  .actions-col {
+    width: 16%;
+    text-align: center;
   }
 }
 

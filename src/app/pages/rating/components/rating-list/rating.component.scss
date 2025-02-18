@@ -122,6 +122,32 @@ table {
   }
 }
 
+table {
+  .projectName-col {
+    width: 20%;
+  }
+  .projectId-col {
+    width: 16%;
+  }
+  .type-col {
+    width: 16%;
+  }
+  .owner-col {
+    width: 16%;
+  }
+  .rateStatus-col {
+    width: 16%;
+  }
+  .actions-col {
+    width: 16%;
+    text-align: center;
+  }
+  td.mat-column-actions {
+    display: flex;
+    justify-content: center;
+  }
+}
+
 @media screen and (min-width: 992px) {
   table {
     .mat-mdc-cell {

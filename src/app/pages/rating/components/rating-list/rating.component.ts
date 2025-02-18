@@ -1,23 +1,17 @@
-// Angular modules
 import { NgClass, NgFor, NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { inject } from '@angular/core';
-
-// Services
 import { StoreService } from '@services/store.service';
-
-// Components
 import { ProgressBarComponent } from '@blocks/progress-bar/progress-bar.component';
 import { PageLayoutComponent } from '@layouts/page-layout/page-layout.component';
-
 import { ViewChild } from '@angular/core';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-
 import { MatDialog } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { Router } from '@angular/router';
+import { IRating, mockRatingData } from 'src/app/shared/mock-data/ratings.mock';
 
 @Component({
   selector: 'app-rating',
@@ -37,14 +31,14 @@ import { Router } from '@angular/router';
 })
 export class RatingComponent implements OnInit {
   displayedColumns: string[] = [
-    'projectId',
     'projectName',
+    'projectId',
     'type',
     'owner',
     'rateStatus',
     'actions',
   ];
-  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+  dataSource = new MatTableDataSource<IRating>(mockRatingData);
   public selectedPage = 1;
 
   @ViewChild(MatPaginator) paginator: any;
@@ -58,7 +52,7 @@ export class RatingComponent implements OnInit {
   public ngOnInit(): void {
     setTimeout((_) => {
       this.storeService.isLoading.set(false);
-    }, 2000);
+    }, 1000)
   }
 
   ngAfterViewInit() {
@@ -75,7 +69,7 @@ export class RatingComponent implements OnInit {
       this.selectedPage = item;
       setTimeout((_) => {
         this.storeService.isLoading.set(false);
-      }, 2000);
+      }, 1000)
     } else if (item == 'prev') {
       //
     } else {
@@ -84,69 +78,3 @@ export class RatingComponent implements OnInit {
   }
 }
 
-export interface PeriodicElement {
-  projectId: number;
-  projectName: string;
-  type: number;
-  owner: string;
-  rateStatus: string;
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  {
-    projectId: 1,
-    projectName: 'Hydrogen',
-    type: 1.0079,
-    owner: 'H',
-    rateStatus: 'Active',
-  },
-  {
-    projectId: 2,
-    projectName: 'Helium',
-    type: 4.0026,
-    owner: 'He',
-    rateStatus: 'Active',
-  },
-  {
-    projectId: 3,
-    projectName: 'Lithium',
-    type: 6.941,
-    owner: 'Li',
-    rateStatus: 'Active',
-  },
-  {
-    projectId: 4,
-    projectName: 'Beryllium',
-    type: 9.0122,
-    owner: 'Be',
-    rateStatus: 'Active',
-  },
-  {
-    projectId: 5,
-    projectName: 'Boron',
-    type: 10.811,
-    owner: 'B',
-    rateStatus: 'Active',
-  },
-  {
-    projectId: 6,
-    projectName: 'Carbon',
-    type: 12.0107,
-    owner: 'C',
-    rateStatus: 'Active',
-  },
-  {
-    projectId: 7,
-    projectName: 'Nitrogen',
-    type: 14.0067,
-    owner: 'N',
-    rateStatus: 'Active',
-  },
-  {
-    projectId: 8,
-    projectName: 'Oxygen',
-    type: 15.9994,
-    owner: 'O',
-    rateStatus: 'Active',
-  },
-];

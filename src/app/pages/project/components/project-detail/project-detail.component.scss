@@ -38,6 +38,7 @@ form {
     font-size: 16px;
     font-weight: 400;
   }
+
   select,
   input {
     border-color: #dfeaf2;
@@ -45,6 +46,7 @@ form {
     width: 100%;
     border-radius: 10px;
     color: #718ebf;
+
     &::placeholder {
       color: #bdbdbd;
     }
@@ -54,6 +56,7 @@ form {
 .table-list {
   box-shadow: none;
   position: relative;
+  margin-bottom: 110px;
 }
 
 .row-add {
@@ -62,21 +65,21 @@ form {
   height: 80px;
   border-top: 1px solid #e6eff5;
   border-bottom: 1px solid #e6eff5;
-  display: flex
-;
+  display: flex;
   align-items: center;
+
   mat-icon {
     margin: 0 20px;
-  background: #333b69;
-  color: #fff;
-  border-radius: 50%;
-  font-size: 22px;
-  width: 28px;
-  height: 28px;
-  display: flex
-;
-  justify-content: center;
-  align-items: center;
+    background: #333b69;
+    color: #fff;
+    border-radius: 50%;
+    font-size: 22px;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
   }
 }
 
@@ -87,17 +90,19 @@ table {
   padding: 30px 60px 160px;
   margin-bottom: 0;
 
-  
-  
+
+
   tr {
     td:first-child {
       text-align: left;
     }
+
     th {
       &:first-child {
         border-top-left-radius: 10px;
         text-align: left;
       }
+
       &:last-child {
         border-top-right-radius: 10px;
       }
@@ -107,22 +112,26 @@ table {
     .customer-approval {
       width: 200px;
     }
+
     &:last-child {
       td:first-child {
         border-bottom-left-radius: 10px;
         border: none;
       }
+
       td:last-child {
         border-bottom-right-radius: 10px;
       }
     }
   }
+
   .mat-mdc-cell {
     color: #232323;
     border-bottom-color: #e6eff5;
     padding: 20px;
     text-align: center;
   }
+
   .mat-mdc-header-cell {
     border-bottom-color: #e6eff5;
     color: #718ebf;
@@ -167,16 +176,18 @@ table {
     }
   }
 
-  input {
+  textarea {
     width: 100%;
-    height: 40px;
+    height: 43px;
     border: 1px solid #ddd;
     padding: 10px;
     border-radius: 5px;
     color: #718ebf;
+
     &::placeholder {
       color: #bdbdbd;
     }
+
     &:focus {
       outline: 0;
     }
@@ -185,6 +196,7 @@ table {
 
 .select-row {
   position: relative;
+
   mat-icon {
     position: absolute;
     top: 45px;
@@ -192,10 +204,55 @@ table {
   }
 }
 
+table {
+  .description-col {
+    width: 60%;
+  }
+  .createdBy-col {
+    width: 10%;
+  }
+
+  .date-col {
+    width: 15%;
+  }
+
+  .trade-approval-col {
+    width: 13%;
+  }
+
+  .customer-approval-col {
+    width: 12%;
+  }
+}
+
+@media screen and (min-width: 768) {
+  table {
+    .description-col {
+      width: 40%;
+    }
+    .createdBy-col {
+      width: 15%;
+    }
+
+    .date-col {
+      width: 15%;
+    }
+
+    .trade-approval-col {
+      width: 15%;
+    }
+
+    .customer-approval-col {
+      width: 15%;
+    }
+  }
+}
+
 @media screen and (min-width: 992px) {
   table {
     .mat-mdc-cell {
       padding: 20px;
+
       button {
         border-radius: 51px;
         width: 140px;
