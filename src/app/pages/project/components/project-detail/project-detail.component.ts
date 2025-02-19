@@ -17,6 +17,10 @@ import { StoreService } from '@services/store.service';
 import { ProgressBarComponent } from '@blocks/progress-bar/progress-bar.component';
 import { MatIconModule } from '@angular/material/icon';
 import moment from 'moment';
+import {MatSelectModule} from '@angular/material/select';
+import {MatFormFieldModule} from '@angular/material/form-field';
+
+
 import { IDescription, mockDescriptionsData, mockProjectDetailData } from 'src/app/shared/mock-data/project.mock';
 @Component({
   selector: 'app-project-detail',
@@ -34,9 +38,13 @@ import { IDescription, mockDescriptionsData, mockProjectDetailData } from 'src/a
     RouterLink,
     TranslateModule,
     ProgressBarComponent,
-    MatIconModule
+    MatIconModule,
+    MatSelectModule,
+    MatFormFieldModule
   ],
 })
+
+
 export class ProjectDetailComponent {
   displayedColumns: string[] = [
     'description',
@@ -56,6 +64,14 @@ export class ProjectDetailComponent {
   private projectId: number;
   public title = '';
   model: any = {};
+  
+  types: any[] = [
+    {value: 'Shopping', viewValue: 'Shopping'},
+    {value: 'Service', viewValue: 'Service'},
+    {value: 'Transfer', viewValue: 'Transfer'},
+  ];
+
+  selectedFood = this.types[0].value;
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
@@ -63,6 +79,11 @@ export class ProjectDetailComponent {
   ) {
     this.storeService.isLoading.set(true);
     this.projectId = +this.activatedRoute.snapshot.params['id'];
+    if (this.projectId) {
+      this.title = 'Edit - ' + mockProjectDetailData.name;
+    } else {
+      this.title = 'Create a new project';
+    }
   }
 
   private initForm(): void {
@@ -99,13 +120,13 @@ export class ProjectDetailComponent {
   }
 
   changeStatus(e: any) {
-    this.model.status = e.target.value;
-    this.formGroup.controls.status.setValue(e.target.value);
+    this.model.status = e.value;
+    this.formGroup.controls.status.setValue(e.value)
   }
 
   changeType(e: any) {
-    this.model.type = e.target.value;
-    this.formGroup.controls.type.setValue(e.target.value);
+    this.model.type = e.value;
+    this.formGroup.controls.type.setValue(e.value)
   }
 
   public ngOnInit(): void {
@@ -130,9 +151,7 @@ export class ProjectDetailComponent {
   }
 
   public ngAfterView(): void {
-    if (this.projectId) {
-      this.title = 'Edit - ' + this.formGroup.controls.name.value;
-    }
+    // 
   }
 
   onCancel() {
@@ -141,6 +160,7 @@ export class ProjectDetailComponent {
 
   onSave() {
     this.formGroup.markAllAsTouched();
+    console.log("🚀 ~ ProjectDetailComponent ~ onSave ~ this.formGroup:", this.formGroup)
     if (this.formGroup.invalid) {
       return;
     }
