@@ -2,6 +2,7 @@
   border: 2px solid #b1b1b1;
   border-radius: 10px;
   padding: 10px 20px;
+
   .title {
     display: flex;
     align-items: center;
@@ -11,6 +12,7 @@
     button {
       border: none;
       background-color: transparent;
+
       img {
         width: 24px;
         height: 24px;
@@ -27,16 +29,6 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-  }
-
-  .join-button {
-    background-color: #092c4c;
-    color: #fff;
-    width: 160px;
-    height: 50px;
-    font-size: 18px;
-    border-radius: 5px;
-    border: none;
   }
 
   mat-dialog-content.mat-mdc-dialog-content.mdc-dialog__content {

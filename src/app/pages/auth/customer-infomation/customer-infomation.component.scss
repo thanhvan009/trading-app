@@ -1,7 +1,7 @@
 .customer-infomation {
   background: #f5f7fa;
 
-  .header {
+  .customer-infomation-header {
     background: #fff;
     padding: 20px 30px;
   }
@@ -44,76 +44,15 @@
   }
 }
 
-.form-wrapper {
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 30px;
-}
-
-
-
-form {
-  label {
-    color: #232323;
-    font-size: 16px;
-    font-weight: 400;
-  }
-
-  input {
-    border-color: #dfeaf2;
-    height: 50px;
-    width: 100%;
-    border-radius: 10px;
-    color: #718ebf;
-
-    &::placeholder {
-      color: #bdbdbd;
-    }
-  }
-}
-
 .action-buttons {
   display: flex;
   justify-content: end;
-}
-
-.back-button {
-  width: 148px;
-  height: 50px;
-  border-radius: 50px;
-  border: 1px solid #092c4c;
-  margin-right: 15px;
-  background-color: #f5f7fa;
-}
-
-.submit-button {
-  background-color: #092c4c;
-  opacity: 1;
-  color: #fff;
-  width: 148px;
-  height: 50px;
-  border-radius: 50px;
-  border: none;
-}
-
-.space-tmp {
-  display: none;
+  button + button {
+    margin-left: 15px;
+  }
 }
 
 @media only screen and (min-width: 768px) {
-  .space-tmp {
-    display: block;
-    height: 132px;
-  }
-
-  .info-left {
-    padding-right: 15px;
-  }
-
-  .info-right {
-    padding-left: 15px;
-  }
-
   .customer-infomation {
     height: 100vh;
     overflow-y: auto;
@@ -121,15 +60,6 @@ form {
 }
 
 @media only screen and (min-width: 1024px) {
-
-  .info-left {
-    padding-right: 30px;
-  }
-
-  .info-right {
-    padding-left: 30px;
-  }
-
   .wrapper {
     padding: 50px 100px;
   }

@@ -28,25 +28,6 @@
 }
 
 form {
-  label {
-    color: #232323;
-    font-size: 16px;
-    font-weight: 400;
-  }
-  input, textarea {
-    border-color: #dfeaf2;
-    width: 100%;
-    border-radius: 10px;
-    color: #718ebf;
-    &::placeholder {
-      color: #bdbdbd;
-    }
-  }
-
-  input {
-    height: 50px;
-  }
-
   textarea {
     height: 150px;
   }
@@ -55,26 +36,9 @@ form {
 .action-buttons {
   display: flex;
   justify-content: end;
-}
-
-.cancel-button {
-  width: 190px;
-  height: 50px;
-  border-radius: 5px;
-  border: 1px solid #dfeaf2;
-  margin-right: 15px;
-  background-color: #dfeaf2;
-  color: #fff;
-}
-
-.submit-button {
-  background-color: #092c4c;
-  opacity: 1;
-  color: #fff;
-  width: 190px;
-  height: 50px;
-  border-radius: 5px;
-  border: none;
+  button + button {
+    margin-left: 15px;
+  }
 }
 
 .star-rating {

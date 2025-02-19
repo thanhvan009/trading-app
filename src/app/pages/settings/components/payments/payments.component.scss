@@ -5,7 +5,6 @@
     font-weight: 600;
     margin-bottom: 20px;
   }
-  
   .add-card {
     .description {
       color: #718ebf;
@@ -13,38 +12,12 @@
       font-weight: 400;
       margin-bottom: 30px;
     }
-
-    label {
-      font-size: 16px;
-      color: #232323;
-    }
-
-    input {
-      height: 50px;
-      border-radius: 5px;
-      border: 1px solid #dfeaf2;
-      padding: 0 15px;
-      &:focus {
-        box-shadow: none;
-      }
-
-      &::placeholder {
-        color: #718ebf;
-      }
-    }
   }
+}
 
-  .submit-btn {
-    text-align: right;
-    button {
-      color: #fff;
-      border: none;
-      background: #092c4c;
-      height: 48px;
-      width: 188px;
-      border-radius: 8px;
-    }
-  }
+.action-buttons {
+  display: flex;
+  justify-content: end;
 }
 
 .card-list {

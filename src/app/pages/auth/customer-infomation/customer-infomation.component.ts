@@ -86,8 +86,8 @@ export class CustomerInfomationComponent {
     this.role = localStorage.getItem('role') ?? '';
     this.title = this.role + ' Information';
     this.subtitle = this.role + ' Profile';
-    
-    
+
+
     this.initFormGroup();
   }
 
@@ -104,7 +104,7 @@ export class CustomerInfomationComponent {
       role: this.role,
       ...this.formGroup.getRawValue(),
     }
-    localStorage.setItem('user',  JSON.stringify(user))
+    localStorage.setItem('user', JSON.stringify(user))
     this.router.navigate(['/dashboard']);
   }
 
