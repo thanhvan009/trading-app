@@ -1,4 +1,3 @@
-// Angular modules
 import { NgClass } from '@angular/common';
 import { NgIf } from '@angular/common';
 import { Component } from '@angular/core';
@@ -11,8 +10,6 @@ import { Router } from '@angular/router';
 import { RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { environment } from '@env/environment';
-import { AppService } from '@services/app.service';
-import { StoreService } from '@services/store.service';
 
 @Component({
   selector: 'app-login',
@@ -37,9 +34,7 @@ export class LoginComponent {
   public isLogin = true;
 
   constructor(
-    private router: Router,
-    private storeService: StoreService,
-    private appService: AppService
+    private router: Router
   ) {
     this.initFormGroup();
     this.isLogin = this.router.url === '/auth/login';
@@ -70,20 +65,11 @@ export class LoginComponent {
     });
   }
 
-  public async onClickSubmit(): Promise<void> {
-    await this.authenticate();
-  }
-
-  private async authenticate(): Promise<void> {
-    this.storeService.isLoading.set(true);
-
-    const email = this.formGroup.controls.email.getRawValue();
-    const password = this.formGroup.controls.password.getRawValue();
-    const success = await this.appService.authenticate(email, password);
-
-    this.storeService.isLoading.set(false);
-
-    if (!success) return;
+  public onClickSubmit() {
+    this.formGroup.markAllAsTouched();
+    if (this.formGroup.invalid) {
+      return;
+    }
     localStorage.setItem('token', 'Mock Token');
     this.router.navigate(['/auth/role-selection']);
   }

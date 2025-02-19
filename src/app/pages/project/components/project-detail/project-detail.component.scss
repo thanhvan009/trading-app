@@ -33,23 +33,8 @@
 }
 
 form {
-  label {
-    color: #232323;
-    font-size: 16px;
-    font-weight: 400;
-  }
-
   select,
   input {
-    border-color: #dfeaf2;
-    height: 50px;
-    width: 100%;
-    border-radius: 10px;
-    color: #718ebf;
-
-    &::placeholder {
-      color: #bdbdbd;
-    }
   }
 }
 
@@ -98,20 +83,7 @@ table {
 
 table {
   textarea {
-    width: 100%;
     height: 43px;
-    border: 1px solid #ddd;
-    padding: 10px;
-    border-radius: 5px;
-    color: #718ebf;
-
-    &::placeholder {
-      color: #bdbdbd;
-    }
-
-    &:focus {
-      outline: 0;
-    }
   }
 }
 

@@ -1,4 +1,3 @@
-// Angular modules
 import { NgClass } from '@angular/common';
 import { NgIf } from '@angular/common';
 import { Component } from '@angular/core';
@@ -9,11 +8,7 @@ import { FormControl } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RouterLink } from '@angular/router';
-
-// External modules
 import { TranslateModule } from '@ngx-translate/core';
-
-// Services
 import { AppService } from '@services/app.service';
 import { StoreService } from '@services/store.service';
 
@@ -37,9 +32,7 @@ export class ForgotPasswordComponent {
   }>;
 
   constructor(
-    public router: Router,
-    private storeService: StoreService,
-    private appService: AppService
+    public router: Router
   ) {
     this.initFormGroup();
   }
@@ -59,20 +52,11 @@ export class ForgotPasswordComponent {
     });
   }
 
-  public async onClickSubmit(): Promise<void> {
-    await this.forgotPassword();
-  }
-
-  private async forgotPassword(): Promise<void> {
-    this.storeService.isLoading.set(true);
-
-    const email = this.formGroup.controls.email.getRawValue();
-    const success = await this.appService.forgotPassword(email);
-
-    this.storeService.isLoading.set(false);
-
-    if (!success) return;
-
+  public onClickSubmit() {
+    this.formGroup.markAllAsTouched();
+    if (this.formGroup.invalid) {
+      return;
+    }
     this.router.navigate(['/auth/login']);
   }
 }

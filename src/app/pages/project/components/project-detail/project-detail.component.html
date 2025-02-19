@@ -99,7 +99,7 @@
                   <span *ngIf="element.editing; then editBlock else displayBlock"></span>
                   <ng-template #displayBlock> {{ element.description }}</ng-template>
                   <ng-template #editBlock>
-                    <textarea name="editBlock" id="editBlock" placeholder="Please enter new description..."></textarea>
+                    <textarea class="form-control" name="editBlock" id="editBlock" placeholder="Please enter new description..."></textarea>
                   </ng-template>
                 </td>
               </ng-container>

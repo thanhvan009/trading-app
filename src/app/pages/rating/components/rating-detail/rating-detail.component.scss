@@ -28,25 +28,6 @@
 }
 
 form {
-  label {
-    color: #232323;
-    font-size: 16px;
-    font-weight: 400;
-  }
-  input, textarea {
-    border-color: #dfeaf2;
-    width: 100%;
-    border-radius: 10px;
-    color: #718ebf;
-    &::placeholder {
-      color: #bdbdbd;
-    }
-  }
-
-  input {
-    height: 50px;
-  }
-
   textarea {
     height: 150px;
   }
