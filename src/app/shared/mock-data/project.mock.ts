@@ -79,15 +79,15 @@ export interface IDescription {
 export const mockDescriptionsData: IDescription[] = [
   {
     description:
-      'Lorem Ipsum has been the industrys standard dummy text ever since the 1500s',
+      'Can you show us some samples of your writing? If that’s something you keep hearing but cannot say a confident yes to, you’re at the right place. We’ll show you 24 examples of how others write and present their content writing samples and answer some of the most frequently asked questions.',
     createdBy: 'Hydrogen',
     date: '31/12/2022',
-    tradeApproval: true,
-    customerApproval: false,
+    tradeApproval: false,
+    customerApproval: true,
   },
   {
     description:
-      'Lorem Ipsum has been the industrys standard dummy text ever since the 1500s',
+      'So the next time a potential client wants to see your samples or HR requests them for your job application, you won’t have to worry about it anymore',
     createdBy: 'Helium',
     date: '31/12/2022',
     tradeApproval: false,
@@ -95,15 +95,15 @@ export const mockDescriptionsData: IDescription[] = [
   },
   {
     description:
-      'Lorem Ipsum has been the industrys standard dummy text ever since the 1500s',
+      'Looking for a quick and easy way to build your portfolio? Try Copyfolio and create a stunning website that’ll look good on every device. It’s free, no credit card required.',
     createdBy: 'Lithium',
     date: '31/12/2022',
-    tradeApproval: true,
-    customerApproval: false,
+    tradeApproval: false,
+    customerApproval: true,
   },
   {
     description:
-      'Lorem Ipsum has been the industrys standard dummy text ever since the 1500s',
+      `Astor used Copyfolio's "Charcoal" color palette to let the images shine, and added CTA buttons under each sample's description for better conversions.`,
     createdBy: 'Beryllium',
     date: '31/12/2022',
     tradeApproval: false,
@@ -111,7 +111,7 @@ export const mockDescriptionsData: IDescription[] = [
   },
   {
     description:
-      'Lorem Ipsum has been the industrys standard dummy text ever since the 1500s',
+      'Why do you need to have content writing samples?',
     createdBy: 'Boron',
     date: '31/12/2022',
     tradeApproval: true,
@@ -119,11 +119,11 @@ export const mockDescriptionsData: IDescription[] = [
   },
   {
     description:
-      'Lorem Ipsum has been the industrys standard dummy text ever since the 1500s',
+      'How to format your content writing samples ree content writing sample presentation templates',
     createdBy: 'Carbon',
     date: '31/12/2022',
-    tradeApproval: false,
-    customerApproval: true,
+    tradeApproval: true,
+    customerApproval: false,
   },
   {
     description:
@@ -135,11 +135,11 @@ export const mockDescriptionsData: IDescription[] = [
   },
   {
     description:
-      'Lorem Ipsum has been the industrys standard dummy text ever since the 1500s',
+      'Allana did two things to present her content work for Hilton Supply Management: she wrote a short summary of the project and she also included large images of the final piece. Allana featured these writing samples on her portfolio website, built with Copyfolio.',
     createdBy: 'Oxygen',
     date: '31/12/2022',
-    tradeApproval: false,
-    customerApproval: true,
+    tradeApproval: true,
+    customerApproval: false,
   },
   {
     description:
