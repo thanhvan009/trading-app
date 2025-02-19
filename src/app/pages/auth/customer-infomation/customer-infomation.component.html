@@ -1,5 +1,5 @@
 <div class="customer-infomation">
-  <div class="header">
+  <div class="customer-infomation-header">
     <img [src]="'assets/img/project/logo-app.png'" class="logo-app" alt="logo">
   </div>
   <div class="customer-wrapper container">
@@ -15,12 +15,9 @@
       </div>
       <div class="info col-lg-9 col-md-9 col-sm-12 col-xs-12">
         <form [formGroup]="formGroup">
-          <div class="form-wrapper row">
-            <div class="info-left col-lg-6 col-md-6 col-sm-12 col-xs-12">
-              <div
-                class="mb-5"
-                *ngIf="role !== 'Customer'"
-              >
+          <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+              <div class="mb-5" *ngIf="role !== 'Customer'">
                 <label for="licenseNumber" class="form-label text-start w-100">License Number</label>
                 <input type="text" class="form-control" id="licenseNumber" formControlName="licenseNumber"
                   placeholder="Enter your license number"
@@ -29,6 +26,10 @@
                   {{ 'FIELD_REQUIRED' | translate }}
                 </div>
               </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
               <div class="mb-5">
                 <label for="yourname" class="form-label text-start w-100">Your Name</label>
                 <input type="text" class="form-control" id="yourname" formControlName="yourname"
@@ -38,6 +39,21 @@
                   {{ 'FIELD_REQUIRED' | translate }}
                 </div>
               </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+              <div class="mb-5">
+                <label for="username" class="form-label text-start w-100">User Name</label>
+                <input type="text" class="form-control" id="username" formControlName="username"
+                  placeholder="Enter your user name"
+                  [ngClass]="{ 'is-invalid' : formGroup.controls.username.errors && formGroup.controls.username.touched }">
+                <div class="invalid-feedback" *ngIf="formGroup.controls.username.hasError('required')">
+                  {{ 'FIELD_REQUIRED' | translate }}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
               <div class="mb-5">
                 <label for="email" class="form-label text-start w-100">Email</label>
                 <input type="email" class="form-control" id="email" formControlName="email"
@@ -48,6 +64,21 @@
                   {{ 'FIELD_REQUIRED' | translate }}
                 </div>
               </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+              <div class="mb-5">
+                <label for="password" class="form-label text-start w-100">Password</label>
+                <input type="password" class="form-control" id="password" formControlName="password"
+                  placeholder="Enter your password"
+                  [ngClass]="{ 'is-invalid' : formGroup.controls.password.errors && formGroup.controls.password.touched }">
+                <div class="invalid-feedback" *ngIf="formGroup.controls.password.hasError('required')">
+                  {{ 'FIELD_REQUIRED' | translate }}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
               <div class="mb-5">
                 <label for="dateOfBirth" class="form-label text-start w-100">Date of Birth</label>
                 <input type="date" class="form-control" id="dateOfBirth" formControlName="dateOfBirth"
@@ -59,28 +90,7 @@
                 </div>
               </div>
             </div>
-            <div class="info-right col-lg-6 col-md-6 col-sm-12 col-xs-12">
-              <div class="space-tmp" *ngIf="role !== 'Customer'"></div>
-              <div class="mb-5">
-                <label for="username" class="form-label text-start w-100">User Name</label>
-                <input type="text" class="form-control" id="username" formControlName="username"
-                  placeholder="Enter your user name"
-                  [ngClass]="{ 'is-invalid' : formGroup.controls.username.errors && formGroup.controls.username.touched }">
-                <!-- NOTE Errors -->
-                <div class="invalid-feedback" *ngIf="formGroup.controls.username.hasError('required')">
-                  {{ 'FIELD_REQUIRED' | translate }}
-                </div>
-              </div>
-              <div class="mb-5">
-                <label for="password" class="form-label text-start w-100">Password</label>
-                <input type="password" class="form-control" id="password" formControlName="password"
-                  placeholder="Enter your password"
-                  [ngClass]="{ 'is-invalid' : formGroup.controls.password.errors && formGroup.controls.password.touched }">
-                <!-- NOTE Errors -->
-                <div class="invalid-feedback" *ngIf="formGroup.controls.password.hasError('required')">
-                  {{ 'FIELD_REQUIRED' | translate }}
-                </div>
-              </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
               <div class="mb-5">
                 <label for="address" class="form-label text-start w-100">Address</label>
                 <input type="address" class="form-control" id="address" formControlName="address"
@@ -93,9 +103,10 @@
               </div>
             </div>
           </div>
+
           <div class="action-buttons">
-            <button (click)="onBack()" type="primary" class="back-button">Back</button>
-            <button (click)="onClickSubmit()" type="submit" class="btn btn-primary px-5 submit-button">
+            <button (click)="onBack()" class="secondary">Back</button>
+            <button (click)="onClickSubmit()" type="submit" class="primary">
               Submit
             </button>
           </div>

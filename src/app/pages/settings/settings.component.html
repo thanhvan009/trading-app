@@ -7,8 +7,7 @@
           <div class="tab-labels">
             <div [ngClass]="{
                 'active': selectedIndex == 0
-              }"
-              (click)="onClickTab(0)">
+              }" (click)="onClickTab(0)">
               Edit Profile
             </div>
             <div [ngClass]="
@@ -21,12 +20,16 @@
             }" *ngIf="selectedIndex == 0">
             <div class="container">
               <form [formGroup]="formGroup">
-                <div class="form-wrapper row">
-                  <div class="info-left col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="row">
+                  <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                     <div class="mb-4" *ngIf="role !== 'Customer'">
                       <label for="licenseNumber" class="form-label text-start w-100">License Number</label>
                       <div class="value">{{model.licenseNumber}}</div>
                     </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                     <div class="mb-5">
                       <label for="yourname" class="form-label text-start w-100">Your Name</label>
                       <input type="text" class="form-control" id="yourname" formControlName="yourname"
@@ -35,11 +38,28 @@
                           formGroup.controls.yourname.errors &&
                           formGroup.controls.yourname.touched
                       }" />
-                      <!-- NOTE Errors -->
                       <div class="invalid-feedback" *ngIf="formGroup.controls.yourname.hasError('required')">
                         {{ "FIELD_REQUIRED" | translate }}
                       </div>
                     </div>
+                  </div>
+                  <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <div class="mb-5">
+                      <label for="username" class="form-label text-start w-100">User Name</label>
+                      <input type="text" class="form-control" id="username" formControlName="username"
+                        placeholder="Enter your user name" [ngClass]="{
+                        'is-invalid':
+                          formGroup.controls.username.errors &&
+                          formGroup.controls.username.touched
+                      }" />
+                      <div class="invalid-feedback" *ngIf="formGroup.controls.username.hasError('required')">
+                        {{ "FIELD_REQUIRED" | translate }}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                     <div class="mb-5">
                       <label for="email" class="form-label text-start w-100">Email</label>
                       <input type="email" class="form-control" id="email" formControlName="email"
@@ -56,37 +76,9 @@
                         {{ "FIELD_EMAIL" | translate }}
                       </div>
                     </div>
-                    <div class="mb-5">
-                      <label for="dateOfBirth" class="form-label text-start w-100">Date of Birth</label>
-                      <input type="date" class="form-control" id="dateOfBirth" formControlName="dateOfBirth"
-                        placeholder="Enter your Date of Birth" [ngClass]="{
-                        'is-invalid':
-                          formGroup.controls.dateOfBirth.errors &&
-                          formGroup.controls.dateOfBirth.touched
-                      }" />
-                      <!-- NOTE Errors -->
-                      <div class="invalid-feedback" *ngIf="
-                        formGroup.controls.dateOfBirth.hasError('required')
-                      ">
-                        {{ "FIELD_REQUIRED" | translate }}
-                      </div>
-                    </div>
+
                   </div>
-                  <div class="info-right col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                    <div *ngIf="role !== 'Customer'" class="space-tmp"></div>
-                    <div class="mb-5">
-                      <label for="username" class="form-label text-start w-100">User Name</label>
-                      <input type="text" class="form-control" id="username" formControlName="username"
-                        placeholder="Enter your user name" [ngClass]="{
-                        'is-invalid':
-                          formGroup.controls.username.errors &&
-                          formGroup.controls.username.touched
-                      }" />
-                      <!-- NOTE Errors -->
-                      <div class="invalid-feedback" *ngIf="formGroup.controls.username.hasError('required')">
-                        {{ "FIELD_REQUIRED" | translate }}
-                      </div>
-                    </div>
+                  <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                     <div class="mb-5">
                       <label for="password" class="form-label text-start w-100">Password</label>
                       <input type="password" class="form-control" id="password" formControlName="password"
@@ -95,11 +87,30 @@
                           formGroup.controls.password.errors &&
                           formGroup.controls.password.touched
                       }" />
-                      <!-- NOTE Errors -->
                       <div class="invalid-feedback" *ngIf="formGroup.controls.password.hasError('required')">
                         {{ "FIELD_REQUIRED" | translate }}
                       </div>
                     </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <div class="mb-5">
+                      <label for="dateOfBirth" class="form-label text-start w-100">Date of Birth</label>
+                      <input type="date" class="form-control" id="dateOfBirth" formControlName="dateOfBirth"
+                        placeholder="Enter your Date of Birth" [ngClass]="{
+                        'is-invalid':
+                          formGroup.controls.dateOfBirth.errors &&
+                          formGroup.controls.dateOfBirth.touched
+                      }" />
+                      <div class="invalid-feedback" *ngIf="
+                        formGroup.controls.dateOfBirth.hasError('required')
+                      ">
+                        {{ "FIELD_REQUIRED" | translate }}
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                     <div class="mb-5">
                       <label for="address" class="form-label text-start w-100">Address</label>
                       <input type="address" class="form-control" id="address" formControlName="address"
@@ -108,7 +119,6 @@
                           formGroup.controls.address.errors &&
                           formGroup.controls.address.touched
                       }" />
-                      <!-- NOTE Errors -->
                       <div class="invalid-feedback" *ngIf="formGroup.controls.address.hasError('required')">
                         {{ "FIELD_REQUIRED" | translate }}
                       </div>
