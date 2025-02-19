@@ -8,36 +8,57 @@
           <div class="form-wrapper">
             <div class="info-left">
               <div class="mb-5">
-                <label for="name" class="form-label text-start w-100">Name</label>
-                <input type="text" class="form-control" id="name" formControlName="name" placeholder="Enter your name"
+                <label for="name" class="form-label text-start w-100"
+                  >Name</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="name"
+                  formControlName="name"
+                  placeholder="Enter your name"
                   [ngClass]="{
                     'is-invalid':
                       formGroup.controls.name.errors &&
                       formGroup.controls.name.touched
-                  }" />
+                  }"
+                />
                 <!-- NOTE Errors -->
-                <div class="invalid-feedback" *ngIf="formGroup.controls.name.hasError('required')">
+                <div
+                  class="invalid-feedback"
+                  *ngIf="formGroup.controls.name.hasError('required')"
+                >
                   {{ "FIELD_REQUIRED" | translate }}
                 </div>
               </div>
               <div class="mb-5 select-row">
-                <label for="type" class="form-label text-start w-100">Type</label>
-                <select [ngClass]="{
-                  'is-invalid':
-                    formGroup.controls.type.errors &&
-                    formGroup.controls.type.touched
-                }" placeholder="Select your type" name="type" id="type" class="form-control"
-                  (change)="changeType($event)">
-                  <option [ngValue]="null">Select your type</option>
-                  <option value="Shopping">Shopping</option>
-                  <option value="Transfer">Transfer</option>
-                  <option value="Service">Service</option>
-                </select>
-                <mat-icon aria-hidden="false" aria-label="keyboard_arrow_down"
-                  fontIcon="keyboard_arrow_down"></mat-icon>
-
-                <!-- NOTE Errors -->
-                <div class="invalid-feedback" *ngIf="formGroup.controls.type.hasError('required')">
+                <label for="type" class="form-label text-start w-100"
+                  >Type</label
+                >
+                <mat-form-field
+                  [ngClass]="{
+                    'is-invalid':
+                      formGroup.controls.type.errors &&
+                      formGroup.controls.type.touched
+                  }"
+                >
+                  <mat-select
+                    formControlName="type"
+                    placeholder="Select your type"
+                    [(value)]="model.type"
+                    (selectionChange)="changeType($event)"
+                  >
+                    @for (option of types; track option) {
+                    <mat-option [value]="option.value">{{
+                      option.viewValue
+                    }}</mat-option>
+                    }
+                  </mat-select>
+                </mat-form-field>
+                <div
+                  class="invalid-feedback"
+                  *ngIf="formGroup.controls.type.hasError('required')"
+                >
                   {{ "FIELD_REQUIRED" | translate }}
                 </div>
               </div>
@@ -45,38 +66,55 @@
             <div class="info-right">
               <div class="mb-5">
                 <label for="id" class="form-label text-start w-100">ID</label>
-                <input type="id" class="form-control" id="id" formControlName="id" placeholder="Enter your id"
+                <input
+                  type="id"
+                  class="form-control"
+                  id="id"
+                  formControlName="id"
+                  placeholder="Enter your id"
                   [ngClass]="{
                     'is-invalid':
                       formGroup.controls.id.errors &&
                       formGroup.controls.id.touched
-                  }" />
-                <!-- NOTE Errors -->
-                <div class="invalid-feedback" *ngIf="formGroup.controls.id.hasError('required')">
+                  }"
+                />
+                <div
+                  class="invalid-feedback"
+                  *ngIf="formGroup.controls.id.hasError('required')"
+                >
                   This field is required
                 </div>
               </div>
 
               <div class="mb-5 select-row">
-                <label for="status" class="form-label text-start w-100">Status</label>
-                <select [ngClass]="{
-                  'is-invalid':
-                    formGroup.controls.type.errors &&
-                    formGroup.controls.type.touched
-                }" placeholder="Select your status" name="type" id="type" class="form-control"
-                  (change)="changeStatus($event)">
-                  <option [ngValue]="null">Select your status</option>
-                  <option value="Active">Active</option>
-                  <option value="Pending">Pending</option>
-                  <option value="Postpone">Postpone</option>
-                  <option value="Completed">Completed</option>
-                  <option value="Cancel">Cancel</option>
-                </select>
-                <mat-icon aria-hidden="false" aria-label="keyboard_arrow_down"
-                  fontIcon="keyboard_arrow_down"></mat-icon>
-
-                <!-- NOTE Errors -->
-                <div class="invalid-feedback" *ngIf="formGroup.controls.status.hasError('required')">
+                <label for="status" class="form-label text-start w-100"
+                  >Status</label
+                >
+                <mat-form-field
+                  [formGroup]="formGroup"
+                  [ngClass]="{
+                    'is-invalid':
+                      formGroup.controls.status.errors &&
+                      formGroup.controls.status.touched
+                  }"
+                >
+                  <mat-select
+                    formControlName="status"
+                    placeholder="Select your status"
+                    [(value)]="model.status"
+                    (selectionChange)="changeStatus($event)"
+                  >
+                    <mat-option value="Active">Active</mat-option>
+                    <mat-option value="Pending">Pending</mat-option>
+                    <mat-option value="Postpone">Postpone</mat-option>
+                    <mat-option value="Completed">Completed</mat-option>
+                    <mat-option value="Cancel">Cancel</mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <div
+                  class="invalid-feedback"
+                  *ngIf="formGroup.controls.status.hasError('required')"
+                >
                   {{ "FIELD_REQUIRED" | translate }}
                 </div>
               </div>
@@ -87,46 +125,94 @@
           <div class="mat-elevation-z8 table-list">
             <table mat-table [dataSource]="dataSource">
               <ng-container matColumnDef="createdBy">
-                <th class="createdBy-col cell-center" mat-header-cell *matHeaderCellDef>Created By</th>
+                <th
+                  class="createdBy-col cell-center"
+                  mat-header-cell
+                  *matHeaderCellDef
+                >
+                  Created By
+                </th>
                 <td mat-cell *matCellDef="let element" class="cell-center">
                   {{ element.createdBy }}
                 </td>
               </ng-container>
               <ng-container matColumnDef="description">
-                <th class="description-col" mat-header-cell *matHeaderCellDef>Description</th>
+                <th class="description-col" mat-header-cell *matHeaderCellDef>
+                  Description
+                </th>
                 <td mat-cell *matCellDef="let element">
-
-                  <span *ngIf="element.editing; then editBlock else displayBlock"></span>
-                  <ng-template #displayBlock> {{ element.description }}</ng-template>
+                  <span
+                    *ngIf="element.editing; then editBlock; else displayBlock"
+                  ></span>
+                  <ng-template #displayBlock>
+                    {{ element.description }}</ng-template
+                  >
                   <ng-template #editBlock>
-                    <textarea class="form-control" name="editBlock" id="editBlock" placeholder="Please enter new description..."></textarea>
+                    <textarea
+                      class="form-control"
+                      name="editBlock"
+                      id="editBlock"
+                      placeholder="Please enter new description..."
+                    ></textarea>
                   </ng-template>
                 </td>
               </ng-container>
               <ng-container matColumnDef="date">
-                <th class="date-col cell-center" mat-header-cell *matHeaderCellDef>Date</th>
-                <td mat-cell *matCellDef="let element" class="cell-center">{{ element.date }}</td>
+                <th
+                  class="date-col cell-center"
+                  mat-header-cell
+                  *matHeaderCellDef
+                >
+                  Date
+                </th>
+                <td mat-cell *matCellDef="let element" class="cell-center">
+                  {{ element.date }}
+                </td>
               </ng-container>
 
               <ng-container matColumnDef="tradeApproval">
-                <th class="trade-approval-col cell-center" mat-header-cell *matHeaderCellDef>
+                <th
+                  class="trade-approval-col cell-center"
+                  mat-header-cell
+                  *matHeaderCellDef
+                >
                   Trade Approval
                 </th>
-                <td mat-cell *matCellDef="let element; index as index" class="cell-center">
+                <td
+                  mat-cell
+                  *matCellDef="let element; index as index"
+                  class="cell-center"
+                >
                   <section class="example-section">
-                    <mat-checkbox md-raised-button class="example-margin" [checked]="element.tradeApproval"
-                      (change)="update($event.checked, index, 'tradeApproval')"></mat-checkbox>
+                    <mat-checkbox
+                      md-raised-button
+                      class="example-margin"
+                      [checked]="element.tradeApproval"
+                      (change)="update($event.checked, index, 'tradeApproval')"
+                    ></mat-checkbox>
                   </section>
                 </td>
               </ng-container>
               <ng-container matColumnDef="customerApproval">
-                <th class="customer-approval-col cell-center" mat-header-cell *matHeaderCellDef>
+                <th
+                  class="customer-approval-col cell-center"
+                  mat-header-cell
+                  *matHeaderCellDef
+                >
                   Customer Approval
                 </th>
-                <td mat-cell *matCellDef="let element, index as index" class="cell-center">
+                <td
+                  mat-cell
+                  *matCellDef="let element; index as index"
+                  class="cell-center"
+                >
                   <section class="example-section">
-                    <mat-checkbox md-raised-button class="example-margin" [checked]="element.customerApproval"
-                      (change)="update($event.checked, index)"></mat-checkbox>
+                    <mat-checkbox
+                      md-raised-button
+                      class="example-margin"
+                      [checked]="element.customerApproval"
+                      (change)="update($event.checked, index)"
+                    ></mat-checkbox>
                   </section>
                 </td>
               </ng-container>
@@ -135,16 +221,18 @@
               <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
             </table>
             <div class="row-add">
-
-              <mat-icon (click)="addRow()" aria-hidden="false" aria-label="add" fontIcon="add"></mat-icon>
+              <mat-icon
+                (click)="addRow()"
+                aria-hidden="false"
+                aria-label="add"
+                fontIcon="add"
+              ></mat-icon>
             </div>
           </div>
         </div>
         <div class="action-buttons">
           <button (click)="onCancel()" class="secondary">Back</button>
-          <button (click)="onSave()" type="submit" class="primary">
-            Save
-          </button>
+          <button (click)="onSave()" type="submit" class="primary">Save</button>
         </div>
       </div>
     </ng-container>

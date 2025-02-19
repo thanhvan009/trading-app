@@ -1,7 +1,7 @@
 export interface IProject {
   projectId: number;
   description: string;
-  type: string;
+  type: any;
   owner: string;
   status: string;
   link?: string;
