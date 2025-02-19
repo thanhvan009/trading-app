@@ -33,18 +33,11 @@
       }
     }
   }
+}
 
-  .submit-btn {
-    text-align: right;
-    button {
-      color: #fff;
-      border: none;
-      background: #092c4c;
-      height: 48px;
-      width: 188px;
-      border-radius: 8px;
-    }
-  }
+.action-buttons {
+  display: flex;
+  justify-content: end;
 }
 
 .card-list {
