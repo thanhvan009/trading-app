@@ -31,18 +31,20 @@
           <li class="nav-item">
             <a
               class="nav-link"
-              [ngClass]="{'active': breadcrumbText == 'dashboard'}"
+              [ngClass]="{
+                active: breadcrumbText.toLowerCase() == 'dashboard'
+              }"
               [routerLink]="['/dashboard']"
               [routerLinkActive]="['active']"
             >
               <img
-                *ngIf="breadcrumbText != 'dashboard'"
+                *ngIf="breadcrumbText.toLowerCase() != 'dashboard'"
                 [src]="'assets/img/project/dashboard.png'"
                 class="dashboard-icon mx-3"
                 alt="dashboard-icon"
               />
               <img
-                *ngIf="breadcrumbText == 'dashboard'"
+                *ngIf="breadcrumbText.toLowerCase() == 'dashboard'"
                 [src]="'assets/img/project/dashboard-active.png'"
                 class="dashboard-icon mx-3"
                 alt="dashboard-icon"
@@ -54,18 +56,18 @@
           <li class="nav-item">
             <a
               class="nav-link"
-              [ngClass]="{'active': breadcrumbText == 'projects'}"
+              [ngClass]="{ active: breadcrumbText.toLowerCase() == 'projects' }"
               [routerLink]="['/projects']"
               [routerLinkActive]="['active']"
             >
               <img
-                *ngIf="breadcrumbText != 'projects'"
+                *ngIf="breadcrumbText.toLowerCase() != 'projects'"
                 [src]="'assets/img/project/project.png'"
                 class="project-icon mx-3"
                 alt="project-icon"
               />
               <img
-                *ngIf="breadcrumbText == 'projects'"
+                *ngIf="breadcrumbText.toLowerCase() == 'projects'"
                 [src]="'assets/img/project/project-active.png'"
                 class="project-icon mx-3"
                 alt="project-icon"
@@ -77,18 +79,18 @@
           <li class="nav-item">
             <a
               class="nav-link"
-              [ngClass]="{'active': breadcrumbText == 'ratings'}"
+              [ngClass]="{ active: breadcrumbText.toLowerCase() == 'ratings' }"
               [routerLink]="['/ratings']"
               [routerLinkActive]="['active']"
             >
               <img
-                *ngIf="breadcrumbText != 'ratings'"
+                *ngIf="breadcrumbText.toLowerCase() != 'ratings'"
                 [src]="'assets/img/project/rating.png'"
                 class="rating-icon mx-3"
                 alt="rating-icon"
               />
               <img
-                *ngIf="breadcrumbText == 'ratings'"
+                *ngIf="breadcrumbText.toLowerCase() == 'ratings'"
                 [src]="'assets/img/project/rating-active.png'"
                 class="rating-icon mx-3"
                 alt="rating-icon"
@@ -100,18 +102,18 @@
           <li class="nav-item">
             <a
               class="nav-link"
-              [ngClass]="{'active': breadcrumbText == 'settings'}"
+              [ngClass]="{ active: breadcrumbText.toLowerCase() == 'settings' }"
               [routerLink]="['/settings']"
               [routerLinkActive]="['active']"
             >
               <img
-                *ngIf="breadcrumbText != 'settings'"
+                *ngIf="breadcrumbText.toLowerCase() != 'settings'"
                 [src]="'assets/img/project/setting.png'"
                 class="setting-icon mx-3"
                 alt="setting-icon"
               />
               <img
-                *ngIf="breadcrumbText == 'settings'"
+                *ngIf="breadcrumbText.toLowerCase() == 'settings'"
                 [src]="'assets/img/project/setting-active.png'"
                 class="setting-icon mx-3"
                 alt="setting-icon"
@@ -128,10 +130,10 @@
       <div class="breadcrumb">{{ breadcrumbText }}</div>
       <div class="profile-item">
         <img
-            [src]="'assets/img/project/notification-icon.png'"
-            class="notification-icon mx-4"
-            alt="notification-icon"
-          />
+          [src]="'assets/img/project/notification-icon.png'"
+          class="notification-icon mx-4"
+          alt="notification-icon"
+        />
         <a
           class="nav-link dropdown-toggle"
           ngbDropdownToggle
@@ -140,7 +142,6 @@
           data-bs-toggle="dropdown"
           aria-expanded="false"
         >
-          
           <img
             [src]="'assets/img/project/menu-user.png'"
             class="menu-user"
@@ -157,18 +158,25 @@
               class="dropdown-item"
               [routerLink]="['/settings']"
               [routerLinkActive]="['active']"
-              >{{ "MY_ACCOUNT" | translate }}</a
+              >User Profile</a
             >
           </li>
           <li>
-            <a class="dropdown-item cursor-pointer" (click)="onClickLogout()">{{
-              "LOGOUT" | translate
-            }}</a>
+            <a
+              class="dropdown-item"
+              [routerLink]="['/auth/role-selection']"
+              [routerLinkActive]="['active']"
+              >Set Role</a
+            >
+          </li>
+          <li>
+            <a class="dropdown-item cursor-pointer" (click)="onClickLogout()"
+              >Logout</a
+            >
           </li>
         </ul>
       </div>
     </div>
-    <!-- NOTE Content -->
     <ng-content></ng-content>
   </div>
 </div>
