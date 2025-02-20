@@ -4,43 +4,45 @@
 
     <ng-container *ngIf="!storeService.isLoading()">
       <div class="text-center dashboard-list">
-        <div class="row">
-          <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12" (click)="onClick('projects')">
-            <div class="dashboard-item">
-              <img
-                [src]="'assets/img/project/project-total.png'"
-                class="project-total mx-3"
-                alt="project-tatal"
-              />
-              <div class="content">
-                <div class="text">Total projects</div>
-                <div class="number">150</div>
+        <div class="col-lg-1200">
+          <div class="row">
+            <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12" (click)="onClick('projects')">
+              <div class="dashboard-item">
+                <img
+                  [src]="'assets/img/project/project-total.png'"
+                  class="project-total mx-3"
+                  alt="project-tatal"
+                />
+                <div class="content">
+                  <div class="text">Total projects</div>
+                  <div class="number">150</div>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12" (click)="onClick('ratings')">
-            <div class="dashboard-item">
-              <img
-                [src]="'assets/img/project/rating-total.png'"
-                class="rating-total mx-3"
-                alt="rating-tatal"
-              />
-              <div class="content">
-                <div class="text">Total ratings</div>
-                <div class="number">100</div>
+            <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12" (click)="onClick('ratings')">
+              <div class="dashboard-item">
+                <img
+                  [src]="'assets/img/project/rating-total.png'"
+                  class="rating-total mx-3"
+                  alt="rating-tatal"
+                />
+                <div class="content">
+                  <div class="text">Total ratings</div>
+                  <div class="number">100</div>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12" (click)="onClick('lorem')">
-            <div class="dashboard-item">
-              <img
-                [src]="'assets/img/project/lorem-total.png'"
-                class="lorem-total mx-3"
-                alt="lorem-tatal"
-              />
-              <div class="content">
-                <div class="text">Lorem</div>
-                <div class="number">+5.8%</div>
+            <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12" (click)="onClick('lorem')">
+              <div class="dashboard-item">
+                <img
+                  [src]="'assets/img/project/lorem-total.png'"
+                  class="lorem-total mx-3"
+                  alt="lorem-tatal"
+                />
+                <div class="content">
+                  <div class="text">Lorem</div>
+                  <div class="number">+5.8%</div>
+                </div>
               </div>
             </div>
           </div>
