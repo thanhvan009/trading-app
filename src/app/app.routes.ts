@@ -8,11 +8,27 @@ export const routes: Routes = [
   },
   {
     path: 'dashboard',
+    data: {
+      breadcrumb: [
+        {
+          label: 'Dashboard',
+          linkL: 'dashboard',
+        }
+      ]
+    },
     loadComponent: () =>
       import('./pages/home/home.component').then((m) => m.HomeComponent),
   },
   {
     path: 'projects',
+    data: {
+      breadcrumb: [
+        {
+          label: 'Projects',
+          linkL: 'projects',
+        }
+      ]
+    },
     loadComponent: () =>
       import('./pages/project/components/project-list/project.component').then(
         (m) => m.ProjectComponent
@@ -38,9 +54,25 @@ export const routes: Routes = [
       import('./pages/rating/components/rating-list/rating.component').then(
         (m) => m.RatingComponent
       ),
+    data: {
+      breadcrumb: [
+        {
+          label: 'Ratings',
+          linkL: 'ratings',
+        }
+      ]
+    }
   },
   {
     path: 'ratings/rating-detail/:id',
+    data: {
+      breadcrumb: [
+        {
+          label: 'Rating Details',
+          linkL: 'rating-detail',
+        }
+      ]
+    },
     loadComponent: () =>
       import(
         './pages/rating/components/rating-detail/rating-detail.component'
@@ -52,8 +84,16 @@ export const routes: Routes = [
       import('./pages/settings/settings.component').then(
         (m) => m.SettingsComponent
       ),
+    data: {
+      breadcrumb: [
+        {
+          label: 'Settings',
+          linkL: 'settings',
+        }
+      ]
+    }
   },
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+  { path: '', redirectTo: '/dashboard', pathMatch: 'full'},
   {
     path: '**',
     loadComponent: () =>

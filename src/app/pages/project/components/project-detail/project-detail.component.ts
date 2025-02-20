@@ -22,6 +22,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 
 
 import { IDescription, mockDescriptionsData, mockProjectDetailData } from 'src/app/shared/mock-data/project.mock';
+import { BreadcrumbService } from '@services/breadcrumb.service';
 @Component({
   selector: 'app-project-detail',
   templateUrl: './project-detail.component.html',
@@ -75,7 +76,8 @@ export class ProjectDetailComponent {
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    public storeService: StoreService
+    public storeService: StoreService,
+    private breadcrumbService: BreadcrumbService,
   ) {
     this.storeService.isLoading.set(true);
     this.projectId = +this.activatedRoute.snapshot.params['id'];
@@ -130,10 +132,16 @@ export class ProjectDetailComponent {
   }
 
   public ngOnInit(): void {
+    let data = null;
     if (this.projectId) {
       this.model = {
         ...mockProjectDetailData
       };
+      data = [
+        {
+          label: 'Project Details',
+        },
+      ];
     } else {
       this.model = {
         id: '',
@@ -143,7 +151,13 @@ export class ProjectDetailComponent {
         status: null,
         link: '',
       }
+      data = [
+        {
+          label: 'New Project',
+        },
+      ];
     }
+    this.breadcrumbService.updateBreadcrumb(data);
     setTimeout((_) => {
       this.storeService.isLoading.set(false);
       this.initForm();
@@ -160,7 +174,6 @@ export class ProjectDetailComponent {
 
   onSave() {
     this.formGroup.markAllAsTouched();
-    console.log("🚀 ~ ProjectDetailComponent ~ onSave ~ this.formGroup:", this.formGroup)
     if (this.formGroup.invalid) {
       return;
     }

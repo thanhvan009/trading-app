@@ -15,5 +15,7 @@ import { LayoutHeaderComponent } from '../layout-header/layout-header.component'
 export class PageLayoutComponent implements OnInit {
   constructor() {}
 
-  public ngOnInit(): void {}
+  public ngOnInit(): void {
+    
+  }
 }
