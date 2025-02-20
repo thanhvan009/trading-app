@@ -72,7 +72,13 @@
   text-transform: capitalize;
 }
 
+.profile-item {
+  display: flex;
+  align-items: center;
+}
+
 @media only screen and (min-width: 992px) {
+  
   nav {
     width: 200px;
     position: fixed;

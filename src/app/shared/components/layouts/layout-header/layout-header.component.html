@@ -127,6 +127,11 @@
     <div class="menu-top" ngbDropdown>
       <div class="breadcrumb">{{ breadcrumbText }}</div>
       <div class="profile-item">
+        <img
+            [src]="'assets/img/project/notification-icon.png'"
+            class="notification-icon mx-4"
+            alt="notification-icon"
+          />
         <a
           class="nav-link dropdown-toggle"
           ngbDropdownToggle
@@ -135,11 +140,7 @@
           data-bs-toggle="dropdown"
           aria-expanded="false"
         >
-          <img
-            [src]="'assets/img/project/notification-icon.png'"
-            class="notification-icon mx-4"
-            alt="notification-icon"
-          />
+          
           <img
             [src]="'assets/img/project/menu-user.png'"
             class="menu-user"
