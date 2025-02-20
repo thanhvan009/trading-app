@@ -5,4 +5,21 @@
       background: #fff;
     }
   }
+  .mat-mdc-dialog-surface {
+    border-radius: 10px;
+  }
+
+  .modal-join-project {
+    padding: 10px 25px;
+  }
+
+  .mat-mdc-dialog-container .mat-mdc-dialog-title {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+
+  mat-dialog-content.mat-mdc-dialog-content.mdc-dialog__content {
+    padding: 20px 0;
+  }
 }
