@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 import { RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { environment } from '@env/environment';
+import { MOCK_TOKEN, mockAdminUser } from 'src/app/shared/mock-data/users.mock';
 
 @Component({
   selector: 'app-login',
@@ -31,13 +32,13 @@ export class LoginComponent {
     email: FormControl<string>;
     password: FormControl<string>;
   }>;
-  public isLogin = true;
+  public isLoginScreen = true;
 
   constructor(
     private router: Router
   ) {
     this.initFormGroup();
-    this.isLogin = this.router.url === '/auth/login';
+    this.isLoginScreen = this.router.url === '/auth/login';
     if (localStorage.getItem('token') && localStorage.getItem('role')) {
       this.router.navigate(['/dashboard']);
     }
@@ -70,7 +71,9 @@ export class LoginComponent {
     if (this.formGroup.invalid) {
       return;
     }
-    localStorage.setItem('token', 'Mock Token');
-    this.router.navigate(['/auth/role-selection']);
+    localStorage.setItem('token', MOCK_TOKEN);
+    localStorage.setItem('role', mockAdminUser.role);
+    localStorage.setItem('user', JSON.stringify(mockAdminUser));
+    this.router.navigate(['/dashboard']);
   }
 }

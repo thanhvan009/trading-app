@@ -9,4 +9,4 @@ export const mockAdminUser = {
     role: 'Trade',
 };
 
-export const mockToken = 'MOCK_TOKEN';
+export const MOCK_TOKEN = 'MOCK_TOKEN';

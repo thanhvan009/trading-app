@@ -59,7 +59,6 @@
                 <input type="email" class="form-control" id="email" formControlName="email"
                   placeholder="Enter your email"
                   [ngClass]="{ 'is-invalid' : formGroup.controls.email.errors && formGroup.controls.email.touched }">
-                <!-- NOTE Errors -->
                 <div class="invalid-feedback" *ngIf="formGroup.controls.email.hasError('required')">
                   {{ 'FIELD_REQUIRED' | translate }}
                 </div>
@@ -84,7 +83,6 @@
                 <input type="date" class="form-control" id="dateOfBirth" formControlName="dateOfBirth"
                   placeholder="Enter your Date of Birth"
                   [ngClass]="{ 'is-invalid' : formGroup.controls.dateOfBirth.errors && formGroup.controls.dateOfBirth.touched }">
-                <!-- NOTE Errors -->
                 <div class="invalid-feedback" *ngIf="formGroup.controls.dateOfBirth.hasError('required')">
                   {{ 'FIELD_REQUIRED' | translate }}
                 </div>
@@ -96,21 +94,19 @@
                 <input type="address" class="form-control" id="address" formControlName="address"
                   placeholder="Enter your address"
                   [ngClass]="{ 'is-invalid' : formGroup.controls.address.errors && formGroup.controls.address.touched }">
-                <!-- NOTE Errors -->
                 <div class="invalid-feedback" *ngIf="formGroup.controls.address.hasError('required')">
                   {{ 'FIELD_REQUIRED' | translate }}
                 </div>
               </div>
             </div>
           </div>
-
-          <div class="action-buttons">
-            <button (click)="onBack()" class="secondary">Back</button>
-            <button (click)="onClickSubmit()" type="submit" class="primary">
-              Submit
-            </button>
-          </div>
         </form>
+        <div class="action-buttons">
+          <button (click)="onBack()" class="secondary">Back</button>
+          <button (click)="onClickSubmit()" type="submit" class="primary">
+            Submit
+          </button>
+        </div>
       </div>
     </div>
   </div>
