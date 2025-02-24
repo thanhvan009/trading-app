@@ -1,4 +1,4 @@
-.home {
+.dashboard {
   height: 100vh;
   background: #f5f7fa;
   padding: 0;
@@ -10,10 +10,10 @@
 }
 
 .dashboard-item {
-  width: 350px;
+  width: 100%;
   background-color: #fff;
   border-radius: 10px;
-  margin: 30px 15px;
+  margin-top: 30px;
   display: flex;
   cursor: pointer;
   padding: 15px;
@@ -33,5 +33,12 @@
   &:hover {
     box-shadow: 2px 1px 3px 2px #ddd;
     opacity: 0.8;
+  }
+}
+
+
+@media screen and (min-width: 1200px) {
+  .col-lg-1200 {
+    width: 80%;
   }
 }

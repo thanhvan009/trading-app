@@ -67,12 +67,25 @@
 
 .breadcrumb {
   margin-bottom: 0;
-  font-size: 28px;
+  font-size: 26px;
   color: #343c6a;
-  text-transform: capitalize;
+}
+
+.profile-item {
+  display: flex;
+  align-items: center;
+}
+.dropdown-menu.show {
+  padding: 0;
+  border: none;
+  box-shadow: 2px 1px 3px 2px #ddd;
+  .dropdown-item {
+    padding: 10px 15px;
+  }
 }
 
 @media only screen and (min-width: 992px) {
+  
   nav {
     width: 200px;
     position: fixed;

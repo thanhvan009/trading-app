@@ -1,12 +1,7 @@
-// Angular modules
 import { NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
-
-// Services
 import { StoreService } from '@services/store.service';
-
-// Components
 import { ProgressBarComponent } from '@blocks/progress-bar/progress-bar.component';
 import { PageLayoutComponent } from '@layouts/page-layout/page-layout.component';
 import { Router } from '@angular/router';

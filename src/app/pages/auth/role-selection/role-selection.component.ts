@@ -25,35 +25,49 @@ import { StoreService } from '@services/store.service';
   templateUrl: './role-selection.component.html',
   styleUrls: ['./role-selection.component.scss'],
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule, NgClass, NgIf, RouterLink, TranslateModule]
+  imports: [
+    FormsModule,
+    ReactiveFormsModule,
+    NgClass,
+    NgIf,
+    RouterLink,
+    TranslateModule,
+  ],
 })
 export class RoleSelectionComponent {
   public appName: string = environment.appName;
-  public formGroup !: FormGroup<{
-    email: FormControl<string>,
-    password: FormControl<string>,
+  public formGroup!: FormGroup<{
+    email: FormControl<string>;
+    password: FormControl<string>;
   }>;
 
-  constructor
-    (
-      private router: Router,
-      private storeService: StoreService,
-      private appService: AppService,
-    ) {
+  constructor(
+    private router: Router,
+    private storeService: StoreService,
+    private appService: AppService
+  ) {
     this.initFormGroup();
   }
 
-
   private initFormGroup(): void {
     this.formGroup = new FormGroup({
-      email: new FormControl<string>({
-        value: '',
-        disabled: false
-      }, { validators: [Validators.required, Validators.email], nonNullable: true }),
-      password: new FormControl<string>({
-        value: '',
-        disabled: false
-      }, { validators: [Validators.required], nonNullable: true })
+      email: new FormControl<string>(
+        {
+          value: '',
+          disabled: false,
+        },
+        {
+          validators: [Validators.required, Validators.email],
+          nonNullable: true,
+        }
+      ),
+      password: new FormControl<string>(
+        {
+          value: '',
+          disabled: false,
+        },
+        { validators: [Validators.required], nonNullable: true }
+      ),
     });
   }
 
@@ -61,7 +75,6 @@ export class RoleSelectionComponent {
     localStorage.setItem('role', role);
     this.router.navigate(['/auth/customer-infomation']);
   }
-
 
   public async onClickSubmit(): Promise<void> {
     await this.authenticate();
@@ -76,8 +89,7 @@ export class RoleSelectionComponent {
 
     this.storeService.isLoading.set(false);
 
-    if (!success)
-      return;
+    if (!success) return;
 
     this.router.navigate(['/dashboard']);
   }

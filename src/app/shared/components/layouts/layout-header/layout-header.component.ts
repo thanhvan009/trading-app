@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { RouterLink } from '@angular/router';
 import { RouterLinkActive } from '@angular/router';
 import { NgbCollapse } from '@ng-bootstrap/ng-bootstrap';
@@ -11,7 +11,8 @@ import { TranslateModule } from '@ngx-translate/core';
 import { environment } from '@env/environment';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { NgClass, NgIf } from '@angular/common';
-
+import { BreadcrumbService } from '@services/breadcrumb.service';
+import { get } from 'lodash';
 @Component({
   selector: 'app-layout-header',
   templateUrl: './layout-header.component.html',
@@ -27,19 +28,32 @@ import { NgClass, NgIf } from '@angular/common';
     TranslateModule,
     MatSlideToggleModule,
     NgClass,
-    NgIf
+    NgIf,
   ],
 })
 export class LayoutHeaderComponent implements OnInit {
   public appName: string = environment.appName;
   public isMenuCollapsed: boolean = true;
   public breadcrumbText: string = '';
-
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
+    private breadcrumbService: BreadcrumbService
+  ) {}
 
   public ngOnInit(): void {
-    const pathName = this.router.url.split('/')[1].toString().split('?')[0];
-    this.breadcrumbText = pathName.substring(0, pathName.length);
+    const initData = get(this.activatedRoute?.routeConfig?.data, 'breadcrumb');
+
+    if (initData?.length) {
+      this.breadcrumbService.newBreadCrumbs.next(initData);
+    }
+    this.breadcrumbService.newBreadCrumbs.subscribe((data: any) => {
+      if (data?.length) {
+        this.breadcrumbText =
+          data[0].label +
+          (data[1] && data[1]?.label ? '  |  ' + data[1]?.label : '');
+      }
+    });
   }
 
   public async onClickLogout(): Promise<void> {

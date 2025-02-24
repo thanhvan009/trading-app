@@ -27,6 +27,7 @@ import { routes }                 from './app.routes';
 import { AppService }             from '@services/app.service';
 import { StoreService }           from '@services/store.service';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { BreadcrumbService } from '@services/breadcrumb.service';
 
 export function createTranslateLoader(http : HttpClient)
 {
@@ -70,6 +71,7 @@ export const appConfig : ApplicationConfig = {
     // Services
     StoreService,
     AppService,
+    BreadcrumbService,
 
     // Pipes
     DatePipe,

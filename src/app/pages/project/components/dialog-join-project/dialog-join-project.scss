@@ -1,8 +1,4 @@
 .modal-join-project {
-  border: 2px solid #b1b1b1;
-  border-radius: 10px;
-  padding: 10px 20px;
-
   .title {
     display: flex;
     align-items: center;
@@ -29,9 +25,5 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-  }
-
-  mat-dialog-content.mat-mdc-dialog-content.mdc-dialog__content {
-    padding: 20px 7px;
   }
 }
