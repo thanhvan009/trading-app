@@ -30,8 +30,19 @@
 
         <div class="d-flex justify-content-center">
           <div class="wrapper">
-            <form [formGroup]="formGroup" (ngSubmit)="onClickSubmit()">
-              <div class="mb-5">
+            <div class="tab-labels">
+              <div [ngClass]="{
+                  'active': selectedTabIndex == 0
+                }" (click)="onClickTab(0)">
+                Email
+              </div>
+              <div [ngClass]="
+                {
+                  'active': selectedTabIndex == 1
+                }" (click)="onClickTab(1)">Phone Number</div>
+            </div>
+            <form [formGroup]="formGroup">
+              <div *ngIf="selectedTabIndex == 0" class="mb-5">
                 <label for="email" class="form-label text-start w-100"
                   >Email</label
                 >
@@ -60,7 +71,7 @@
                   {{ "FIELD_EMAIL" | translate }}
                 </div>
               </div>
-              <div [ngClass]="isLoginScreen ? 'mb-4' : 'mb-5'">
+              <div *ngIf="selectedTabIndex == 0" [ngClass]="isLoginScreen ? 'mb-4' : 'mb-5'">
                 <label for="password" class="form-label text-start w-100">{{
                   "PASSWORD" | translate
                 }}</label>
@@ -83,6 +94,52 @@
                   {{ "FIELD_REQUIRED" | translate }}
                 </div>
               </div>
+              <div *ngIf="selectedTabIndex == 1 && !isOTPCodeShowed" class="mb-5">
+                <label for="phoneNumber" class="form-label text-start w-100"
+                  >Phone Number</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="phoneNumber"
+                  formControlName="phoneNumber"
+                  placeholder="Enter your phone number"
+                  [ngClass]="{
+                    'is-invalid':
+                      formGroup.controls.phoneNumber.errors &&
+                      formGroup.controls.phoneNumber.touched
+                  }"
+                />
+                <div
+                  class="invalid-feedback"
+                  *ngIf="formGroup.controls.phoneNumber.hasError('required')"
+                >
+                  {{ "FIELD_REQUIRED" | translate }}
+                </div>
+              </div>
+              <div *ngIf="selectedTabIndex == 1 && isOTPCodeShowed" class="mb-5">
+                <label for="otpCode" class="form-label text-start w-100"
+                  >OTP Code</label
+                >
+                <input
+                  type="number"
+                  class="form-control"
+                  id="otpCode"
+                  formControlName="otpCode"
+                  placeholder="Enter your OTP code"
+                  [ngClass]="{
+                    'is-invalid':
+                      formGroup.controls.otpCode.errors &&
+                      formGroup.controls.otpCode.touched
+                  }"
+                />
+                <div
+                  class="invalid-feedback"
+                  *ngIf="formGroup.controls.otpCode.hasError('required')"
+                >
+                  {{ "FIELD_REQUIRED" | translate }}
+                </div>
+              </div>
               <div *ngIf="isLoginScreen" class="d-flex remember-wrapper mb-5">
                 <label for="check" class="remember-label d-flex">
                   <input id="check" [hidden]="false" type="checkbox" />
@@ -93,10 +150,13 @@
                 }}</a>
               </div>
               <div class="text-center mb-5 login-signup-btn">
-                <button type="submit" class="btn btn-primary mb-3 px-5">
+                <button  (click)="onClickSubmit()"  *ngIf="selectedTabIndex == 0 || (selectedTabIndex == 1 && isOTPCodeShowed)" type="submit" class="btn btn-primary mb-3 px-5">
                   <span class="px-4 d-block">{{
                     isLoginScreen ? "Sign in to your account" : "Get started"
                   }}</span>
+                </button>
+                <button (click)="onGetOTP()" *ngIf="selectedTabIndex == 1 && !isOTPCodeShowed" class="btn btn-primary mb-3 px-5">
+                  <span class="px-4 d-block">Get OTP</span>
                 </button>
               </div>
               <div class="d-flex sign-up-wrapper">

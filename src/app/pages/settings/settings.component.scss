@@ -27,25 +27,9 @@ form {
 }
 
 .tab-labels {
-  display: flex;
     border-bottom: 1px solid #e0e2ec;
-    margin-bottom: 30px;
   > div {
-    font-weight: 500;
-    font-size: 16px;
-    color: #b1b1b1;
-    padding-bottom: 15px;
-    padding-left: 0;
     padding-right: 30px;
-    cursor: pointer;
-    &:hover {
-      opacity: 0.8;
-      color: #092c4c;
-    }
-    &.active {
-      color: #092c4c;
-      border-bottom: 2px solid #092c4c;
-    }
   }
 }
 

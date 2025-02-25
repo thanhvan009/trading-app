@@ -31,13 +31,16 @@ export class LoginComponent {
   public formGroup!: FormGroup<{
     email: FormControl<string>;
     password: FormControl<string>;
+    phoneNumber: FormControl<string>;
+    otpCode: FormControl<number | null>;
   }>;
   public isLoginScreen = true;
+  public selectedTabIndex = 0;
+  public isOTPCodeShowed = false;
 
   constructor(
     private router: Router
   ) {
-    this.initFormGroup();
     this.isLoginScreen = this.router.url === '/auth/login';
     if (localStorage.getItem('token') && localStorage.getItem('role')) {
       this.router.navigate(['/dashboard']);
@@ -63,7 +66,25 @@ export class LoginComponent {
         },
         { validators: [Validators.required], nonNullable: true }
       ),
+      phoneNumber: new FormControl<string>(
+        {
+          value: '',
+          disabled: false,
+        },
+        { validators: [Validators.required], nonNullable: true }
+      ),
+      otpCode: new FormControl<number | null>(
+        {
+          value: null,
+          disabled: true,
+        },
+        { validators: [Validators.required], nonNullable: true }
+      ),
     });
+  }
+
+  public ngOnInit() {
+    this.initFormGroup();
   }
 
   public onClickSubmit() {
@@ -71,9 +92,39 @@ export class LoginComponent {
     if (this.formGroup.invalid) {
       return;
     }
+
     localStorage.setItem('token', MOCK_TOKEN);
     localStorage.setItem('role', mockAdminUser.role);
     localStorage.setItem('user', JSON.stringify(mockAdminUser));
     this.router.navigate(['/dashboard']);
+  }
+
+  public onGetOTP() {
+    this.formGroup.get('phoneNumber')?.markAsTouched();
+    if (this.formGroup.invalid) {
+      return;
+    }
+
+    this.isOTPCodeShowed = true;
+    this.formGroup.get('phoneNumber')?.disable();
+    this.formGroup.get('otpCode')?.enable();
+  }
+
+  onClickTab(index: number) {
+    this.formGroup.reset();
+    this.isOTPCodeShowed = false;
+    this.selectedTabIndex = index;
+
+    if (index == 0) {
+      this.formGroup.get('phoneNumber')?.disable();
+      this.formGroup.get('otpCode')?.disable();
+      this.formGroup.get('email')?.enable();
+      this.formGroup.get('password')?.enable();
+    } else {
+      this.formGroup.get('phoneNumber')?.enable();
+      this.formGroup.get('otpCode')?.disable();
+      this.formGroup.get('email')?.disable();
+      this.formGroup.get('password')?.disable();
+    }
   }
 }

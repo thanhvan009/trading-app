@@ -27,13 +27,20 @@ import { StoreService } from '@services/store.service';
   ],
 })
 export class ForgotPasswordComponent {
+  public selectedTabIndex = 0;
+  public isOTPCodeShowed = false;
   public formGroup!: FormGroup<{
     email: FormControl<string>;
+    phoneNumber: FormControl<string>;
+    otpCode: FormControl<number | null>;
   }>;
 
   constructor(
     public router: Router
   ) {
+  }
+
+  ngOnInit() {
     this.initFormGroup();
   }
 
@@ -49,7 +56,55 @@ export class ForgotPasswordComponent {
           nonNullable: true,
         }
       ),
+      phoneNumber: new FormControl<string>(
+        {
+          value: '',
+          disabled: true,
+        },
+        {
+          validators: [Validators.required],
+          nonNullable: true,
+        }
+      ),
+      otpCode: new FormControl<number | null>(
+        {
+          value: null,
+          disabled: true,
+        },
+        {
+          validators: [Validators.required],
+          nonNullable: true,
+        }
+      ),
     });
+  }
+
+  
+  onClickTab(index: number) {
+    this.formGroup.reset();
+    this.isOTPCodeShowed = false;
+    this.selectedTabIndex = index;
+
+    if (index == 0) {
+      this.formGroup.get('phoneNumber')?.disable();
+      this.formGroup.get('otpCode')?.disable();
+      this.formGroup.get('email')?.enable();
+    } else {
+      this.formGroup.get('phoneNumber')?.enable();
+      this.formGroup.get('otpCode')?.disable();
+      this.formGroup.get('email')?.disable();
+    }
+  }
+
+  public onGetOTP() {
+    this.formGroup.get('phoneNumber')?.markAsTouched();
+    if (this.formGroup.invalid) {
+      return;
+    }
+
+    this.isOTPCodeShowed = true;
+    this.formGroup.get('phoneNumber')?.disable();
+    this.formGroup.get('otpCode')?.enable();
   }
 
   public onClickSubmit() {
