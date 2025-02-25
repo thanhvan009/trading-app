@@ -19,7 +19,7 @@
         <form [formGroup]="formGroup">
           <div class="row">
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-              <div class="mb-5" *ngIf="role !== 'Customer'">
+              <div class="mb-5">
                 <label for="licenseNumber" class="form-label text-start w-100">License Number</label>
                 <input type="text" class="form-control" id="licenseNumber" formControlName="licenseNumber"
                   placeholder="Enter your license number"
@@ -29,8 +29,6 @@
                 </div>
               </div>
             </div>
-          </div>
-          <div class="row">
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
               <div class="mb-5">
                 <label for="yourname" class="form-label text-start w-100">Your Name</label>
@@ -53,8 +51,6 @@
                 </div>
               </div>
             </div>
-          </div>
-          <div class="row">
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
               <div class="mb-5">
                 <label for="email" class="form-label text-start w-100">Email</label>
@@ -77,8 +73,6 @@
                 </div>
               </div>
             </div>
-          </div>
-          <div class="row">
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
               <div class="mb-5">
                 <label for="dateOfBirth" class="form-label text-start w-100">Date of Birth</label>
