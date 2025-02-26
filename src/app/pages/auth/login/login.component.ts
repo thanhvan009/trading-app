@@ -47,7 +47,7 @@ export class LoginComponent {
     }
   }
 
-  private initFormGroup(): void {
+  private initForm(): void {
     this.formGroup = new FormGroup({
       email: new FormControl<string>(
         {
@@ -69,7 +69,7 @@ export class LoginComponent {
       phoneNumber: new FormControl<string>(
         {
           value: '',
-          disabled: false,
+          disabled: true,
         },
         { validators: [Validators.required], nonNullable: true }
       ),
@@ -84,7 +84,7 @@ export class LoginComponent {
   }
 
   public ngOnInit() {
-    this.initFormGroup();
+    this.initForm();
   }
 
   public onClickSubmit() {
@@ -93,10 +93,21 @@ export class LoginComponent {
       return;
     }
 
+    const user = {
+      email: this.formGroup.get('email')?.value,
+      password: this.formGroup.get('password')?.value,
+      role: '',
+    };
+
     localStorage.setItem('token', MOCK_TOKEN);
-    localStorage.setItem('role', mockAdminUser.role);
-    localStorage.setItem('user', JSON.stringify(mockAdminUser));
-    this.router.navigate(['/dashboard']);
+    if (this.formGroup.get('email')?.value === 'admin@gmail.com') {
+      localStorage.setItem('role', mockAdminUser.role);
+      localStorage.setItem('user', JSON.stringify(mockAdminUser));
+      this.router.navigate(['/dashboard']);
+    } else {
+      localStorage.setItem('user', JSON.stringify(user));
+      this.router.navigate(['/auth/role-selection']);
+    }
   }
 
   public onGetOTP() {

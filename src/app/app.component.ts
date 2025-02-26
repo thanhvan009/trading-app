@@ -21,12 +21,31 @@ export class AppComponent implements OnInit {
   }
 
   public ngOnInit(): void {
+    const currentUrl = location.pathname;
     if (!localStorage.getItem('token')) {
+      if (location.pathname == '/auth/forgot-password') {
+        this.router.navigate([currentUrl]);
+        return;
+      }
       this.router.navigate(['/auth/login']);
-    } else if (!localStorage.getItem('role')) {
-      this.router.navigate(['/auth/role-selection']);
-    } else if (!localStorage.getItem('user')) {
-      this.router.navigate(['/auth/customer-infomation'])
+      return;
     }
+
+    if (!localStorage.getItem('role')) {
+      this.router.navigate(['/auth/role-selection']);
+      return;
+    }
+
+    if (!localStorage.getItem('user')) {
+      this.router.navigate(['/auth/customer-infomation']);
+      return;
+    }
+
+    if (location.pathname == '/auth/role-selection' || location.pathname == '/auth/customer-infomation' || location.pathname == '/auth/forgot-password') {
+      this.router.navigate(['/dashboard']);
+      return;
+    }
+    
+    this.router.navigate([currentUrl])
   }
 }

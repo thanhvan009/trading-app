@@ -7,6 +7,15 @@ export const mockAdminUser = {
     password: '123456',
     address: '123 Street 1, Dictrict 1',
     role: 'Trade',
+    yearOfExperience: 5,
+    typeOfService: 'Electrician',
+    workPerimeter: '50Km Radius',
 };
 
 export const MOCK_TOKEN = 'MOCK_TOKEN';
+
+export const ROLES = {
+    'Adjudicator': 'Adjudicator',
+    'Trade': 'Trade',
+    'Customer': 'Customer'
+};
