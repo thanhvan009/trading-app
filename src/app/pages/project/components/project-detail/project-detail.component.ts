@@ -63,6 +63,10 @@ export class ProjectDetailComponent {
     status: FormControl<string | null>;
     startDate: FormControl<string | null>;
     endDate: FormControl<string | null>;
+    payment: FormControl<string | null>;
+    paymentAmount: FormControl<string | null>;
+    warrantyStartDate: FormControl<string | null>;
+    warrantyEndDate: FormControl<string | null>;
   }>;
   private projectId: number;
   public title = '';
@@ -130,6 +134,34 @@ export class ProjectDetailComponent {
       endDate: new FormControl<string | null>(
         {
           value: this.model?.endDate,
+          disabled: false,
+        },
+        { validators: [Validators.required], nonNullable: true }
+      ),
+      payment: new FormControl<string | null>(
+        {
+          value: this.model?.payment,
+          disabled: false,
+        },
+        { validators: [Validators.required], nonNullable: true }
+      ),
+      paymentAmount: new FormControl<string | null>(
+        {
+          value: this.model?.paymentAmount,
+          disabled: false,
+        },
+        { validators: [Validators.required], nonNullable: true }
+      ),
+      warrantyStartDate: new FormControl<string | null>(
+        {
+          value: this.model?.warrantyStartDate,
+          disabled: false,
+        },
+        { validators: [Validators.required], nonNullable: true }
+      ),
+      warrantyEndDate: new FormControl<string | null>(
+        {
+          value: this.model?.warrantyEndDate,
           disabled: false,
         },
         { validators: [Validators.required], nonNullable: true }

@@ -93,6 +93,59 @@
                   </div>
                 </div>
               </div>
+              <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mb-5">
+                <label for="payment" class="form-label text-start w-100">Payment</label>
+                <mat-form-field [formGroup]="formGroup" [ngClass]="{
+                  'is-invalid':
+                    formGroup.controls.payment.errors &&
+                    formGroup.controls.payment.touched
+                }">
+                  <mat-select formControlName="payment" placeholder="Select your payment" [(value)]="model.payment"
+                    (selectionChange)="changeStatus($event)">
+                    <mat-option value="credit-card">Credit Card</mat-option>
+                    <mat-option value="Pending">Pending</mat-option>
+                    <mat-option value="Postpone">Postpone</mat-option>
+                    <mat-option value="Completed">Completed</mat-option>
+                    <mat-option value="Cancel">Cancel</mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <div class="invalid-feedback" *ngIf="formGroup.controls.payment.hasError('required')">
+                  {{ "FIELD_REQUIRED" | translate }}
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mb-5">
+                <label for="paymentAmount" class="form-label text-start w-100">Payment Amount</label>
+                <input type="text" class="form-control" id="paymentAmount" formControlName="paymentAmount" placeholder="Enter your payment amount" [ngClass]="{
+                    'is-invalid':
+                      formGroup.controls.paymentAmount.errors &&
+                      formGroup.controls.paymentAmount.touched
+                  }" />
+                <div class="invalid-feedback" *ngIf="formGroup.controls.paymentAmount.hasError('required')">
+                  This field is required
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="mb-5">
+                  <label for="warrantyStartDate" class="form-label text-start w-100">Warranty Start Date</label>
+                  <input type="date" class="form-control" id="warrantyStartDate" formControlName="warrantyStartDate"
+                    placeholder="Enter your warranty start date"
+                    [ngClass]="{ 'is-invalid' : formGroup.controls.warrantyStartDate.errors && formGroup.controls.warrantyStartDate.touched }">
+                  <div class="invalid-feedback" *ngIf="formGroup.controls.warrantyStartDate.hasError('required')">
+                    {{ 'FIELD_REQUIRED' | translate }}
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="mb-5">
+                  <label for="warrantyEndDate" class="form-label text-start w-100">Warranty End Date</label>
+                  <input type="date" class="form-control" id="warrantyEndDate" formControlName="warrantyEndDate"
+                    placeholder="Enter your warranty end date"
+                    [ngClass]="{ 'is-invalid' : formGroup.controls.warrantyEndDate.errors && formGroup.controls.warrantyEndDate.touched }">
+                  <div class="invalid-feedback" *ngIf="formGroup.controls.warrantyEndDate.hasError('required')">
+                    {{ 'FIELD_REQUIRED' | translate }}
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </form>
