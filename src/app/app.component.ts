@@ -45,7 +45,7 @@ export class AppComponent implements OnInit {
       this.router.navigate(['/dashboard']);
       return;
     }
-    
-    this.router.navigate([currentUrl])
+
+    this.router.navigate([currentUrl]);
   }
 }
