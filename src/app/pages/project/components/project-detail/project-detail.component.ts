@@ -61,6 +61,8 @@ export class ProjectDetailComponent {
     id: FormControl<number | string>;
     type: FormControl<string | null>;
     status: FormControl<string | null>;
+    startDate: FormControl<string | null>;
+    endDate: FormControl<string | null>;
   }>;
   private projectId: number;
   public title = '';
@@ -114,6 +116,20 @@ export class ProjectDetailComponent {
       status: new FormControl<string | null>(
         {
           value: this.model.status,
+          disabled: false,
+        },
+        { validators: [Validators.required], nonNullable: true }
+      ),
+      startDate: new FormControl<string | null>(
+        {
+          value: this.model?.startDate,
+          disabled: false,
+        },
+        { validators: [Validators.required], nonNullable: true }
+      ),
+      endDate: new FormControl<string | null>(
+        {
+          value: this.model?.endDate,
           disabled: false,
         },
         { validators: [Validators.required], nonNullable: true }
