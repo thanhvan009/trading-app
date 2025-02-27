@@ -5,163 +5,66 @@
     <ng-container *ngIf="!storeService.isLoading()">
       <div class="dashboard-list">
         <h1 class="title">Searching project</h1>
-        <form>
+        <form [formGroup]="form" (ngSubmit)="onClickSubmit()">
           <input type="text" class="form-control" id="search" formControlName="search"
             placeholder="Enter your search" />
-          <img [src]="'assets/img/project/icon-search.png'" />
+          <button type="submit" class="submit-search">
+            <img [src]="'assets/img/project/icon-search.png'" />
+          </button>
         </form>
         <div class="categories">
-          <button class="category-item">Technology</button>
-          <button class="category-item">Bussiness</button>
-          <button class="category-item">Financial</button>
-          <button class="category-item">Networking</button>
-          <button class="category-item">AI</button>
-          <button class="category-item">Cybersecurity</button>
-          <button class="category-item">Customer</button>
+          <button *ngFor="let item of ['Technology', 'Bussiness', 'Financial', 'Networking']" [ngClass]="{
+            'active':  activeType == item
+          }" class="category-item" (click)="onClickCategory(item)">{{item}}</button>
         </div>
-        <div class="results">
+        <div class="no-result" *ngIf="!results.length && !isLoadMore">No results</div>
+        <div class="loading-result" *ngIf="isLoadMore">
+          <mat-spinner></mat-spinner>
+        </div>
+        <div *ngIf="results.length && !isLoadMore" class="results">
           <h1 class="title">Results</h1>
           <div class="result-list">
-            <div class="row">
-              <div class="col-lg-3 col-md-4 col-sm-12 col-xs-12">
-                <div class="result-item">
-                  <img class="card-image" [src]="'assets/img/project/result-image.png'" />
-                  <div class="content">
-                    <div class="desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.
-                    </div>
-                    <div class="group">
-                      <div class="item">
-                        <img [src]="'assets/img/project/icon-loan.png'" class="icon-loan" />
-                        <span class="delivery-text">6 months delivery</span>
+              <div class="row">
+                <div *ngFor="let item of results" class="col-lg-3 col-md-4 col-sm-12 col-xs-12">
+                  <div class="result-item">
+                    <img class="card-image" [src]="item.img" />
+                    <div class="content">
+                      <div class="desc">{{item.desc}}
                       </div>
-                      <div class="item">
-                        <img [src]="'assets/img/project/icon-loan.png'" class="icon-loan" />
-                        <span class="money-text">$100</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="content">
-                    <div class="user-group">
-                      <div class="user">
-                        <img [src]="'assets/img/project/user-avatar.png'" class="user-avatar" />
-                        <div class="user-info">
-                          <div class="name">Livia Bator</div>
-                          <div class="position">CEO</div>
+                      <div class="group">
+                        <div class="item">
+                          <img [src]="'assets/img/project/icon-loan.png'" class="icon-loan" />
+                          <span class="delivery-text">{{item.delivery}}</span>
+                        </div>
+                        <div class="item">
+                          <img [src]="'assets/img/project/icon-loan.png'" class="icon-loan" />
+                          <span class="price-text">{{item.price}}</span>
                         </div>
                       </div>
-                      <div class="stars">
-                        <img [src]="'assets/img/project/icon-star.png'" />
-                        <span class="star-number">4.9</span>
+                    </div>
+                    <div class="content">
+                      <div class="user-group">
+                        <div class="user">
+                          <img [src]="'assets/img/project/user-avatar.png'" class="user-avatar" />
+                          <div class="user-info">
+                            <div class="name">{{item.user?.name}}</div>
+                            <div class="position">{{item.user?.position}}</div>
+                          </div>
+                        </div>
+                        <div class="stars">
+                          <img [src]="'assets/img/project/icon-star.png'" />
+                          <span class="star-number">{{item.star}}</span>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="col-lg-3 col-md-4 col-sm-12 col-xs-12">
-                <div class="result-item">
-                  <img class="card-image" [src]="'assets/img/project/result-image.png'" />
-                  <div class="content">
-                    <div class="desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.
-                    </div>
-                    <div class="group">
-                      <div class="item">
-                        <img [src]="'assets/img/project/icon-loan.png'" class="icon-loan" />
-                        <span class="delivery-text">6 months delivery</span>
-                      </div>
-                      <div class="item">
-                        <img [src]="'assets/img/project/icon-loan.png'" class="icon-loan" />
-                        <span class="money-text">$100</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="content">
-                    <div class="user-group">
-                      <div class="user">
-                        <img [src]="'assets/img/project/user-avatar.png'" class="user-avatar" />
-                        <div class="user-info">
-                          <div class="name">Livia Bator</div>
-                          <div class="position">CEO</div>
-                        </div>
-                      </div>
-                      <div class="stars">
-                        <img [src]="'assets/img/project/icon-star.png'" />
-                        <span class="star-number">4.9</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-3 col-md-4 col-sm-12 col-xs-12">
-                <div class="result-item">
-                  <img class="card-image" [src]="'assets/img/project/result-image.png'" />
-                  <div class="content">
-                    <div class="desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.
-                    </div>
-                    <div class="group">
-                      <div class="item">
-                        <img [src]="'assets/img/project/icon-loan.png'" class="icon-loan" />
-                        <span class="delivery-text">6 months delivery</span>
-                      </div>
-                      <div class="item">
-                        <img [src]="'assets/img/project/icon-loan.png'" class="icon-loan" />
-                        <span class="money-text">$100</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="content">
-                    <div class="user-group">
-                      <div class="user">
-                        <img [src]="'assets/img/project/user-avatar.png'" class="user-avatar" />
-                        <div class="user-info">
-                          <div class="name">Livia Bator</div>
-                          <div class="position">CEO</div>
-                        </div>
-                      </div>
-                      <div class="stars">
-                        <img [src]="'assets/img/project/icon-star.png'" />
-                        <span class="star-number">4.9</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-3 col-md-4 col-sm-12 col-xs-12">
-                <div class="result-item">
-                  <img class="card-image" [src]="'assets/img/project/result-image.png'" />
-                  <div class="content">
-                    <div class="desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.
-                    </div>
-                    <div class="group">
-                      <div class="item">
-                        <img [src]="'assets/img/project/icon-loan.png'" class="icon-loan" />
-                        <span class="delivery-text">6 months delivery</span>
-                      </div>
-                      <div class="item">
-                        <img [src]="'assets/img/project/icon-loan.png'" class="icon-loan" />
-                        <span class="money-text">$100</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="content">
-                    <div class="user-group">
-                      <div class="user">
-                        <img [src]="'assets/img/project/user-avatar.png'" class="user-avatar" />
-                        <div class="user-info">
-                          <div class="name">Livia Bator</div>
-                          <div class="position">CEO</div>
-                        </div>
-                      </div>
-                      <div class="stars">
-                        <img [src]="'assets/img/project/icon-star.png'" />
-                        <span class="star-number">4.9</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="load-more text-center">
-              <button class="primary">Load more</button>
+            <div class="load-more">
+              <button class="primary" (click)="onLoadMore()">
+                <span>Load more</span>
+                <mat-spinner *ngIf="isLoadMoreButton"></mat-spinner>
+              </button>
             </div>
           </div>
         </div>

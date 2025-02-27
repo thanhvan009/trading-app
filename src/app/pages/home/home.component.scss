@@ -2,7 +2,7 @@
   background: #f5f7fa;
   padding: 0;
   margin: 0;
-  height: 100%;
+  height: 100vh;
 }
 
 .dashboard-list {
@@ -26,12 +26,20 @@ form {
     padding-left: 50px;
   }
 
-  img {
+  .submit-search {
     width: 26px;
     height: 26px;
     position: absolute;
     top: 13px;
     left: 15px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+  }
+
+  img {
+    width: 26px;
+    height: 26px;
   }
 }
 
@@ -48,11 +56,26 @@ form {
     margin-right: 20px;
     margin-bottom: 20px;
     min-width: 80px;
+    &.active {
+      color: #fff;
+      background: #718EBF;
+    }
   }
 }
 
-.result-list {
+.no-result {
+  width: 60%;
+  font-size: 16px;
+  color: #4F4F4F;
+  margin: 50px auto;
+}
 
+.loading-result {
+  display: flex;
+  justify-content: center;
+}
+
+.result-list {
   margin: 0 -7.5px;
 }
 
@@ -109,7 +132,7 @@ form {
     font-weight: 400;
   }
 
-  .money-text {
+  .price-text {
     font-weight: 500;
   }
 }
@@ -168,9 +191,22 @@ form {
 
 .load-more {
   margin-top: 50px;
+  display: flex;
+  justify-content: center;
+
   button {
-    width: 190px;
+    width: 200px;
     border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .mat-mdc-progress-spinner {
+      width: 30px !important;
+      height: 30px !important;
+      display: flex;
+      margin-left: 10px;
+    }
   }
 }
 
