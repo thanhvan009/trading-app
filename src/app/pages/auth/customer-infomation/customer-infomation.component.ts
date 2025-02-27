@@ -9,7 +9,6 @@ import { Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
-import { environment } from '@env/environment';
 import { StoreService } from '@services/store.service';
 
 @Component({
@@ -27,7 +26,6 @@ import { StoreService } from '@services/store.service';
   ],
 })
 export class CustomerInfomationComponent {
-  public appName: string = environment.appName;
   public formGroup!: FormGroup<{
     licenseNumber: FormControl<string>;
     yourname: FormControl<string>;
@@ -36,12 +34,17 @@ export class CustomerInfomationComponent {
     username: FormControl<string>;
     password: FormControl<string>;
     address: FormControl<string>;
+    yearOfExperience: FormControl<string>;
+    typeOfService: FormControl<string>;
+    workPerimeter: FormControl<string>;
   }>;
+  model: any = {};
+  public user: any = {};
   public role: string = '';
   public title: string = '';
   public subtitle: string = '';
 
-  constructor(private router: Router, private storeService: StoreService) {}
+  constructor(private router: Router, private storeService: StoreService) { }
 
   private initFormGroup(): void {
     this.formGroup = new FormGroup({
@@ -61,7 +64,7 @@ export class CustomerInfomationComponent {
       ),
       email: new FormControl<string>(
         {
-          value: '',
+          value: this.model?.email,
           disabled: false,
         },
         {
@@ -85,7 +88,7 @@ export class CustomerInfomationComponent {
       ),
       password: new FormControl<string>(
         {
-          value: '',
+          value: this.model?.password,
           disabled: false,
         },
         { validators: [Validators.required], nonNullable: true }
@@ -97,11 +100,36 @@ export class CustomerInfomationComponent {
         },
         { validators: [Validators.required], nonNullable: true }
       ),
+      yearOfExperience: new FormControl<string>(
+        {
+          value: '',
+          disabled: this.role == 'Customer',
+        },
+        { validators: [Validators.required], nonNullable: true }
+      ),
+      typeOfService: new FormControl<string>(
+        {
+          value: '',
+          disabled: this.role == 'Customer',
+        },
+        { validators: [Validators.required], nonNullable: true }
+      ),
+      workPerimeter: new FormControl<string>(
+        {
+          value: '',
+          disabled: this.role == 'Customer',
+        },
+        { validators: [Validators.required], nonNullable: true }
+      ),
     });
   }
 
   ngOnInit() {
     this.role = localStorage.getItem('role') ?? '';
+    this.user = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user') ?? '') : {};
+    this.model = {
+      ...this.user
+    };
     this.title = this.role + ' Information';
     this.subtitle = this.role + ' Profile';
 
@@ -110,6 +138,7 @@ export class CustomerInfomationComponent {
 
   public onClickSubmit() {
     this.formGroup.markAllAsTouched();
+    console.log('this.formGroup')
     if (this.formGroup.invalid) {
       return;
     }

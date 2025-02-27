@@ -3,47 +3,68 @@
     <app-progress-bar *ngIf="storeService.isLoading()"></app-progress-bar>
 
     <ng-container *ngIf="!storeService.isLoading()">
-      <div class="text-center dashboard-list">
-        <div class="col-lg-1200">
-          <div class="row">
-            <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12" (click)="onClick('projects')">
-              <div class="dashboard-item">
-                <img
-                  [src]="'assets/img/project/project-total.png'"
-                  class="project-total mx-3"
-                  alt="project-tatal"
-                />
-                <div class="content">
-                  <div class="text">Total projects</div>
-                  <div class="number">150</div>
+      <div class="dashboard-list">
+        <h1 class="title">Searching project</h1>
+        <form [formGroup]="form" (ngSubmit)="onClickSubmit()">
+          <input type="text" class="form-control" id="search" formControlName="search"
+            placeholder="Enter your search" />
+          <button type="submit" class="submit-search">
+            <img [src]="'assets/img/project/icon-search.png'" />
+          </button>
+        </form>
+        <div class="categories">
+          <button *ngFor="let item of ['Technology', 'Bussiness', 'Financial', 'Networking']" [ngClass]="{
+            'active':  activeType == item
+          }" class="category-item" (click)="onClickCategory(item)">{{item}}</button>
+        </div>
+        <div class="no-result" *ngIf="!results.length && !isLoadMore">No results</div>
+        <div class="loading-result" *ngIf="isLoadMore">
+          <mat-spinner></mat-spinner>
+        </div>
+        <div *ngIf="results.length && !isLoadMore" class="results">
+          <h1 class="title">Results</h1>
+          <div class="result-list">
+              <div class="row">
+                <div *ngFor="let item of results" class="col-lg-3 col-md-4 col-sm-12 col-xs-12">
+                  <div class="result-item">
+                    <img class="card-image" [src]="item.img" />
+                    <div class="content">
+                      <div class="desc">{{item.desc}}
+                      </div>
+                      <div class="group">
+                        <div class="item">
+                          <img [src]="'assets/img/project/icon-loan.png'" class="icon-loan" />
+                          <span class="delivery-text">{{item.delivery}}</span>
+                        </div>
+                        <div class="item">
+                          <img [src]="'assets/img/project/icon-loan.png'" class="icon-loan" />
+                          <span class="price-text">{{item.price}}</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="content">
+                      <div class="user-group">
+                        <div class="user">
+                          <img [src]="'assets/img/project/user-avatar.png'" class="user-avatar" />
+                          <div class="user-info">
+                            <div class="name">{{item.user?.name}}</div>
+                            <div class="position">{{item.user?.position}}</div>
+                          </div>
+                        </div>
+                        <div class="stars">
+                          <img [src]="'assets/img/project/icon-star.png'" />
+                          <span class="star-number">{{item.star}}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12" (click)="onClick('ratings')">
-              <div class="dashboard-item">
-                <img
-                  [src]="'assets/img/project/rating-total.png'"
-                  class="rating-total mx-3"
-                  alt="rating-tatal"
-                />
-                <div class="content">
-                  <div class="text">Total ratings</div>
-                  <div class="number">100</div>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12" (click)="onClick('lorem')">
-              <div class="dashboard-item">
-                <img
-                  [src]="'assets/img/project/lorem-total.png'"
-                  class="lorem-total mx-3"
-                  alt="lorem-tatal"
-                />
-                <div class="content">
-                  <div class="text">Lorem</div>
-                  <div class="number">+5.8%</div>
-                </div>
-              </div>
+            <div class="load-more">
+              <button class="primary" (click)="onLoadMore()">
+                <span>Load more</span>
+                <mat-spinner *ngIf="isLoadMoreButton"></mat-spinner>
+              </button>
             </div>
           </div>
         </div>

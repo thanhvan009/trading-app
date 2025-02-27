@@ -1,4 +1,3 @@
-// Angular modules
 import { NgClass } from '@angular/common';
 import { NgIf } from '@angular/common';
 import { Component } from '@angular/core';
@@ -9,19 +8,13 @@ import { FormControl } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RouterLink } from '@angular/router';
-
-// External modules
 import { TranslateModule } from '@ngx-translate/core';
-
-// Internal modules
 import { environment } from '@env/environment';
-
-// Services
 import { AppService } from '@services/app.service';
 import { StoreService } from '@services/store.service';
 
 @Component({
-  selector: 'app-login',
+  selector: 'role-selection',
   templateUrl: './role-selection.component.html',
   styleUrls: ['./role-selection.component.scss'],
   standalone: true,

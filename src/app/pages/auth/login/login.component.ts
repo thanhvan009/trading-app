@@ -31,20 +31,23 @@ export class LoginComponent {
   public formGroup!: FormGroup<{
     email: FormControl<string>;
     password: FormControl<string>;
+    phoneNumber: FormControl<string>;
+    otpCode: FormControl<number | null>;
   }>;
   public isLoginScreen = true;
+  public selectedTabIndex = 0;
+  public isOTPCodeShowed = false;
 
   constructor(
     private router: Router
   ) {
-    this.initFormGroup();
     this.isLoginScreen = this.router.url === '/auth/login';
     if (localStorage.getItem('token') && localStorage.getItem('role')) {
       this.router.navigate(['/dashboard']);
     }
   }
 
-  private initFormGroup(): void {
+  private initForm(): void {
     this.formGroup = new FormGroup({
       email: new FormControl<string>(
         {
@@ -63,7 +66,25 @@ export class LoginComponent {
         },
         { validators: [Validators.required], nonNullable: true }
       ),
+      phoneNumber: new FormControl<string>(
+        {
+          value: '',
+          disabled: true,
+        },
+        { validators: [Validators.required], nonNullable: true }
+      ),
+      otpCode: new FormControl<number | null>(
+        {
+          value: null,
+          disabled: true,
+        },
+        { validators: [Validators.required], nonNullable: true }
+      ),
     });
+  }
+
+  public ngOnInit() {
+    this.initForm();
   }
 
   public onClickSubmit() {
@@ -71,9 +92,50 @@ export class LoginComponent {
     if (this.formGroup.invalid) {
       return;
     }
+
+    const user = {
+      email: this.formGroup.get('email')?.value,
+      password: this.formGroup.get('password')?.value,
+      role: '',
+    };
+
     localStorage.setItem('token', MOCK_TOKEN);
-    localStorage.setItem('role', mockAdminUser.role);
-    localStorage.setItem('user', JSON.stringify(mockAdminUser));
-    this.router.navigate(['/dashboard']);
+    if (this.formGroup.get('email')?.value === 'admin@gmail.com') {
+      localStorage.setItem('role', mockAdminUser.role);
+      localStorage.setItem('user', JSON.stringify(mockAdminUser));
+      this.router.navigate(['/dashboard']);
+    } else {
+      localStorage.setItem('user', JSON.stringify(user));
+      this.router.navigate(['/auth/role-selection']);
+    }
+  }
+
+  public onGetOTP() {
+    this.formGroup.get('phoneNumber')?.markAsTouched();
+    if (this.formGroup.invalid) {
+      return;
+    }
+
+    this.isOTPCodeShowed = true;
+    this.formGroup.get('phoneNumber')?.disable();
+    this.formGroup.get('otpCode')?.enable();
+  }
+
+  onClickTab(index: number) {
+    this.formGroup.reset();
+    this.isOTPCodeShowed = false;
+    this.selectedTabIndex = index;
+
+    if (index == 0) {
+      this.formGroup.get('phoneNumber')?.disable();
+      this.formGroup.get('otpCode')?.disable();
+      this.formGroup.get('email')?.enable();
+      this.formGroup.get('password')?.enable();
+    } else {
+      this.formGroup.get('phoneNumber')?.enable();
+      this.formGroup.get('otpCode')?.disable();
+      this.formGroup.get('email')?.disable();
+      this.formGroup.get('password')?.disable();
+    }
   }
 }
