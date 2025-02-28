@@ -45,51 +45,100 @@
   }
 }
 
-table {
-  padding: 30px 60px 160px;
-  margin-bottom: 0;
-}
-
 .action-buttons {
   display: flex;
   justify-content: end;
-  button + button {
+
+  button+button {
     margin-left: 15px;
   }
 }
 
 table {
-  textarea {
-    height: 43px;
+  padding: 30px 60px 160px;
+  margin-bottom: 0;
+}
+
+::ng-deep {
+  
+
+  table {
+  
+    textarea {
+      height: 52px;
+    }
+  
+    td {
+      .mdc-text-field--outlined .mat-mdc-form-field-infix, .mdc-text-field--no-label .mat-mdc-form-field-infix {
+        padding: 4px 0 !important;
+      }
+      .mat-mdc-form-field {
+  
+        width: 130px;
+        height: 32px;
+        
+      }
+
+      .mat-mdc-select-min-line {
+        font-size: 14px;
+        font-weight: 500;
+      }
+
+      .Declined {
+        .mat-mdc-select-min-line {
+          color: #EB5757;
+        }
+      }
+      .To-do {
+        .mat-mdc-select-min-line {
+          color: #DFEAF2;
+        }
+      }
+      .Completed {
+        .mat-mdc-select-min-line {
+          color: #27AE60;
+        }
+      }
+    }
   }
 }
 
+
+// Column Width Mobile
 table {
   .description-col {
-    width: 48%;
+    width: 25%;
   }
+
   .createdBy-col {
-    width: 13%;
+    width: 15%;
   }
 
   .date-col {
-    width: 14%;
+    width: 15%;
   }
 
   .trade-approval-col {
-    width: 13%;
+    width: 15%;
   }
 
   .customer-approval-col {
-    width: 13%;
+    width: 15%;
+  }
+
+  .ajudicator-approval-col {
+    width: 15%;
   }
 }
+
+// Column Width Tablet and PC
 
 @media screen and (min-width: 768px) {
   table {
     .description-col {
-      width: 40%;
+      width: 25%;
     }
+
     .createdBy-col {
       width: 15%;
     }
@@ -103,6 +152,10 @@ table {
     }
 
     .customer-approval-col {
+      width: 15%;
+    }
+
+    .ajudicator-approval-col {
       width: 15%;
     }
   }

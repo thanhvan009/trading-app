@@ -1,4 +1,4 @@
-import { NgClass } from '@angular/common';
+import { NgClass, NgFor } from '@angular/common';
 import { NgIf } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
@@ -19,10 +19,9 @@ import { MatIconModule } from '@angular/material/icon';
 import moment from 'moment';
 import {MatSelectModule} from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field';
-
-
 import { IDescription, mockDescriptionsData, mockProjectDetailData } from 'src/app/shared/mock-data/project.mock';
 import { BreadcrumbService } from '@services/breadcrumb.service';
+import { paymentsData, statusesApprovalData, statusesData, typesData } from 'src/app/shared/constants/constants.data';
 @Component({
   selector: 'app-project-detail',
   templateUrl: './project-detail.component.html',
@@ -36,6 +35,7 @@ import { BreadcrumbService } from '@services/breadcrumb.service';
     ReactiveFormsModule,
     NgClass,
     NgIf,
+    NgFor,
     RouterLink,
     TranslateModule,
     ProgressBarComponent,
@@ -53,6 +53,7 @@ export class ProjectDetailComponent {
     'date',
     'tradeApproval',
     'customerApproval',
+    'ajudicatorApproval'
   ];
   dataSource: any = new MatTableDataSource<IDescription>(mockDescriptionsData);
   public appName: string = environment.appName;
@@ -72,11 +73,10 @@ export class ProjectDetailComponent {
   public title = '';
   model: any = {};
   
-  types: any[] = [
-    {value: 'Shopping', viewValue: 'Shopping'},
-    {value: 'Service', viewValue: 'Service'},
-    {value: 'Transfer', viewValue: 'Transfer'},
-  ];
+  types: any[] = typesData;
+  payments: any[] = paymentsData;
+  statuses: any[] = statusesData;
+  statusesApproval: any[] = statusesApprovalData;
 
   selectedFood = this.types[0].value;
   constructor(
@@ -179,6 +179,18 @@ export class ProjectDetailComponent {
     this.formGroup.controls.type.setValue(e.value)
   }
 
+  changeApproval(e: any, type: string, index: number) {
+    console.log(e.value)
+    this.dataSource.data[index] = {
+      ...this.dataSource.data[index],
+      [type]: e.value,
+    }
+  
+    this.dataSource = new MatTableDataSource<IDescription>([
+      ...this.dataSource.data,
+    ])
+  }
+
   public ngOnInit(): void {
     let data = null;
     if (this.projectId) {
@@ -231,34 +243,16 @@ export class ProjectDetailComponent {
   addRow() {
     let newRow = {
       description: '',
-      createdBy: 'Admin',
+      createdBy: 'Ajudicator ',
       date: moment(new Date()).format('DD/MM/YYYY'),
-      tradeApproval: true,
-      customerApproval: false,
+      tradeApproval: '',
+      customerApproval: '',
+      ajudicatorApproval: '',
       editing: true
     };
     this.dataSource = new MatTableDataSource<IDescription>([
       ...this.dataSource.data,
       newRow
-    ])
-  }
-
-  update(checked: boolean, index: any, type?: string) {
-    if (type === 'tradeApproval') {
-      this.dataSource.data[index] = {
-        ...this.dataSource.data[index],
-        tradeApproval: checked,
-        customerApproval: !checked,
-      }
-    } else {
-      this.dataSource.data[index] = {
-        ...this.dataSource.data[index],
-        tradeApproval: !checked,
-        customerApproval: checked,
-      }
-    }
-    this.dataSource = new MatTableDataSource<IDescription>([
-      ...this.dataSource.data,
     ])
   }
 }

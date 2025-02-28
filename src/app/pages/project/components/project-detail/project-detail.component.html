@@ -60,11 +60,7 @@
                 }">
                   <mat-select formControlName="status" placeholder="Select your status" [(value)]="model.status"
                     (selectionChange)="changeStatus($event)">
-                    <mat-option value="Active">Active</mat-option>
-                    <mat-option value="Pending">Pending</mat-option>
-                    <mat-option value="Postpone">Postpone</mat-option>
-                    <mat-option value="Completed">Completed</mat-option>
-                    <mat-option value="Cancel">Cancel</mat-option>
+                    <mat-option *ngFor="let item of statuses" value="item.value">{{item.viewValue}}</mat-option>
                   </mat-select>
                 </mat-form-field>
                 <div class="invalid-feedback" *ngIf="formGroup.controls.status.hasError('required')">
@@ -102,11 +98,7 @@
                 }">
                   <mat-select formControlName="payment" placeholder="Select your payment" [(value)]="model.payment"
                     (selectionChange)="changeStatus($event)">
-                    <mat-option value="credit-card">Credit Card</mat-option>
-                    <mat-option value="Pending">Pending</mat-option>
-                    <mat-option value="Postpone">Postpone</mat-option>
-                    <mat-option value="Completed">Completed</mat-option>
-                    <mat-option value="Cancel">Cancel</mat-option>
+                    <mat-option *ngFor="let item of payments" value="item.value">{{item.viewValue}}</mat-option>
                   </mat-select>
                 </mat-form-field>
                 <div class="invalid-feedback" *ngIf="formGroup.controls.payment.hasError('required')">
@@ -188,10 +180,12 @@
                   Trade Approval
                 </th>
                 <td mat-cell *matCellDef="let element; index as index" class="cell-center">
-                  <section class="example-section">
-                    <mat-checkbox md-raised-button class="example-margin" [checked]="element.tradeApproval"
-                      (change)="update($event.checked, index, 'tradeApproval')"></mat-checkbox>
-                  </section>
+                  <mat-form-field>
+                    <mat-select placeholder="Status" [(value)]="element.tradeApproval" [class]="element.tradeApproval"
+                    (selectionChange)="changeApproval($event, 'tradeApproval', index)">
+                      <mat-option *ngFor="let item of statusesApproval" [value]="item.value">{{item.viewValue}}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
                 </td>
               </ng-container>
               <ng-container matColumnDef="customerApproval">
@@ -199,10 +193,25 @@
                   Customer Approval
                 </th>
                 <td mat-cell *matCellDef="let element; index as index" class="cell-center">
-                  <section class="example-section">
-                    <mat-checkbox md-raised-button class="example-margin" [checked]="element.customerApproval"
-                      (change)="update($event.checked, index)"></mat-checkbox>
-                  </section>
+                  <mat-form-field>
+                    <mat-select placeholder="Status" [(value)]="element.customerApproval" [class]="element.customerApproval"
+                      (selectionChange)="changeApproval($event, 'customerApproval', index)">
+                      <mat-option *ngFor="let item of statusesApproval" [value]="item.value">{{item.viewValue}}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </td>
+              </ng-container>
+              <ng-container matColumnDef="ajudicatorApproval">
+                <th class="ajudicator-approval-col cell-center" mat-header-cell *matHeaderCellDef>
+                  Ajudicator Approval
+                </th>
+                <td mat-cell *matCellDef="let element; index as index" class="cell-center">
+                  <mat-form-field>
+                    <mat-select placeholder="Status" [(value)]="element.ajudicatorApproval" [class]="element.ajudicatorApproval"
+                      (selectionChange)="changeApproval($event, 'ajudicatorApproval', index)">
+                      <mat-option *ngFor="let item of statusesApproval" [value]="item.value">{{item.viewValue}}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
                 </td>
               </ng-container>
 
