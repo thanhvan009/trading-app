@@ -205,14 +205,6 @@ export class ProjectDetailComponent {
   }
 
   public ngOnInit(): void {
-    this.dialog.open(AgreementDetail, {
-      disableClose: false,
-      hasBackdrop: true,
-      backdropClass: '',
-      width: '100%',
-      panelClass: 'makeItMiddle',
-      data: mockDescriptionsData[0],
-    });
     let data = null;
     if (this.projectId) {
       this.model = {

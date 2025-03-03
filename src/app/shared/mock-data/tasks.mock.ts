@@ -90,3 +90,17 @@ export const mockTasksData: ITask[] = [
     ajudicatorApproval: '',
   },
 ];
+export const mockAttachmentsData: any[] = [
+  {
+    name: 'image.png',
+    size: '250 KB',
+    dateAdded: '28 Jan, 12.30 AM',
+    downloadIcon: '',
+  },
+  {
+    name: 'document.doc',
+    size: '250 KB',
+    dateAdded: '28 Jan, 12.30 AM',
+    downloadIcon: '',
+  },
+]
