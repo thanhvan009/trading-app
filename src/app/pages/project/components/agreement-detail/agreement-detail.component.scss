@@ -1,0 +1,119 @@
+.agreement-detail {
+    .title {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 1px solid #e6eff5;
+        padding: 20px 30px;
+
+        .text {
+            font-size: 22px;
+            font-weight: 500;
+        }
+
+        button {
+            border: none;
+            background-color: transparent;
+
+            img {
+                width: 24px;
+                height: 24px;
+            }
+        }
+    }
+
+    .wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+}
+
+::ng-deep {
+    .makeItMiddle {
+        width: 100%;
+        margin: 0 auto !important;
+        height: 80%;
+        max-width: 80% !important;
+    }
+
+    .mat-mdc-dialog-container {
+        max-width: 100%;
+    }
+
+    .mat-mdc-dialog-container .mat-mdc-dialog-content {
+        padding: 40px;
+    }
+}
+
+.table-list {
+    box-shadow: none;
+    position: relative;
+    margin-bottom: 110px;
+    width: 95%;
+}
+
+table {
+    padding: 30px 60px 160px;
+    margin-bottom: 0;
+  }
+
+
+.table-label {
+    color: #232323;
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 15px;
+}
+
+.row-add {
+    margin: 0 60px;
+    margin-top: -160px;
+    height: 80px;
+    border-top: 1px solid #e6eff5;
+    border-bottom: 1px solid #e6eff5;
+    display: flex;
+    align-items: center;
+
+    mat-icon {
+        margin: 0 20px;
+        background: #333b69;
+        color: #fff;
+        border-radius: 50%;
+        font-size: 22px;
+        width: 28px;
+        height: 28px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+    }
+}
+
+// Column Width
+table {
+    .description-col {
+        width: 30%;
+    }
+
+
+    .startDate-col {
+        width: 14%;
+    }
+
+    .finishDate-col {
+        width: 14%;
+    }
+
+    .trade-approval-col {
+        width: 14%;
+    }
+
+    .customer-approval-col {
+        width: 14%;
+    }
+
+    .ajudicator-approval-col {
+        width: 14%;
+    }
+}

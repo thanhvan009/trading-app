@@ -15,6 +15,15 @@
   margin-bottom: 50px;
 }
 
+.agreement-table {
+  .table-label {
+    color: #232323;
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 10px;
+  }
+}
+
 .table-list {
   box-shadow: none;
   position: relative;
@@ -60,23 +69,23 @@ table {
 }
 
 ::ng-deep {
-  
-
   table {
-  
     textarea {
       height: 52px;
     }
-  
+
     td {
-      .mdc-text-field--outlined .mat-mdc-form-field-infix, .mdc-text-field--no-label .mat-mdc-form-field-infix {
+
+      .mdc-text-field--outlined .mat-mdc-form-field-infix,
+      .mdc-text-field--no-label .mat-mdc-form-field-infix {
         padding: 4px 0 !important;
       }
+
       .mat-mdc-form-field {
-  
+
         width: 130px;
         height: 32px;
-        
+
       }
 
       .mat-mdc-select-min-line {
@@ -89,51 +98,36 @@ table {
           color: #EB5757;
         }
       }
+
       .To-do {
         .mat-mdc-select-min-line {
           color: #DFEAF2;
         }
       }
+
       .Completed {
         .mat-mdc-select-min-line {
           color: #27AE60;
         }
       }
     }
+
+    button.edit-button {
+      padding: 0;
+      border: none;
+      background: transparent;
+      width: 24px;
+      height: 24px;
+
+      img {
+        width: 100%;
+        height: auto;
+      }
+    }
   }
 }
 
-
-// Column Width Mobile
-table {
-  .description-col {
-    width: 25%;
-  }
-
-  .createdBy-col {
-    width: 15%;
-  }
-
-  .date-col {
-    width: 15%;
-  }
-
-  .trade-approval-col {
-    width: 15%;
-  }
-
-  .customer-approval-col {
-    width: 15%;
-  }
-
-  .ajudicator-approval-col {
-    width: 15%;
-  }
-}
-
-// Column Width Tablet and PC
-
-@media screen and (min-width: 768px) {
+// Column Width
   table {
     .description-col {
       width: 25%;
@@ -148,7 +142,7 @@ table {
     }
 
     .trade-approval-col {
-      width: 15%;
+      width: 10%;
     }
 
     .customer-approval-col {
@@ -158,5 +152,8 @@ table {
     .ajudicator-approval-col {
       width: 15%;
     }
+
+    .edit-row-col {
+      width: 5%;
+    }
   }
-}

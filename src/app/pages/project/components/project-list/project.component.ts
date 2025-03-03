@@ -17,7 +17,7 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 
 import { MatDialog } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
-import { DialogJoinProject } from '../dialog-join-project/dialog-join-project';
+import { JoinProjectModal } from '../join-project/join-project';
 import { mockProjectListData, IProject } from '../../../../shared/mock-data/project.mock';
 import { Router } from '@angular/router';
 
@@ -35,7 +35,7 @@ import { Router } from '@angular/router';
     MatTableModule,
     MatPaginatorModule,
     MatButtonModule,
-    DialogJoinProject,
+    JoinProjectModal,
   ],
 })
 export class ProjectComponent implements OnInit {
@@ -52,11 +52,14 @@ export class ProjectComponent implements OnInit {
   dialog = inject(MatDialog);
   public selectedPage = 1;
 
-  openDialog(link?: string) {
-    this.dialog.open(DialogJoinProject, {
-      width: '800px',
-      panelClass: 'custom-dialog',
-      data: link ?? '',
+  openModal() {
+    this.dialog.open(JoinProjectModal, {
+      width: '100%',
+      panelClass: 'trade-modal',
+      data: {
+        title: 'Join Project',
+        link: '',
+      },
     });
   }
 
@@ -82,7 +85,14 @@ export class ProjectComponent implements OnInit {
   }
 
   onShare(element: IProject) {
-    this.openDialog(element?.link);
+    this.dialog.open(JoinProjectModal, {
+      width: '800px',
+      panelClass: 'trade-modal',
+      data: {
+        title: 'Share Project',
+        link: '',
+      },
+    });
   }
 
   onClickPage(item: number | string) {

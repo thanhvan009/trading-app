@@ -1,6 +1,6 @@
 import { NgClass, NgFor } from '@angular/common';
 import { NgIf } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -17,11 +17,13 @@ import { StoreService } from '@services/store.service';
 import { ProgressBarComponent } from '@blocks/progress-bar/progress-bar.component';
 import { MatIconModule } from '@angular/material/icon';
 import moment from 'moment';
-import {MatSelectModule} from '@angular/material/select';
-import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { IDescription, mockDescriptionsData, mockProjectDetailData } from 'src/app/shared/mock-data/project.mock';
 import { BreadcrumbService } from '@services/breadcrumb.service';
 import { paymentsData, statusesApprovalData, statusesData, typesData } from 'src/app/shared/constants/constants.data';
+import { MatDialog } from '@angular/material/dialog';
+import { AgreementDetail } from '../agreement-detail/agreement-detail.component';
 @Component({
   selector: 'app-project-detail',
   templateUrl: './project-detail.component.html',
@@ -45,7 +47,6 @@ import { paymentsData, statusesApprovalData, statusesData, typesData } from 'src
   ],
 })
 
-
 export class ProjectDetailComponent {
   displayedColumns: string[] = [
     'description',
@@ -53,7 +54,8 @@ export class ProjectDetailComponent {
     'date',
     'tradeApproval',
     'customerApproval',
-    'ajudicatorApproval'
+    'ajudicatorApproval',
+    'editRow',
   ];
   dataSource: any = new MatTableDataSource<IDescription>(mockDescriptionsData);
   public appName: string = environment.appName;
@@ -72,13 +74,13 @@ export class ProjectDetailComponent {
   private projectId: number;
   public title = '';
   model: any = {};
-  
+
   types: any[] = typesData;
   payments: any[] = paymentsData;
   statuses: any[] = statusesData;
   statusesApproval: any[] = statusesApprovalData;
-
   selectedFood = this.types[0].value;
+  dialog = inject(MatDialog);
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
@@ -185,13 +187,32 @@ export class ProjectDetailComponent {
       ...this.dataSource.data[index],
       [type]: e.value,
     }
-  
+
     this.dataSource = new MatTableDataSource<IDescription>([
       ...this.dataSource.data,
     ])
   }
 
+  onEditRow(element: any, index: number) {
+    this.dialog.open(AgreementDetail, {
+      disableClose: false,
+      hasBackdrop: true,
+      backdropClass: '',
+      width: '100%',
+      panelClass: 'makeItMiddle',
+      data: element,
+    });
+  }
+
   public ngOnInit(): void {
+    this.dialog.open(AgreementDetail, {
+      disableClose: false,
+      hasBackdrop: true,
+      backdropClass: '',
+      width: '100%',
+      panelClass: 'makeItMiddle',
+      data: mockDescriptionsData[0],
+    });
     let data = null;
     if (this.projectId) {
       this.model = {
@@ -256,5 +277,3 @@ export class ProjectDetailComponent {
     ])
   }
 }
-
-
