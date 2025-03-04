@@ -9,6 +9,7 @@ import { Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RouterLink } from '@angular/router';
 import { ProgressBarComponent } from '@blocks/progress-bar/progress-bar.component';
+import { ToastManager } from '@blocks/toast/toast.manager';
 import { TranslateModule } from '@ngx-translate/core';
 import { StoreService } from '@services/store.service';
 
@@ -36,7 +37,12 @@ export class PaymentsComponent {
   }>;
   public selectedIndex = 1;
 
-  constructor(private router: Router, public storeService: StoreService, private activatedRoute: ActivatedRoute) {
+  constructor(
+    private router: Router,
+    public storeService: StoreService,
+    private activatedRoute: ActivatedRoute,
+    private toastManager: ToastManager
+  ) {
     this.formGroup = new FormGroup({
       cardType: new FormControl<string>(
         {
@@ -84,7 +90,12 @@ export class PaymentsComponent {
     this.storeService.isLoading.set(true);
     setTimeout((_) => {
       this.storeService.isLoading.set(false);
-    }, 1000)
+    }, 1000);
+    this.toastManager.quickShow(
+      'Payment was added successfully',
+      'success',
+      true
+    );
     this.router.navigateByUrl('/settings?tab=1');
   }
 }

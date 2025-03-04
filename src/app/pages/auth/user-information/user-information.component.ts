@@ -8,6 +8,7 @@ import { FormControl } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RouterLink } from '@angular/router';
+import { ToastManager } from '@blocks/toast/toast.manager';
 import { TranslateModule } from '@ngx-translate/core';
 import { StoreService } from '@services/store.service';
 
@@ -44,7 +45,11 @@ export class UserInformation {
   public title: string = '';
   public subtitle: string = '';
 
-  constructor(private router: Router, private storeService: StoreService) { }
+  constructor(
+    private router: Router,
+    private storeService: StoreService,
+    private toastManager: ToastManager
+  ) {}
 
   private initFormGroup(): void {
     this.formGroup = new FormGroup({
@@ -126,9 +131,11 @@ export class UserInformation {
 
   ngOnInit() {
     this.role = localStorage.getItem('role') ?? '';
-    this.user = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user') ?? '') : {};
+    this.user = localStorage.getItem('user')
+      ? JSON.parse(localStorage.getItem('user') ?? '')
+      : {};
     this.model = {
-      ...this.user
+      ...this.user,
     };
     this.title = this.role + ' Information';
     this.subtitle = this.role + ' Profile';
@@ -150,6 +157,11 @@ export class UserInformation {
       ...this.formGroup.getRawValue(),
     };
     localStorage.setItem('user', JSON.stringify(user));
+    this.toastManager.quickShow(
+      'User information was saved successfully',
+      'success',
+      true
+    );
     this.router.navigate(['/dashboard']);
   }
 
