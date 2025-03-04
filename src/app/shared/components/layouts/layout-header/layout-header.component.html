@@ -3,57 +3,144 @@
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
       <a class="navbar-brand" [routerLink]="['/dashboard']">
-        <img [src]="'assets/img/project/logo-app.png'" [alt]="appName + ' Logo'" class="img-fluid me-2" />
+        <img
+          [src]="'assets/img/project/logo-app.png'"
+          [alt]="appName + ' Logo'"
+          class="img-fluid me-2"
+        />
       </a>
-      <button class="navbar-toggler" type="button" (click)="isMenuCollapsed = !isMenuCollapsed"
-        data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-        aria-expanded="false" aria-label="Toggle navigation">
+      <button
+        class="navbar-toggler"
+        type="button"
+        (click)="isMenuCollapsed = !isMenuCollapsed"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
         <span class="navbar-toggler-icon"></span>
       </button>
 
-      <div class="collapse navbar-collapse" [ngbCollapse]="isMenuCollapsed" id="navbarSupportedContent">
+      <div
+        class="collapse navbar-collapse"
+        [ngbCollapse]="isMenuCollapsed"
+        id="navbarSupportedContent"
+      >
         <ul class="navbar-nav mb-2 mb-lg-0 w-100">
           <li class="nav-item">
-            <a class="nav-link" [ngClass]="{
+            <a
+              class="nav-link"
+              [ngClass]="{
                 active: breadcrumbText.toLowerCase() == 'dashboard'
-              }" [routerLink]="['/dashboard']" [routerLinkActive]="['active']">
-              <img *ngIf="breadcrumbText.toLowerCase() != 'dashboard'" [src]="'assets/img/project/dashboard.png'"
-                class="dashboard-icon mx-3" alt="dashboard-icon" />
-              <img *ngIf="breadcrumbText.toLowerCase() == 'dashboard'" [src]="'assets/img/project/dashboard-active.png'"
-                class="dashboard-icon mx-3" alt="dashboard-icon" />
+              }"
+              [routerLink]="['/dashboard']"
+              [routerLinkActive]="['active']"
+            >
+              <img
+                *ngIf="breadcrumbText.toLowerCase() != 'dashboard'"
+                [src]="'assets/img/project/dashboard.png'"
+                class="dashboard-icon mx-3"
+                alt="dashboard-icon"
+              />
+              <img
+                *ngIf="breadcrumbText.toLowerCase() == 'dashboard'"
+                [src]="'assets/img/project/dashboard-active.png'"
+                class="dashboard-icon mx-3"
+                alt="dashboard-icon"
+              />
               <span>{{ "Dashboard" | translate }}</span>
             </a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" [ngClass]="{ active: breadcrumbText.toLowerCase() == 'projects' }"
-              [routerLink]="['/projects']" [routerLinkActive]="['active']">
-              <img *ngIf="breadcrumbText.toLowerCase() != 'projects'" [src]="'assets/img/project/project.png'"
-                class="project-icon mx-3" alt="project-icon" />
-              <img *ngIf="breadcrumbText.toLowerCase() == 'projects'" [src]="'assets/img/project/project-active.png'"
-                class="project-icon mx-3" alt="project-icon" />
+            <a
+              class="nav-link"
+              [ngClass]="{ active: breadcrumbText.toLowerCase() == 'projects' }"
+              [routerLink]="['/projects']"
+              [routerLinkActive]="['active']"
+            >
+              <img
+                *ngIf="breadcrumbText.toLowerCase() != 'projects'"
+                [src]="'assets/img/project/project.png'"
+                class="project-icon mx-3"
+                alt="project-icon"
+              />
+              <img
+                *ngIf="breadcrumbText.toLowerCase() == 'projects'"
+                [src]="'assets/img/project/project-active.png'"
+                class="project-icon mx-3"
+                alt="project-icon"
+              />
               <span>{{ "Projects" | translate }}</span>
             </a>
           </li>
 
-          <li class="nav-item">
-            <a class="nav-link" [ngClass]="{ active: breadcrumbText.toLowerCase() == 'ratings' }"
-              [routerLink]="['/ratings']" [routerLinkActive]="['active']">
-              <img *ngIf="breadcrumbText.toLowerCase() != 'ratings'" [src]="'assets/img/project/rating.png'"
-                class="rating-icon mx-3" alt="rating-icon" />
-              <img *ngIf="breadcrumbText.toLowerCase() == 'ratings'" [src]="'assets/img/project/rating-active.png'"
-                class="rating-icon mx-3" alt="rating-icon" />
+          <li *ngIf="role.toLowerCase() == 'trade'" class="nav-item">
+            <a
+              class="nav-link"
+              [ngClass]="{ active: breadcrumbText.toLowerCase() == 'ratings' }"
+              [routerLink]="['/ratings']"
+              [routerLinkActive]="['active']"
+            >
+              <img
+                *ngIf="breadcrumbText.toLowerCase() != 'ratings'"
+                [src]="'assets/img/project/rating.png'"
+                class="rating-icon mx-3"
+                alt="rating-icon"
+              />
+              <img
+                *ngIf="breadcrumbText.toLowerCase() == 'ratings'"
+                [src]="'assets/img/project/rating-active.png'"
+                class="rating-icon mx-3"
+                alt="rating-icon"
+              />
               <span>{{ "Ratings" | translate }}</span>
             </a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" [ngClass]="{ active: breadcrumbText.toLowerCase() == 'settings' }"
-              [routerLink]="['/settings']" [routerLinkActive]="['active']">
-              <img *ngIf="breadcrumbText.toLowerCase() != 'settings'" [src]="'assets/img/project/setting.png'"
-                class="setting-icon mx-3" alt="setting-icon" />
-              <img *ngIf="breadcrumbText.toLowerCase() == 'settings'" [src]="'assets/img/project/setting-active.png'"
-                class="setting-icon mx-3" alt="setting-icon" />
+            <a
+              class="nav-link"
+              [ngClass]="{ active: breadcrumbText.toLowerCase() == 'chats' }"
+              [routerLink]="['/chats']"
+              [routerLinkActive]="['active']"
+            >
+              <img
+                *ngIf="breadcrumbText.toLowerCase() != 'chats'"
+                [src]="'assets/img/project/chats.png'"
+                class="chats-icon mx-3"
+                alt="chats-icon"
+              />
+              <img
+                *ngIf="breadcrumbText.toLowerCase() == 'chats'"
+                [src]="'assets/img/project/chats-active.png'"
+                class="chats-icon mx-3"
+                alt="chats-icon"
+              />
+              <span>{{ "Chats" | translate }}</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              [ngClass]="{ active: breadcrumbText.toLowerCase() == 'settings' }"
+              [routerLink]="['/settings']"
+              [routerLinkActive]="['active']"
+            >
+              <img
+                *ngIf="breadcrumbText.toLowerCase() != 'settings'"
+                [src]="'assets/img/project/setting.png'"
+                class="setting-icon mx-3"
+                alt="setting-icon"
+              />
+              <img
+                *ngIf="breadcrumbText.toLowerCase() == 'settings'"
+                [src]="'assets/img/project/setting-active.png'"
+                class="setting-icon mx-3"
+                alt="setting-icon"
+              />
               <span>{{ "Settings" | translate }}</span>
             </a>
           </li>
@@ -66,32 +153,59 @@
       <div class="breadcrumb">
         <div
           class="breadcrumb-1"
-          [ngClass] = "{
+          [ngClass]="{
             'has-child': breadcrumbData?.length && breadcrumbData[1]
           }"
         >
           {{ breadcrumbData?.length && breadcrumbData[0]?.label }}
         </div>
-        <div *ngIf="breadcrumbData?.length && breadcrumbData[1]" class="breadcrumb-2">
-          <div class="next-icon"> > </div>
+        <div
+          *ngIf="breadcrumbData?.length && breadcrumbData[1]"
+          class="breadcrumb-2"
+        >
+          <div class="next-icon">></div>
           <div class="text">
-            {{breadcrumbData[1]?.label}}
+            {{ breadcrumbData[1]?.label }}
           </div>
         </div>
       </div>
       <div class="profile-item">
-        <img [src]="'assets/img/project/notification-icon.png'" class="notification-icon mx-4"
-          alt="notification-icon" />
-        <a class="nav-link dropdown-toggle" ngbDropdownToggle id="navbarDropdown" role="button"
-          data-bs-toggle="dropdown" aria-expanded="false">
-          <img [src]="'assets/img/project/menu-user.png'" class="menu-user" alt="menu-user" />
+        <img
+          [src]="'assets/img/project/notification-icon.png'"
+          class="notification-icon mx-4"
+          alt="notification-icon"
+        />
+        <a
+          class="nav-link dropdown-toggle"
+          ngbDropdownToggle
+          id="navbarDropdown"
+          role="button"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          <img
+            [src]="'assets/img/project/menu-user.png'"
+            class="menu-user"
+            alt="menu-user"
+          />
         </a>
-        <ul class="dropdown-menu dropdown-menu-end" ngbDropdownMenu aria-labelledby="navbarDropdown">
+        <ul
+          class="dropdown-menu dropdown-menu-end"
+          ngbDropdownMenu
+          aria-labelledby="navbarDropdown"
+        >
           <li>
-            <a class="dropdown-item" [routerLink]="['/settings']" [routerLinkActive]="['active']">User Profile</a>
+            <a
+              class="dropdown-item"
+              [routerLink]="['/settings']"
+              [routerLinkActive]="['active']"
+              >User Profile</a
+            >
           </li>
           <li>
-            <a class="dropdown-item cursor-pointer" (click)="onClickLogout()">Logout</a>
+            <a class="dropdown-item cursor-pointer" (click)="onClickLogout()"
+              >Logout</a
+            >
           </li>
         </ul>
       </div>

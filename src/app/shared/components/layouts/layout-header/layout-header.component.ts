@@ -36,6 +36,7 @@ export class LayoutHeaderComponent implements OnInit {
   public isMenuCollapsed: boolean = true;
   public breadcrumbText: string = '';
   public breadcrumbData: any = [];
+  public role = '';
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
@@ -53,6 +54,8 @@ export class LayoutHeaderComponent implements OnInit {
         this.breadcrumbData = data;
       }
     });
+
+    this.role = localStorage.getItem('role') ?? '';
   }
 
   public async onClickLogout(): Promise<void> {
