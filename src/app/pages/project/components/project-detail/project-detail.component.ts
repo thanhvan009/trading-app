@@ -92,7 +92,7 @@ export class ProjectDetailComponent {
     if (this.projectId) {
       this.title = 'Edit - ' + mockProjectDetailData.name;
     } else {
-      this.title = 'Create a new project';
+      this.title = 'Create Project';
     }
   }
 
@@ -211,8 +211,9 @@ export class ProjectDetailComponent {
         ...mockProjectDetailData
       };
       data = [
+        {label: 'Projects',},
         {
-          label: 'Project Details',
+          label: 'Edit Project',
         },
       ];
     } else {
@@ -226,7 +227,10 @@ export class ProjectDetailComponent {
       }
       data = [
         {
-          label: 'New Project',
+          label: 'Projects',
+        },
+        {
+          label: 'Create Project',
         },
       ];
     }

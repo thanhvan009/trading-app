@@ -76,20 +76,26 @@ table {
 
     td {
 
+      // Start of approval dropdown ---
       .mdc-text-field--outlined .mat-mdc-form-field-infix,
       .mdc-text-field--no-label .mat-mdc-form-field-infix {
-        padding: 4px 0 !important;
+        padding: 2px 0 !important;
       }
 
       .mat-mdc-form-field {
 
-        width: 130px;
+        width: 123px;
         height: 32px;
+        border-radius: 50px;
 
       }
 
+      .mat-mdc-text-field-wrapper {
+        border-radius: 50px !important;
+      }
+
       .mat-mdc-select-min-line {
-        font-size: 14px;
+        font-size: 13px;
         font-weight: 500;
       }
 
@@ -110,6 +116,8 @@ table {
           color: #27AE60;
         }
       }
+
+      // --- End of approval dropdown
     }
 
     button.edit-button {
