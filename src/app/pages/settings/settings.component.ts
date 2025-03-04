@@ -23,6 +23,7 @@ import { PaymentsComponent } from './components/payments/payments.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { StoreService } from '@services/store.service';
 import { ProgressBarComponent } from '@blocks/progress-bar/progress-bar.component';
+import { ToastManager } from '@blocks/toast/toast.manager';
 
 @Component({
   selector: 'app-setting',
@@ -56,7 +57,12 @@ export class SettingsComponent {
   public role: string = '';
   public selectedIndex = 0;
 
-  constructor(public storeService: StoreService, public router: Router,  private activatedRoute: ActivatedRoute,) {
+  constructor(
+    public storeService: StoreService,
+    public router: Router,
+    private activatedRoute: ActivatedRoute,
+    public toastManager: ToastManager,
+  ) {
     this.storeService.isLoading.set(true);
   }
 
@@ -137,6 +143,11 @@ export class SettingsComponent {
     setTimeout((_) => {
       this.storeService.isLoading.set(false);
     }, 1000)
+    this.toastManager.quickShow(
+      'Setting was saved successfully',
+      'success',
+      true
+    );
     this.router.navigateByUrl('/settings?tab=0');
   }
 }
