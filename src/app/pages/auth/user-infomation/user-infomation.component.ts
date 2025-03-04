@@ -12,9 +12,9 @@ import { TranslateModule } from '@ngx-translate/core';
 import { StoreService } from '@services/store.service';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './customer-infomation.component.html',
-  styleUrls: ['./customer-infomation.component.scss'],
+  selector: 'user-infomation',
+  templateUrl: './user-infomation.component.html',
+  styleUrls: ['./user-infomation.component.scss'],
   standalone: true,
   imports: [
     FormsModule,
@@ -25,7 +25,7 @@ import { StoreService } from '@services/store.service';
     TranslateModule,
   ],
 })
-export class CustomerInfomationComponent {
+export class UserInfomation {
   public formGroup!: FormGroup<{
     licenseNumber: FormControl<string>;
     yourname: FormControl<string>;
@@ -138,7 +138,6 @@ export class CustomerInfomationComponent {
 
   public onClickSubmit() {
     this.formGroup.markAllAsTouched();
-    console.log('this.formGroup')
     if (this.formGroup.invalid) {
       return;
     }

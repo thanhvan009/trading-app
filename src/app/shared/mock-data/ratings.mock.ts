@@ -58,6 +58,6 @@ export const mockRatingDetailData = {
     time: '2 weeks',
     cost: '$100',
     workmanship: 'Technology',
-    yourReview: 'So good, suggest to use',
+    yourReviews: 'So good, suggest to use',
     ratingNumber: '4',
 };

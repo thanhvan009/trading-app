@@ -61,7 +61,7 @@
                 }">
                   <mat-select formControlName="status" placeholder="Select your status" [(value)]="model.status"
                     (selectionChange)="changeStatus($event)">
-                    <mat-option *ngFor="let item of statuses" value="item.value">{{item.viewValue}}</mat-option>
+                    <mat-option *ngFor="let item of statuses" [value]="item.value">{{item.viewValue}}</mat-option>
                   </mat-select>
                 </mat-form-field>
                 <div class="invalid-feedback" *ngIf="formGroup.controls.status.hasError('required')">
@@ -99,7 +99,7 @@
                 }">
                   <mat-select formControlName="payment" placeholder="Select your payment" [(value)]="model.payment"
                     (selectionChange)="changeStatus($event)">
-                    <mat-option *ngFor="let item of payments" value="item.value">{{item.viewValue}}</mat-option>
+                    <mat-option *ngFor="let item of payments" [value]="item.value">{{item.viewValue}}</mat-option>
                   </mat-select>
                 </mat-form-field>
                 <div class="invalid-feedback" *ngIf="formGroup.controls.payment.hasError('required')">

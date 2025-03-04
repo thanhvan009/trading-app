@@ -19,7 +19,7 @@ export class Toast
     this.body       = body;
     this.type       = type ?? 'danger';
     this.autoHide   = autoHide;
-    this.delay      = 10000; // 10 sec
+    this.delay      = 2000; // 2 sec
 
     this.headerKey  = this.type.toUpperCase();
   }

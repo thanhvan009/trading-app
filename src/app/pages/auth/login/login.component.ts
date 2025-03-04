@@ -100,7 +100,7 @@ export class LoginComponent {
     };
 
     localStorage.setItem('token', MOCK_TOKEN);
-    if (this.formGroup.get('email')?.value === 'admin@gmail.com') {
+    if (this.formGroup.get('email')?.value === 'master@gmail.com') {
       localStorage.setItem('role', mockAdminUser.role);
       localStorage.setItem('user', JSON.stringify(mockAdminUser));
       this.router.navigate(['/dashboard']);

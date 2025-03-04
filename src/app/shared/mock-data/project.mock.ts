@@ -5,6 +5,7 @@ export interface IProject {
   owner: string;
   status: string;
   link?: string;
+  [key: string]: any;
 }
 
 export const mockProjectListData: IProject[] = [
@@ -65,6 +66,12 @@ export const mockProjectDetailData = {
   owner: 'Tyshon',
   status: 'Postpone',
   link: 'https://assistant.neurond.com/',
+  startDate: '2023/10/02',
+  endDate: '2023/08/31',
+  payment: 'Visa',
+  paymentAmount: '5',
+  warrantyStartDate: '2023/10/02',
+  warrantyEndDate: '2025/10/02',
 }
 
 export interface IDescription {

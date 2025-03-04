@@ -13,6 +13,7 @@ import { PageLayoutComponent } from '@layouts/page-layout/page-layout.component'
 import { StoreService } from '@services/store.service';
 import { MatIconModule } from '@angular/material/icon';
 import { mockRatingDetailData } from 'src/app/shared/mock-data/ratings.mock';
+import { ToastManager } from '@blocks/toast/toast.manager';
 
 @Component({
   selector: 'app-rating-detail',
@@ -54,7 +55,8 @@ export class RatingDetailComponent {
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    public storeService: StoreService
+    public storeService: StoreService,
+    public toastManager: ToastManager,
   ) {
     this.storeService.isLoading.set(true);
     this.ratingId = +this.activatedRoute.snapshot.params['id'];
@@ -129,6 +131,7 @@ export class RatingDetailComponent {
     this.router.navigate(['/ratings']);
   }
   public onClickSubmit() {
+    this.toastManager.quickShow('Rating was saved successfully', 'success', true);
     this.router.navigate(['/ratings']);
   }
 }

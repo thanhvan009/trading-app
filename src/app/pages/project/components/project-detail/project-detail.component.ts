@@ -1,4 +1,4 @@
-import { NgClass, NgFor } from '@angular/common';
+import { NgClass, NgFor, formatDate } from '@angular/common';
 import { NgIf } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormGroup } from '@angular/forms';
@@ -19,11 +19,22 @@ import { MatIconModule } from '@angular/material/icon';
 import moment from 'moment';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { IDescription, mockDescriptionsData, mockProjectDetailData } from 'src/app/shared/mock-data/project.mock';
+import {
+  IDescription,
+  mockDescriptionsData,
+  mockProjectDetailData,
+} from 'src/app/shared/mock-data/project.mock';
 import { BreadcrumbService } from '@services/breadcrumb.service';
-import { paymentsData, statusesApprovalData, statusesData, typesData } from 'src/app/shared/constants/constants.data';
+import {
+  paymentsData,
+  statusesApprovalData,
+  statusesData,
+  typesData,
+} from 'src/app/shared/constants/constants.data';
 import { MatDialog } from '@angular/material/dialog';
 import { AgreementDetail } from '../agreement-detail/agreement-detail.component';
+import { Alert } from 'src/app/shared/components/alert/alert.component';
+import { ToastManager } from '@blocks/toast/toast.manager';
 @Component({
   selector: 'app-project-detail',
   templateUrl: './project-detail.component.html',
@@ -43,10 +54,9 @@ import { AgreementDetail } from '../agreement-detail/agreement-detail.component'
     ProgressBarComponent,
     MatIconModule,
     MatSelectModule,
-    MatFormFieldModule
+    MatFormFieldModule,
   ],
 })
-
 export class ProjectDetailComponent {
   displayedColumns: string[] = [
     'description',
@@ -74,7 +84,6 @@ export class ProjectDetailComponent {
   private projectId: number;
   public title = '';
   model: any = {};
-
   types: any[] = typesData;
   payments: any[] = paymentsData;
   statuses: any[] = statusesData;
@@ -86,6 +95,7 @@ export class ProjectDetailComponent {
     private activatedRoute: ActivatedRoute,
     public storeService: StoreService,
     private breadcrumbService: BreadcrumbService,
+    private toastManager: ToastManager
   ) {
     this.storeService.isLoading.set(true);
     this.projectId = +this.activatedRoute.snapshot.params['id'];
@@ -128,7 +138,7 @@ export class ProjectDetailComponent {
       ),
       startDate: new FormControl<string | null>(
         {
-          value: this.model?.startDate,
+          value: formatDate(this.model.startDate ?? null, 'yyyy-MM-dd', 'en'),
           disabled: false,
         },
         { validators: [Validators.required], nonNullable: true }
@@ -156,14 +166,22 @@ export class ProjectDetailComponent {
       ),
       warrantyStartDate: new FormControl<string | null>(
         {
-          value: this.model?.warrantyStartDate,
+          value: formatDate(
+            this.model.warrantyStartDate ?? null,
+            'yyyy-MM-dd',
+            'en'
+          ),
           disabled: false,
         },
         { validators: [Validators.required], nonNullable: true }
       ),
       warrantyEndDate: new FormControl<string | null>(
         {
-          value: this.model?.warrantyEndDate,
+          value: formatDate(
+            this.model.warrantyEndDate ?? null,
+            'yyyy-MM-dd',
+            'en'
+          ),
           disabled: false,
         },
         { validators: [Validators.required], nonNullable: true }
@@ -173,24 +191,24 @@ export class ProjectDetailComponent {
 
   changeStatus(e: any) {
     this.model.status = e.value;
-    this.formGroup.controls.status.setValue(e.value)
+    this.formGroup.controls.status.setValue(e.value);
   }
 
   changeType(e: any) {
     this.model.type = e.value;
-    this.formGroup.controls.type.setValue(e.value)
+    this.formGroup.controls.type.setValue(e.value);
   }
 
   changeApproval(e: any, type: string, index: number) {
-    console.log(e.value)
+    console.log(e.value);
     this.dataSource.data[index] = {
       ...this.dataSource.data[index],
       [type]: e.value,
-    }
+    };
 
     this.dataSource = new MatTableDataSource<IDescription>([
       ...this.dataSource.data,
-    ])
+    ]);
   }
 
   onEditRow(element: any, index: number) {
@@ -208,10 +226,10 @@ export class ProjectDetailComponent {
     let data = null;
     if (this.projectId) {
       this.model = {
-        ...mockProjectDetailData
+        ...mockProjectDetailData,
       };
       data = [
-        {label: 'Projects',},
+        { label: 'Projects' },
         {
           label: 'Edit Project',
         },
@@ -224,7 +242,13 @@ export class ProjectDetailComponent {
         owner: '',
         status: null,
         link: '',
-      }
+        startDate: '',
+        endDate: '',
+        payment: '',
+        paymentAmount: '',
+        warrantyStartDate: '',
+        warrantyEndDate: '',
+      };
       data = [
         {
           label: 'Projects',
@@ -235,15 +259,14 @@ export class ProjectDetailComponent {
       ];
     }
     this.breadcrumbService.updateBreadcrumb(data);
+
     setTimeout((_) => {
       this.storeService.isLoading.set(false);
       this.initForm();
-    }, 1000)
+    }, 300);
   }
 
-  public ngAfterView(): void {
-    // 
-  }
+  public ngAfterView(): void {}
 
   onCancel() {
     this.router.navigate(['/projects']);
@@ -254,6 +277,7 @@ export class ProjectDetailComponent {
     if (this.formGroup.invalid) {
       return;
     }
+    this.toastManager.quickShow('Project was saved successfully', 'success', true);
     this.router.navigate(['/projects']);
   }
 
@@ -265,11 +289,11 @@ export class ProjectDetailComponent {
       tradeApproval: '',
       customerApproval: '',
       ajudicatorApproval: '',
-      editing: true
+      editing: true,
     };
     this.dataSource = new MatTableDataSource<IDescription>([
       ...this.dataSource.data,
-      newRow
-    ])
+      newRow,
+    ]);
   }
 }
