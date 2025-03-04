@@ -56,7 +56,7 @@ export class RatingDetailComponent {
     private router: Router,
     private activatedRoute: ActivatedRoute,
     public storeService: StoreService,
-    public toastManager: ToastManager,
+    public toastManager: ToastManager
   ) {
     this.storeService.isLoading.set(true);
     this.ratingId = +this.activatedRoute.snapshot.params['id'];
@@ -65,7 +65,7 @@ export class RatingDetailComponent {
   ngOnInit() {
     if (this.ratingId) {
       this.model = {
-        ...mockRatingDetailData
+        ...mockRatingDetailData,
       };
       if (this.ratingId) {
         this.selectedIndex = this.model.ratingNumber;
@@ -120,7 +120,6 @@ export class RatingDetailComponent {
         { validators: [Validators.required], nonNullable: true }
       ),
     });
-
   }
 
   onClickStar(index: number) {
@@ -131,7 +130,11 @@ export class RatingDetailComponent {
     this.router.navigate(['/ratings']);
   }
   public onClickSubmit() {
-    this.toastManager.quickShow('Rating was saved successfully', 'success', true);
+    this.toastManager.quickShow(
+      'Rating was saved successfully',
+      'success',
+      true
+    );
     this.router.navigate(['/ratings']);
   }
 }

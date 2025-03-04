@@ -66,7 +66,7 @@ export class RoleSelectionComponent {
 
   onSelectRole(role: string) {
     localStorage.setItem('role', role);
-    this.router.navigate(['/auth/customer-infomation']);
+    this.router.navigate(['/auth/user-information']);
   }
 
   public async onClickSubmit(): Promise<void> {

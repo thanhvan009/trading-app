@@ -12,9 +12,9 @@ import { TranslateModule } from '@ngx-translate/core';
 import { StoreService } from '@services/store.service';
 
 @Component({
-  selector: 'user-infomation',
-  templateUrl: './user-infomation.component.html',
-  styleUrls: ['./user-infomation.component.scss'],
+  selector: 'user-information',
+  templateUrl: './user-information.component.html',
+  styleUrls: ['./user-information.component.scss'],
   standalone: true,
   imports: [
     FormsModule,
@@ -25,7 +25,7 @@ import { StoreService } from '@services/store.service';
     TranslateModule,
   ],
 })
-export class UserInfomation {
+export class UserInformation {
   public formGroup!: FormGroup<{
     licenseNumber: FormControl<string>;
     yourname: FormControl<string>;

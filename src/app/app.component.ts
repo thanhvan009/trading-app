@@ -37,11 +37,11 @@ export class AppComponent implements OnInit {
     }
 
     if (!localStorage.getItem('user')) {
-      this.router.navigate(['/auth/customer-infomation']);
+      this.router.navigate(['/auth/user-information']);
       return;
     }
 
-    if (location.pathname == '/auth/role-selection' || location.pathname == '/auth/customer-infomation' || location.pathname == '/auth/forgot-password') {
+    if (location.pathname == '/auth/role-selection' || location.pathname == '/auth/user-infomation' || location.pathname == '/auth/forgot-password') {
       this.router.navigate(['/dashboard']);
       return;
     }
