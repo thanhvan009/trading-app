@@ -23,10 +23,6 @@ export class AppComponent implements OnInit {
   public ngOnInit(): void {
     const currentUrl = location.pathname;
     if (!localStorage.getItem('token')) {
-      if (location.pathname == '/auth/forgot-password') {
-        this.router.navigate([currentUrl]);
-        return;
-      }
       this.router.navigate(['/auth/login']);
       return;
     }
@@ -40,12 +36,5 @@ export class AppComponent implements OnInit {
       this.router.navigate(['/auth/user-information']);
       return;
     }
-
-    if (location.pathname == '/auth/role-selection' || location.pathname == '/auth/user-infomation' || location.pathname == '/auth/forgot-password') {
-      this.router.navigate(['/dashboard']);
-      return;
-    }
-
-    this.router.navigate([currentUrl]);
   }
 }
