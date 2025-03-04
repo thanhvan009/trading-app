@@ -145,7 +145,7 @@ export class ProjectDetailComponent {
       ),
       endDate: new FormControl<string | null>(
         {
-          value: this.model?.endDate,
+          value: formatDate(this.model.endDate ?? null, 'yyyy-MM-dd', 'en'),
           disabled: false,
         },
         { validators: [Validators.required], nonNullable: true }
