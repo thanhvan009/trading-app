@@ -15,26 +15,12 @@
   margin-bottom: 50px;
 }
 
-.form-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 30px;
-}
-
-.info-left {
-  width: 50%;
-  padding-right: 30px;
-}
-
-.info-right {
-  width: 50%;
-  padding-left: 30px;
-}
-
-form {
-  select,
-  input {
+.agreement-table {
+  .table-label {
+    color: #232323;
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 10px;
   }
 }
 
@@ -68,51 +54,93 @@ form {
   }
 }
 
-table {
-  padding: 30px 60px 160px;
-  margin-bottom: 0;
-}
-
 .action-buttons {
   display: flex;
   justify-content: end;
-  button + button {
+
+  button+button {
     margin-left: 15px;
   }
 }
 
 table {
-  textarea {
-    height: 43px;
+  padding: 30px 60px 160px;
+  margin-bottom: 0;
+}
+
+::ng-deep {
+  table {
+    textarea {
+      height: 52px;
+    }
+
+    td {
+
+      // Start of approval dropdown ---
+      .mdc-text-field--outlined .mat-mdc-form-field-infix,
+      .mdc-text-field--no-label .mat-mdc-form-field-infix {
+        padding: 2px 0 !important;
+      }
+
+      .mat-mdc-form-field {
+
+        width: 123px;
+        height: 32px;
+        border-radius: 50px;
+
+      }
+
+      .mat-mdc-text-field-wrapper {
+        border-radius: 50px !important;
+      }
+
+      .mat-mdc-select-min-line {
+        font-size: 13px;
+        font-weight: 500;
+      }
+
+      .Declined {
+        .mat-mdc-select-min-line {
+          color: #EB5757;
+        }
+      }
+
+      .To-do {
+        .mat-mdc-select-min-line {
+          color: #DFEAF2;
+        }
+      }
+
+      .Completed {
+        .mat-mdc-select-min-line {
+          color: #27AE60;
+        }
+      }
+
+      // --- End of approval dropdown
+    }
+
+    button.edit-button {
+      padding: 0;
+      border: none;
+      background: transparent;
+      width: 24px;
+      height: 24px;
+
+      img {
+        width: 100%;
+        height: auto;
+      }
+    }
   }
 }
 
-table {
-  .description-col {
-    width: 48%;
-  }
-  .createdBy-col {
-    width: 13%;
-  }
-
-  .date-col {
-    width: 14%;
-  }
-
-  .trade-approval-col {
-    width: 13%;
-  }
-
-  .customer-approval-col {
-    width: 13%;
-  }
-}
-
-@media screen and (min-width: 768px) {
+// Column Width
   table {
     .description-col {
-      width: 40%;
+      width: 25%;
     }
+
     .createdBy-col {
       width: 15%;
     }
@@ -122,11 +150,18 @@ table {
     }
 
     .trade-approval-col {
-      width: 15%;
+      width: 10%;
     }
 
     .customer-approval-col {
       width: 15%;
     }
+
+    .ajudicator-approval-col {
+      width: 15%;
+    }
+
+    .edit-row-col {
+      width: 5%;
+    }
   }
-}

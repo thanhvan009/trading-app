@@ -12,7 +12,7 @@ export const routes: Routes = [
       breadcrumb: [
         {
           label: 'Dashboard',
-          linkL: 'dashboard',
+          link: 'dashboard',
         }
       ]
     },
@@ -25,7 +25,7 @@ export const routes: Routes = [
       breadcrumb: [
         {
           label: 'Projects',
-          linkL: 'projects',
+          link: 'projects',
         }
       ]
     },
@@ -58,7 +58,7 @@ export const routes: Routes = [
       breadcrumb: [
         {
           label: 'Ratings',
-          linkL: 'ratings',
+          link: 'ratings',
         }
       ]
     }
@@ -68,8 +68,12 @@ export const routes: Routes = [
     data: {
       breadcrumb: [
         {
-          label: 'Rating Details',
-          linkL: 'rating-detail',
+          label: 'Ratings',
+          link: 'rating-detail',
+        },
+        {
+          label: 'Edit Rating',
+          link: 'rating-detail',
         }
       ]
     },
@@ -77,6 +81,21 @@ export const routes: Routes = [
       import(
         './pages/rating/components/rating-detail/rating-detail.component'
       ).then((m) => m.RatingDetailComponent),
+  },
+  {
+    path: 'chats',
+    loadComponent: () =>
+      import('./pages/settings/settings.component').then(
+        (m) => m.SettingsComponent
+      ),
+    data: {
+      breadcrumb: [
+        {
+          label: 'Chats',
+          link: 'chats',
+        }
+      ]
+    }
   },
   {
     path: 'settings',
@@ -88,7 +107,7 @@ export const routes: Routes = [
       breadcrumb: [
         {
           label: 'Settings',
-          linkL: 'settings',
+          link: 'settings',
         }
       ]
     }

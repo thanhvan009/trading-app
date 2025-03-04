@@ -19,8 +19,8 @@ export const routes : Routes = [
         loadComponent : () => import('./role-selection/role-selection.component').then(m => m.RoleSelectionComponent),
       },
       {
-        path          : 'customer-infomation',
-        loadComponent : () => import('./customer-infomation/customer-infomation.component').then(m => m.CustomerInfomationComponent),
+        path          : 'user-information',
+        loadComponent : () => import('./user-information/user-information.component').then(m => m.UserInformation),
       },
       {
         path          : 'sign-up',

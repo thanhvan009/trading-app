@@ -76,7 +76,7 @@
             </a>
           </li>
 
-          <li class="nav-item">
+          <li *ngIf="role.toLowerCase() == 'trade'" class="nav-item">
             <a
               class="nav-link"
               [ngClass]="{ active: breadcrumbText.toLowerCase() == 'ratings' }"
@@ -96,6 +96,29 @@
                 alt="rating-icon"
               />
               <span>{{ "Ratings" | translate }}</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              [ngClass]="{ active: breadcrumbText.toLowerCase() == 'chats' }"
+              [routerLink]="['/chats']"
+              [routerLinkActive]="['active']"
+            >
+              <img
+                *ngIf="breadcrumbText.toLowerCase() != 'chats'"
+                [src]="'assets/img/project/chats.png'"
+                class="chats-icon mx-3"
+                alt="chats-icon"
+              />
+              <img
+                *ngIf="breadcrumbText.toLowerCase() == 'chats'"
+                [src]="'assets/img/project/chats-active.png'"
+                class="chats-icon mx-3"
+                alt="chats-icon"
+              />
+              <span>{{ "Chats" | translate }}</span>
             </a>
           </li>
 
@@ -127,8 +150,27 @@
   </nav>
   <div class="container-right">
     <div class="menu-top" ngbDropdown>
-      <div class="breadcrumb">{{ breadcrumbText }}</div>
+      <div class="breadcrumb">
+        <div
+          class="breadcrumb-1"
+          [ngClass]="{
+            'has-child': breadcrumbData?.length && breadcrumbData[1]
+          }"
+        >
+          {{ breadcrumbData?.length && breadcrumbData[0]?.label }}
+        </div>
+        <div
+          *ngIf="breadcrumbData?.length && breadcrumbData[1]"
+          class="breadcrumb-2"
+        >
+          <div class="next-icon">></div>
+          <div class="text">
+            {{ breadcrumbData[1]?.label }}
+          </div>
+        </div>
+      </div>
       <div class="profile-item">
+        <span class="version">v1.0.0</span>
         <img
           [src]="'assets/img/project/notification-icon.png'"
           class="notification-icon mx-4"

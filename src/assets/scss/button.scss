@@ -5,6 +5,10 @@ button {
         opacity: 0.8;
     }
 
+    &:focus-visible {
+        outline: none;
+    }
+
     &.primary {
         color: #fff;
         border: none;

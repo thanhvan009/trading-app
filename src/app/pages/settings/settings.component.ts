@@ -60,7 +60,7 @@ export class SettingsComponent {
     this.storeService.isLoading.set(true);
   }
 
-  private initFormGroup(): void {
+  private initForm(): void {
     this.formGroup = new FormGroup({
       yourname: new FormControl<string>(
         {
@@ -81,7 +81,7 @@ export class SettingsComponent {
       ),
       dateOfBirth: new FormControl<any>(
         {
-          value: formatDate(this.model.dateOfBirth, 'yyyy-MM-dd', 'en'),
+          value: formatDate(this.model.dateOfBirth ?? null, 'yyyy-MM-dd', 'en'),
           disabled: false,
         },
         { validators: [Validators.required], nonNullable: true }
@@ -116,7 +116,7 @@ export class SettingsComponent {
     }, 1000)
     this.role = localStorage.getItem('role') ?? '';
     this.model = JSON.parse(localStorage.getItem('user') ?? '');
-    this.initFormGroup();
+    
   }
 
   onClickTab(index: number) {
@@ -124,6 +124,7 @@ export class SettingsComponent {
   }
 
   ngAfterViewInit() {
+    this.initForm();
     this.selectedIndex = this.activatedRoute.snapshot.queryParams['tab'] || 0;
   }
 

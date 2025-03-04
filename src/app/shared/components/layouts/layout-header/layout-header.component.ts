@@ -35,6 +35,8 @@ export class LayoutHeaderComponent implements OnInit {
   public appName: string = environment.appName;
   public isMenuCollapsed: boolean = true;
   public breadcrumbText: string = '';
+  public breadcrumbData: any = [];
+  public role = '';
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
@@ -49,11 +51,11 @@ export class LayoutHeaderComponent implements OnInit {
     }
     this.breadcrumbService.newBreadCrumbs.subscribe((data: any) => {
       if (data?.length) {
-        this.breadcrumbText =
-          data[0].label +
-          (data[1] && data[1]?.label ? '  |  ' + data[1]?.label : '');
+        this.breadcrumbData = data;
       }
     });
+
+    this.role = localStorage.getItem('role') ?? '';
   }
 
   public async onClickLogout(): Promise<void> {

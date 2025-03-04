@@ -13,6 +13,7 @@ import { PageLayoutComponent } from '@layouts/page-layout/page-layout.component'
 import { StoreService } from '@services/store.service';
 import { MatIconModule } from '@angular/material/icon';
 import { mockRatingDetailData } from 'src/app/shared/mock-data/ratings.mock';
+import { ToastManager } from '@blocks/toast/toast.manager';
 
 @Component({
   selector: 'app-rating-detail',
@@ -41,9 +42,12 @@ export class RatingDetailComponent {
   selectedIndex: number = 0;
   public appName: string = environment.appName;
   public formGroup!: FormGroup<{
-    yourReview: FormControl<string | null>;
-    projectName: FormControl<string | null>;
-    ratingNumber: FormControl<number | null>;
+    tradeName: FormControl<string | null>;
+    ratingNumber: FormControl<string | null>;
+    time: FormControl<string | null>;
+    cost: FormControl<string | null>;
+    workmanship: FormControl<string | null>;
+    yourReviews: FormControl<string | null>;
   }>;
   private ratingId: number;
   model: any = {};
@@ -51,7 +55,8 @@ export class RatingDetailComponent {
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    public storeService: StoreService
+    public storeService: StoreService,
+    public toastManager: ToastManager
   ) {
     this.storeService.isLoading.set(true);
     this.ratingId = +this.activatedRoute.snapshot.params['id'];
@@ -60,7 +65,7 @@ export class RatingDetailComponent {
   ngOnInit() {
     if (this.ratingId) {
       this.model = {
-        ...mockRatingDetailData
+        ...mockRatingDetailData,
       };
       if (this.ratingId) {
         this.selectedIndex = this.model.ratingNumber;
@@ -68,13 +73,12 @@ export class RatingDetailComponent {
     } else {
       this.model = {
         ratingId: '',
-        projectId: '',
-        projectName: '',
-        type: '',
-        owner: '',
-        rateStatus: '',
-        yourReview: '',
-        ratingNumber: 0,
+        tradeName: '',
+        time: '',
+        cost: '',
+        workmanship: '',
+        yourReviews: '',
+        ratingNumber: '0',
       };
     }
     this.initForm();
@@ -82,26 +86,40 @@ export class RatingDetailComponent {
 
   private initForm(): void {
     this.formGroup = new FormGroup({
-      projectName: new FormControl<string | null>(
+      tradeName: new FormControl<string | null>(
         {
-          value: this.model.projectName,
+          value: this.model.tradeName,
           disabled: false,
         },
         { validators: [Validators.required], nonNullable: true }
       ),
-      yourReview: new FormControl<string | null>(
-        {
-          value: this.model.yourReview,
-          disabled: false,
-        },
-        { validators: [Validators.required], nonNullable: true }
-      ),
-      ratingNumber: new FormControl<number | null>({
+      time: new FormControl<string>({
+        value: this.model.time,
+        disabled: false,
+      }),
+      cost: new FormControl<string | null>({
+        value: this.model.cost,
+        disabled: false,
+      }),
+      ratingNumber: new FormControl<string | null>({
         value: this.model.ratingNumber,
         disabled: false,
       }),
+      workmanship: new FormControl<string | null>(
+        {
+          value: this.model.tradeName,
+          disabled: false,
+        },
+        { validators: [Validators.required], nonNullable: true }
+      ),
+      yourReviews: new FormControl<string | null>(
+        {
+          value: this.model.yourReviews,
+          disabled: false,
+        },
+        { validators: [Validators.required], nonNullable: true }
+      ),
     });
-
   }
 
   onClickStar(index: number) {
@@ -112,6 +130,11 @@ export class RatingDetailComponent {
     this.router.navigate(['/ratings']);
   }
   public onClickSubmit() {
+    this.toastManager.quickShow(
+      'Rating was saved successfully',
+      'success',
+      true
+    );
     this.router.navigate(['/ratings']);
   }
 }

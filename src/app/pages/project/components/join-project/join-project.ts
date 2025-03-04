@@ -8,15 +8,15 @@ import {
 import { Component, inject } from '@angular/core';
 
 @Component({
-  selector: 'dialog-join-project',
-  templateUrl: './dialog-join-project.html',
+  selector: 'join-project',
+  templateUrl: './join-project.html',
   standalone: true,
-  styleUrls: ['./dialog-join-project.scss'],
+  styleUrls: ['./join-project.scss'],
   imports: [MatDialogTitle, MatDialogContent],
 })
-export class DialogJoinProject {
+export class JoinProjectModal {
   data = inject(MAT_DIALOG_DATA);
-  constructor(public dialogRef: MatDialogRef<DialogJoinProject>) {}
+  constructor(public dialogRef: MatDialogRef<JoinProjectModal>) {}
 
   onClose() {
     this.dialogRef.close();
