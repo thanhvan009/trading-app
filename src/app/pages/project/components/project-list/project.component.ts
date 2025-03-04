@@ -54,7 +54,7 @@ export class ProjectComponent implements OnInit {
 
   openModal() {
     this.dialog.open(JoinProjectModal, {
-      width: '100%',
+      width: '800px',
       panelClass: 'trade-modal',
       data: {
         title: 'Join Project',
