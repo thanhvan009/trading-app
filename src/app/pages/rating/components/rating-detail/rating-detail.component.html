@@ -4,22 +4,21 @@
       <h1 class="title">Rating your projects</h1>
       <form [formGroup]="formGroup">
         <div class="row">
-          <div class="mb-5 col-lg-7 col-md-10 col-sm-12 col-xs-12">
-            <label for="name" class="form-label text-start w-100">Project Name</label>
-            <input type="text" class="form-control" id="projectName" formControlName="projectName"
-              placeholder="Enter your project name" [ngClass]="{
+          <!-- Trade Name -->
+          <div class="mb-5 col-lg-5 col-md-5 col-sm-12 col-xs-12">
+            <label for="name" class="form-label text-start w-100">Trade Name</label>
+            <input type="text" class="form-control" id="projectName" formControlName="tradeName"
+              placeholder="Enter your trade name" [ngClass]="{
                 'is-invalid':
-                  formGroup.controls.projectName.errors &&
-                  formGroup.controls.projectName.touched
+                  formGroup.controls.tradeName.errors &&
+                  formGroup.controls.tradeName.touched
               }" />
-            <!-- NOTE Errors -->
-            <div class="invalid-feedback" *ngIf="formGroup.controls.projectName.hasError('required')">
+            <div class="invalid-feedback" *ngIf="formGroup.controls.tradeName.hasError('required')">
               {{ "FIELD_REQUIRED" | translate }}
             </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="mb-5  -lg-9 col-md-10 col-sm-12 col-xs-12">
+          <!-- Ratings / Rating Number -->
+          <div class="mb-5 offset-lg-2 offset-md-2 col-lg-5 col-md-5 col-sm-12 col-xs-12">
             <label for="ratings" class="form-label text-start w-100">Ratings</label>
             <div class="star-rating">
               <button *ngFor="let index of [1, 2, 3, 4, 5]" (click)="onClickStar(index)">
@@ -32,28 +31,70 @@
                   <img [src]="'assets/img/project/empty-star.png'" alt="star" class="">
                 </ng-template>
               </button>
-
             </div>
           </div>
         </div>
         <div class="row">
-          <div class="mb-5  col-lg-7 col-md-10 col-sm-12 col-xs-12">
-            <label for="yourReview" class="form-label text-start w-100">Your Review</label>
-
-            <textarea type="text" class="form-control" id="yourReview" formControlName="yourReview"
-              placeholder="Enter your review" [ngClass]="{
+          <!-- Time -->
+          <div class="mb-5 col-lg-5 col-md-5 col-sm-12 col-xs-12">
+            <label for="name" class="form-label text-start w-100">Trade Name</label>
+            <input type="text" class="form-control" id="time" formControlName="time" placeholder="Enter your time"
+              [ngClass]="{
                 'is-invalid':
-                  formGroup.controls.yourReview.errors &&
-                  formGroup.controls.yourReview.touched
-              }"></textarea>
-            <!-- NOTE Errors -->
-            <div class="invalid-feedback" *ngIf="formGroup.controls.yourReview.hasError('required')">
+                  formGroup.controls.time.errors &&
+                  formGroup.controls.time.touched
+              }" />
+            <div class="invalid-feedback" *ngIf="formGroup.controls.time.hasError('required')">
+              {{ "FIELD_REQUIRED" | translate }}
+            </div>
+          </div>
+          <!-- Cost -->
+          <div class="mb-5 offset-lg-2 offset-md-2 col-lg-5 col-md-5 col-sm-12 col-xs-12">
+            <label for="name" class="form-label text-start w-100">Cost</label>
+            <input type="text" class="form-control" id="cost" formControlName="cost" placeholder="Enter your cost"
+              [ngClass]="{
+                'is-invalid':
+                  formGroup.controls.cost.errors &&
+                  formGroup.controls.cost.touched
+              }" />
+            <div class="invalid-feedback" *ngIf="formGroup.controls.cost.hasError('required')">
               {{ "FIELD_REQUIRED" | translate }}
             </div>
           </div>
         </div>
         <div class="row">
-          <div class="mb-5  col-lg-7 col-md-10 col-sm-12 col-xs-12">
+          <!-- Workmanship -->
+          <div class="mb-5 col-lg-5 col-md-5 col-sm-12 col-xs-12">
+            <label for="workmanship" class="form-label text-start w-100">Workmanship</label>
+
+            <input type="text" class="form-control" id="workmanship" formControlName="workmanship"
+              placeholder="Enter your review" [ngClass]="{
+                'is-invalid':
+                  formGroup.controls.workmanship.errors &&
+                  formGroup.controls.workmanship.touched
+              }" />
+            <div class="invalid-feedback" *ngIf="formGroup.controls.workmanship.hasError('required')">
+              {{ "FIELD_REQUIRED" | translate }}
+            </div>
+          </div>
+          <!-- Your Reviews -->
+          <div class="mb-5 offset-lg-2 offset-md-2 col-lg-5 col-md-5 col-sm-12 col-xs-12">
+            <label for="yourReviews" class="form-label text-start w-100">Your Reviews</label>
+
+            <textarea type="text" class="form-control" id="yourReviews" formControlName="yourReviews"
+              placeholder="Enter your review" [ngClass]="{
+                'is-invalid':
+                  formGroup.controls.yourReviews.errors &&
+                  formGroup.controls.yourReviews.touched
+              }"></textarea>
+            <div class="invalid-feedback" *ngIf="formGroup.controls.yourReviews.hasError('required')">
+              {{ "FIELD_REQUIRED" | translate }}
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          
+          <div class="mb-5 offset-lg-6 offset-md-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="action-buttons mb-5">
               <button (click)="onCancel()" class="secondary">Cancel</button>
               <button (click)="onClickSubmit()" type="submit" class="primary" [disabled]="!formGroup.valid">

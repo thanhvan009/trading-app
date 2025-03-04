@@ -41,9 +41,12 @@ export class RatingDetailComponent {
   selectedIndex: number = 0;
   public appName: string = environment.appName;
   public formGroup!: FormGroup<{
-    yourReview: FormControl<string | null>;
-    projectName: FormControl<string | null>;
-    ratingNumber: FormControl<number | null>;
+    tradeName: FormControl<string | null>;
+    ratingNumber: FormControl<string | null>;
+    time: FormControl<string | null>;
+    cost: FormControl<string | null>;
+    workmanship: FormControl<string | null>;
+    yourReviews: FormControl<string | null>;
   }>;
   private ratingId: number;
   model: any = {};
@@ -68,13 +71,12 @@ export class RatingDetailComponent {
     } else {
       this.model = {
         ratingId: '',
-        projectId: '',
-        projectName: '',
-        type: '',
-        owner: '',
-        rateStatus: '',
-        yourReview: '',
-        ratingNumber: 0,
+        tradeName: '',
+        time: '',
+        cost: '',
+        workmanship: '',
+        yourReviews: '',
+        ratingNumber: '0',
       };
     }
     this.initForm();
@@ -82,24 +84,39 @@ export class RatingDetailComponent {
 
   private initForm(): void {
     this.formGroup = new FormGroup({
-      projectName: new FormControl<string | null>(
+      tradeName: new FormControl<string | null>(
         {
-          value: this.model.projectName,
+          value: this.model.tradeName,
           disabled: false,
         },
         { validators: [Validators.required], nonNullable: true }
       ),
-      yourReview: new FormControl<string | null>(
-        {
-          value: this.model.yourReview,
-          disabled: false,
-        },
-        { validators: [Validators.required], nonNullable: true }
-      ),
-      ratingNumber: new FormControl<number | null>({
+      time: new FormControl<string>({
+        value: this.model.time,
+        disabled: false,
+      }),
+      cost: new FormControl<string | null>({
+        value: this.model.cost,
+        disabled: false,
+      }),
+      ratingNumber: new FormControl<string | null>({
         value: this.model.ratingNumber,
         disabled: false,
       }),
+      workmanship: new FormControl<string | null>(
+        {
+          value: this.model.tradeName,
+          disabled: false,
+        },
+        { validators: [Validators.required], nonNullable: true }
+      ),
+      yourReviews: new FormControl<string | null>(
+        {
+          value: this.model.yourReviews,
+          disabled: false,
+        },
+        { validators: [Validators.required], nonNullable: true }
+      ),
     });
 
   }

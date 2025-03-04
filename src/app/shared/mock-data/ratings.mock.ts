@@ -54,10 +54,10 @@ export const mockRatingData: IRating[] = [
 export const mockRatingDetailData = {
     ratingId: 12345,
     projectId: 12548796,
-    projectName: 'Spotify Subscription',
-    type: 'Shopping',
-    owner: 'Tyshon',
-    rateStatus: 'Rated',
+    tradeName: 'Spotify Subscription',
+    time: '2 weeks',
+    cost: '$100',
+    workmanship: 'Technology',
     yourReview: 'So good, suggest to use',
-    ratingNumber: 4,
+    ratingNumber: '4',
 };
