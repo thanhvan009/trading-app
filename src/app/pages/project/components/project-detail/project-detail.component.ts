@@ -138,14 +138,14 @@ export class ProjectDetailComponent {
       ),
       startDate: new FormControl<string | null>(
         {
-          value: formatDate(this.model.startDate ?? null, 'yyyy-MM-dd', 'en'),
+          value: this.model.startDate ? formatDate(this.model.startDate, 'yyyy-MM-dd', 'en') : '',
           disabled: false,
         },
         { validators: [Validators.required], nonNullable: true }
       ),
       endDate: new FormControl<string | null>(
         {
-          value: formatDate(this.model.endDate ?? null, 'yyyy-MM-dd', 'en'),
+          value: this.model.endDate ? formatDate(this.model.endDate, 'yyyy-MM-dd', 'en') : '',
           disabled: false,
         },
         { validators: [Validators.required], nonNullable: true }
@@ -166,22 +166,22 @@ export class ProjectDetailComponent {
       ),
       warrantyStartDate: new FormControl<string | null>(
         {
-          value: formatDate(
-            this.model.warrantyStartDate ?? null,
+          value: this.model.warrantyStartDate ? formatDate(
+            this.model.warrantyStartDate,
             'yyyy-MM-dd',
             'en'
-          ),
+          ): '',
           disabled: false,
         },
         { validators: [Validators.required], nonNullable: true }
       ),
       warrantyEndDate: new FormControl<string | null>(
         {
-          value: formatDate(
-            this.model.warrantyEndDate ?? null,
+          value: this.model.warrantyEndDate ? formatDate(
+            this.model.warrantyEndDate,
             'yyyy-MM-dd',
             'en'
-          ),
+          ) : '',
           disabled: false,
         },
         { validators: [Validators.required], nonNullable: true }
