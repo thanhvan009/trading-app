@@ -20,13 +20,18 @@ import { MatIconModule } from '@angular/material/icon';
   templateUrl: './agreement-detail.component.html',
   standalone: true,
   styleUrls: ['./agreement-detail.component.scss'],
-  imports: [MatDialogTitle, MatDialogContent, MatTableModule, MatFormFieldModule, NgClass,
+  imports: [
+    // MatDialogTitle,
+    // MatDialogContent,
+    MatTableModule,
+    MatFormFieldModule,
+    NgClass,
     NgIf,
     NgFor, MatSelectModule, MatIconModule],
 })
 export class AgreementDetail {
-  data = inject(MAT_DIALOG_DATA);
-  constructor(public dialogRef: MatDialogRef<AgreementDetail>) { }
+  // data = inject(MAT_DIALOG_DATA);
+  constructor() { }
   statusesApproval: any[] = statusesApprovalData;
   displayedColumns: string[] = [
     'description',
@@ -47,7 +52,7 @@ export class AgreementDetail {
   dataSource: any = new MatTableDataSource<ITask>(mockTasksData);
   attachmentsDataSource: any = new MatTableDataSource<any>(mockAttachmentsData);
   onClose() {
-    this.dialogRef.close();
+    // this.dialogRef.close();
   }
 
   addRow() {

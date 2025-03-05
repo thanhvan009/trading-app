@@ -33,7 +33,6 @@ import {
 } from 'src/app/shared/constants/constants.data';
 import { MatDialog } from '@angular/material/dialog';
 import { AgreementDetail } from '../agreement-detail/agreement-detail.component';
-import { Alert } from 'src/app/shared/components/alert/alert.component';
 import { ToastManager } from '@blocks/toast/toast.manager';
 @Component({
   selector: 'app-project-detail',
@@ -55,6 +54,7 @@ import { ToastManager } from '@blocks/toast/toast.manager';
     MatIconModule,
     MatSelectModule,
     MatFormFieldModule,
+    AgreementDetail
   ],
 })
 export class ProjectDetailComponent {
@@ -67,6 +67,8 @@ export class ProjectDetailComponent {
     'ajudicatorApproval',
     'editRow',
   ];
+  columnsToDisplayWithExpand = [...this.displayedColumns, 'expand'];
+  expandedElement: any;
   dataSource: any = new MatTableDataSource<IDescription>(mockDescriptionsData);
   public appName: string = environment.appName;
   public formGroup!: FormGroup<{
@@ -104,6 +106,15 @@ export class ProjectDetailComponent {
     } else {
       this.title = 'Create Project';
     }
+  }
+   /** Checks whether an element is expanded. */
+   isExpanded(element: any) {
+    return this.expandedElement === element;
+  }
+
+  /** Toggles the expanded state of an element. */
+  toggle(element: any) {
+    this.expandedElement = this.isExpanded(element) ? null : element;
   }
 
   private initForm(): void {
