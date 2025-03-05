@@ -85,8 +85,8 @@ export const routes: Routes = [
   {
     path: 'chats',
     loadComponent: () =>
-      import('./pages/settings/settings.component').then(
-        (m) => m.SettingsComponent
+      import('./pages/chats/chats.component').then(
+        (m) => m.ChatsComponent
       ),
     data: {
       breadcrumb: [
