@@ -132,7 +132,7 @@ export const mockUsersData = [
         message: 'Project update',
         time: '13:30',
         readMessageCount: '4',
-        recentTime: 'last seen 5 mins ago',
+        recentTime: 'last seen 1 mins ago',
     },
     {
         id: 7,
@@ -141,7 +141,7 @@ export const mockUsersData = [
         message: 'Call me when you can',
         time: '12:45',
         readMessageCount: '2',
-        recentTime: 'last seen 5 mins ago',
+        recentTime: 'last seen 2 mins ago',
     },
     {
         id: 8,
@@ -150,7 +150,7 @@ export const mockUsersData = [
         message: 'Got it, thanks!',
         time: '11:50',
         readMessageCount: '1',
-        recentTime: 'last seen 5 mins ago',
+        recentTime: 'last seen 3 mins ago',
     },
     {
         id: 9,
@@ -159,7 +159,7 @@ export const mockUsersData = [
         message: 'See you soon',
         time: '10:30',
         readMessageCount: '0',
-        recentTime: 'last seen 5 mins ago',
+        recentTime: 'last seen 4 mins ago',
     },
 ];
 
@@ -170,5 +170,24 @@ export const mockSelectedUser = {
     message: 'David Moore',
     time: '18:30',
     readMessageCount: '2',
-    recentTime: 'last seen 5 mins ago',
+    recentTime: 'last seen 30 seconds ago',
 };
+
+export const mockMessagesData = [
+    {
+        text: 'OMG 😲 do you remember what you did last night at the work night out?',
+        time: '18:12',
+        isMine: false
+
+    },
+    {
+        text: 'no haha',
+        time: '18:16',
+        isMine: true
+    },
+    {
+        text: `i don't remember anything 😄`,
+        time: '18:17',
+        isMine: true,
+    }
+]

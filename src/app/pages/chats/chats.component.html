@@ -37,6 +37,26 @@
                 </div>
               </div>
               <div class="chats-content">
+                <ul class="chats-content-inner">
+                  <li
+                   *ngFor="let item of messagesData; index as index"
+                   [ngClass]="{
+                    'is-mine': item.isMine
+                   }"
+                   >
+                   <div class="message-item" >
+                     <div class="text">{{item.text}}</div>
+                     <div class="time-wrapper">
+                       <div class="time">{{item.time}}</div>
+                       <div class="read-mark">
+                         <img *ngIf="!item.isMine" src="assets/img/project/black-check-icon.png"/>
+                         <img *ngIf="item.isMine" src="assets/img/project/white-check-icon.png"/>
+                       </div>
+                     </div>
+                   </div>
+                  </li>
+
+                </ul>
                 <form [formGroup]="formGroup">
 
                   <div class="search-group">

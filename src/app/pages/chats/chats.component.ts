@@ -13,7 +13,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { StoreService } from '@services/store.service';
 import { ProgressBarComponent } from '@blocks/progress-bar/progress-bar.component';
 import { ToastManager } from '@blocks/toast/toast.manager';
-import { mockSelectedUser, mockUsersData } from 'src/app/shared/mock-data/chats.mock';
+import { mockSelectedUser, mockUsersData, mockMessagesData } from 'src/app/shared/mock-data/chats.mock';
 
 @Component({
     selector: 'app-chat',
@@ -37,6 +37,7 @@ export class ChatsComponent {
     public model: any = { ...mockSelectedUser };
     public users: any = [...mockUsersData];
     public selectedUser: any = { ...mockSelectedUser };
+    public messagesData:any = [...mockMessagesData ];
     public selectedIndex = 0;
     public formGroup!: FormGroup<{
         message: FormControl<string>;
@@ -68,6 +69,7 @@ export class ChatsComponent {
     onSelectUser(item: any, index: number) {
         this.selectedUser = item;
         this.selectedIndex = index;
+        this.messagesData = [ ...mockMessagesData ];
     }
 
     ngAfterViewInit() {
@@ -75,6 +77,17 @@ export class ChatsComponent {
 
     onClickSubmit() {
         const keySearch = this.formGroup.controls?.message?.value;
-        console.log('keySearch ', keySearch);
+        if (keySearch?.length) {
+            this.formGroup.reset();
+            const newMessage = {
+                text: keySearch,
+                isMine: true,
+                time: '23:59'
+            };
+            this.messagesData = [
+                ...this.messagesData,
+                {...newMessage}
+            ]
+        }
     }
 }
