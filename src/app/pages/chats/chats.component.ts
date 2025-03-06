@@ -5,8 +5,7 @@ import { FormGroup } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormControl } from '@angular/forms';
-import { Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { PageLayoutComponent } from '@layouts/page-layout/page-layout.component';
@@ -39,21 +38,30 @@ export class ChatsComponent {
     public users: any = [...mockUsersData];
     public selectedUser: any = { ...mockSelectedUser };
     public selectedIndex = 0;
+    public formGroup!: FormGroup<{
+        message: FormControl<string>;
+    }>;
 
     constructor(
         public storeService: StoreService,
         public router: Router,
-        private activatedRoute: ActivatedRoute,
         public toastManager: ToastManager,
     ) {
-        this.storeService.isLoading.set(true);
+        this.storeService.isLoading.set(false);
     }
 
 
     public ngOnInit(): void {
-        setTimeout((_) => {
-            this.storeService.isLoading.set(false);
-        }, 1000);
+
+        this.formGroup = new FormGroup({
+            message: new FormControl<string>(
+                {
+                    value: '',
+                    disabled: false,
+                },
+                { validators: [], nonNullable: true }
+            ),
+        });
 
     }
 
@@ -65,7 +73,8 @@ export class ChatsComponent {
     ngAfterViewInit() {
     }
 
-    public onClickSubmit() {
-
+    onClickSubmit() {
+        const keySearch = this.formGroup.controls?.message?.value;
+        console.log('keySearch ', keySearch);
     }
 }

@@ -2,11 +2,11 @@
     background: #f5f7fa;
     padding: 0;
     margin: 0;
+    height: calc(100vh - 102px);
+    overflow: hidden;
 }
 
-.chats-wrapper {
-    
-}
+.chats-wrapper {}
 
 .chats-inner {
     background: #fff;
@@ -16,17 +16,21 @@
     list-style-type: none;
     padding: 0;
     margin: 0;
+    overflow-y: auto;
+    height: calc(100vh - 110px);
 }
 
 .user-item {
     display: flex;
     align-items: center;
-    padding: 20px 10px;
+    padding: 20px;
     border-right: 1px solid #D9DCE0;
     cursor: pointer;
+
     &.active {
         background-color: #F5F5F5;
     }
+
     &:hover {
         opacity: 0.8;
     }
@@ -81,26 +85,74 @@
 .selected-user {
     display: flex;
     align-items: center;
-    padding: 20px 0;
+    padding: 20px;
 
     .content {
         padding-left: 15px;
     }
+
     img {
         width: 48px;
         height: 48px;
     }
+
     .name {
         font-size: 16px;
         font-weight: 600;
         color: #011627;
     }
+
     .recent-time {
         font-size: 14px;
         color: #707991;
     }
 }
 
-.chats-header {
-    
+.chats-content {
+    width: 100%;
+    height: calc(100vh - 190px);
+    overflow: hidden;
+    background: #8BABD8;
+    position: relative;
+}
+
+.search-group {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    bottom: 50px;
+
+    >img {
+        position: absolute;
+        width: 24px;
+        height: 24px;
+        top: 16px;
+        left: 14px;
+    }
+}
+
+form {
+
+    input {
+        height: 56px;
+        border-radius: 56px;
+        padding: 0 45px;
+    }
+
+    button {
+        border: none;
+        padding: 0;
+        background: transparent;
+        position: absolute;
+        width: 24px;
+        height: 24px;
+        top: 14px;
+        right: 14px;
+
+        img {
+            width: 100%;
+            height: auto;
+        }
+    }
 }
