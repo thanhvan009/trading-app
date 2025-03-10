@@ -69,7 +69,7 @@ export class ChatsComponent {
     onSelectUser(item: any, index: number) {
         this.selectedUser = item;
         this.selectedIndex = index;
-        this.messagesData = [ ...mockMessagesData ];
+        this.messagesData = [ ...item.messages ];       
     }
 
     ngAfterViewInit() {
@@ -88,6 +88,11 @@ export class ChatsComponent {
                 ...this.messagesData,
                 {...newMessage}
             ]
+
+            const element = document.querySelector('.chats-content-inner > li:last-child');
+            if (element) {
+                element.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
+            }
         }
     }
 }
