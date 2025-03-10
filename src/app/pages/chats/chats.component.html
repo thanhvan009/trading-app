@@ -1,0 +1,80 @@
+<app-page-layout>
+  <div class="chats">
+    <app-progress-bar *ngIf="storeService.isLoading()"></app-progress-bar>
+    <ng-container *ngIf="!storeService.isLoading()">
+      <div class="chats-wrapper">
+        <div class="chats-inner">
+          <div class="row no-gutters">
+            <div class="col-lg-3 col-md-3 col-sm-5 col-xs-5 chat-left">
+              <ul class="user-list">
+                <li class="user-item" *ngFor="let item of users; index as index" (click)="onSelectUser(item, index)"
+                  [ngClass]="{
+                  'active': index === selectedIndex
+                }">
+                  <img [src]="item.image" alt="Avatar" />
+                  <div class="info">
+                    <div class="info-left">
+                      <div class="name">{{item.name}}</div>
+                      <div class="message">{{item.message}}</div>
+                    </div>
+                    <div class="info-right">
+                      <div class="time">{{item.time}}</div>
+                      <div *ngIf="item.readMessageCount > 0" class="count">{{item.readMessageCount}}</div>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="col-lg-9 col-md-9 col-sm-7 col-xs-7 chat-right">
+              <div class="chats-header">
+                <div class="selected-user">
+                  <img [src]="selectedUser.image" alt="Avatar" />
+                  <div class="content">
+
+                    <div class="name">{{selectedUser.name}}</div>
+                    <div class="recent-time">{{selectedUser.recentTime}}</div>
+                  </div>
+                </div>
+              </div>
+              <div class="chats-content">
+                <ul class="chats-content-inner">
+                  <li
+                   *ngFor="let item of messagesData; index as index"
+                   [ngClass]="{
+                    'is-mine': item.isMine,
+                    'last-child': index == messagesData.length - 1
+                   }"
+                   >
+                   <div class="message-item" >
+                     <div class="text">{{item.text}}</div>
+                     <div class="time-wrapper">
+                       <div class="time">{{item.time}}</div>
+                       <div class="read-mark">
+                         <img *ngIf="!item.isMine" src="assets/img/project/black-check-icon.png"/>
+                         <img *ngIf="item.isMine" src="assets/img/project/white-check-icon.png"/>
+                       </div>
+                     </div>
+                   </div>
+                  </li>
+
+                </ul>
+                <form [formGroup]="formGroup">
+
+                  <div class="search-group">
+                    <img src="assets/img/project/smile-icon.png" />
+                    <input type="text" class="form-control" id="email" formControlName="message"
+                      placeholder="Message" />
+
+                    <button (click)="onClickSubmit()" class="send-button">
+                      <img src="assets/img/project/message-icon.png" />
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</app-page-layout>
