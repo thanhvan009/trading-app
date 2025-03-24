@@ -22,19 +22,20 @@ export class AppComponent implements OnInit {
 
   public ngOnInit(): void {
     const currentUrl = location.pathname;
-    if (!localStorage.getItem('token')) {
-      this.router.navigate(['/auth/login']);
-      return;
-    }
+    // console.log("🚀 ~ AppComponent ~ ngOnInit ~ currentUrl:", currentUrl)
+    // if (!localStorage.getItem('token')) {
+    //   this.router.navigate(['/auth/login']);
+    //   return;
+    // }
 
-    if (!localStorage.getItem('role')) {
-      this.router.navigate(['/auth/role-selection']);
-      return;
-    }
+    // if (!localStorage.getItem('role')) {
+    //   this.router.navigate(['/auth/role-selection']);
+    //   return;
+    // }
 
-    if (!localStorage.getItem('user')) {
-      this.router.navigate(['/auth/user-information']);
-      return;
-    }
+    // if (!localStorage.getItem('user')) {
+    //   this.router.navigate(['/auth/user-information']);
+    //   return;
+    // }
   }
 }

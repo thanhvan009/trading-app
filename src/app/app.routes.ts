@@ -1,10 +1,17 @@
 import { Routes } from '@angular/router';
+import { CallbackComponent } from './pages/callback/callback.component';
+import { authGuard } from './auth.guard';
 
 export const routes: Routes = [
   {
     path: 'auth',
     loadChildren: () =>
       import('./pages/auth/auth.routes').then((m) => m.routes),
+  },
+  {
+    path: 'callback/*',
+    loadComponent: () =>
+      import('./pages/callback/callback.component').then((m) => m.CallbackComponent),
   },
   {
     path: 'dashboard',
@@ -16,6 +23,7 @@ export const routes: Routes = [
         }
       ]
     },
+    canActivate: [authGuard],
     loadComponent: () =>
       import('./pages/home/home.component').then((m) => m.HomeComponent),
   },
@@ -115,9 +123,6 @@ export const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full'},
   {
     path: '**',
-    loadComponent: () =>
-      import('./pages/not-found/not-found.component').then(
-        (m) => m.NotFoundComponent
-      ),
+    redirectTo: '' 
   },
 ];

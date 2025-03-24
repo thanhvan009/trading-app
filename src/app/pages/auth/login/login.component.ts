@@ -47,6 +47,8 @@ export class LoginComponent {
     }
   }
 
+  
+
   private initForm(): void {
     this.formGroup = new FormGroup({
       email: new FormControl<string>(
@@ -87,6 +89,19 @@ export class LoginComponent {
     this.initForm();
   }
 
+  private handleLogin(): void {
+    const clientId = 'MOCK_CLIENT_ID';
+    const domain = 'http://localhost:4200';
+    const redirectUri = encodeURIComponent('http://localhost:4200/callback');
+    console.log("🚀 ~ LoginComponent ~ handleLogin ~ redirectUri:", redirectUri)
+    const responseType = 'token';
+    const scope = 'openid profile email';
+    const authUrl = `${domain}/callback/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=${responseType}&scope=${scope}`;
+    window.location.href = authUrl;
+    console.log("🚀 ~ LoginComponent ~ handleLogin ~ authUrl:", authUrl)
+    console.log("🚀 ~ LoginComponent ~ handleLogin ~ authUrl:", authUrl)
+  }
+
   public onClickSubmit() {
     this.formGroup.markAllAsTouched();
     if (this.formGroup.invalid) {
@@ -99,14 +114,16 @@ export class LoginComponent {
       role: '',
     };
 
-    localStorage.setItem('token', MOCK_TOKEN);
-    if (this.formGroup.get('email')?.value === 'master@gmail.com') {
-      localStorage.setItem('role', mockAdminUser.role);
-      localStorage.setItem('user', JSON.stringify(mockAdminUser));
-      this.router.navigate(['/dashboard']);
-    } else {
-      this.router.navigate(['/auth/role-selection']);
-    }
+    // localStorage.setItem('token', MOCK_TOKEN);
+      this.handleLogin();
+
+    // if (this.formGroup.get('email')?.value === 'master@gmail.com') {
+    //   localStorage.setItem('role', mockAdminUser.role);
+    //   localStorage.setItem('user', JSON.stringify(mockAdminUser));
+    //   this.router.navigate(['/dashboard']);
+    // } else {
+    //   this.router.navigate(['/auth/role-selection']);
+    // }
   }
 
   public onGetOTP() {
