@@ -5,13 +5,12 @@ import { Injectable } from '@angular/core';
 })
 export class AuthService {
   isAuthenticated(): boolean {
-    const token = localStorage.getItem('auth_token');
-    console.log("🚀 ~ AuthService ~ isAuthenticated ~ token:", token)
+    const token = localStorage.getItem('token');
     return !!token;
   }
 
   logout(): void {
-    localStorage.removeItem('auth_token');
+    localStorage.removeItem('token');
     window.location.href = '/';
   }
 }

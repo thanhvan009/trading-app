@@ -10,9 +10,10 @@ export const mockAdminUser = {
     yearOfExperience: 5,
     typeOfService: 'Electrician',
     workPerimeter: '50Km Radius',
+    token: 'fake_jwt_token'
 };
 
-export const MOCK_TOKEN = 'MOCK_TOKEN';
+export const MOCK_TOKEN = 'qwertyuioplkjhgfdsazxcvbnm';
 
 export const ROLES = {
     'Adjudicator': 'Adjudicator',

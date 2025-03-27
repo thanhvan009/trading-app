@@ -22,6 +22,9 @@ export const environment = {
   envName         : EnvName.LOCAL,
   defaultLanguage : 'en',
   apiBaseUrl      : baseUrl,
+  idpDomain: 'http://localhost:4200',
+  clientId: '1234',
+  redirectUri: 'http://localhost:4200/callback',
 };
 
 /*

@@ -34,7 +34,11 @@
               "@angular/material/prebuilt-themes/azure-blue.css",
               "src/assets/scss/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "allowedCommonJsDependencies": [
+              "crypto-browserify",
+              "stream-browserify"
+            ]
           },
           "configurations": {
             "production": {

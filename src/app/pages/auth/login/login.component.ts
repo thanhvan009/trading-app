@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 import { RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { environment } from '@env/environment';
-import { MOCK_TOKEN, mockAdminUser } from 'src/app/shared/mock-data/users.mock';
+import { CryptoUtils } from 'src/app/shared/utils/crypto.utils';
 
 @Component({
   selector: 'app-login',
@@ -39,15 +39,13 @@ export class LoginComponent {
   public isOTPCodeShowed = false;
 
   constructor(
-    private router: Router
+    private router: Router,
   ) {
     this.isLoginScreen = this.router.url === '/auth/login';
     if (localStorage.getItem('token') && localStorage.getItem('role')) {
       this.router.navigate(['/dashboard']);
     }
   }
-
-  
 
   private initForm(): void {
     this.formGroup = new FormGroup({
@@ -90,16 +88,19 @@ export class LoginComponent {
   }
 
   private handleLogin(): void {
-    const clientId = 'MOCK_CLIENT_ID';
-    const domain = 'http://localhost:4200';
-    const redirectUri = encodeURIComponent('http://localhost:4200/callback');
-    console.log("🚀 ~ LoginComponent ~ handleLogin ~ redirectUri:", redirectUri)
-    const responseType = 'token';
-    const scope = 'openid profile email';
-    const authUrl = `${domain}/callback/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=${responseType}&scope=${scope}`;
+    const authUrl = `${environment.idpDomain}/authories?${new URLSearchParams({
+      client_id: environment.clientId,
+      redirect_uri: encodeURIComponent(environment.redirectUri),
+      response_type: 'code',
+      scope: 'openid profile email',
+      state: CryptoUtils.generateRandomString(),
+      nonce: CryptoUtils.generateRandomString(),
+      token: CryptoUtils.generateRandomString(),
+    })}`;
+
+    // Redirects to AuthO/Okta, uses authUrl simulator
     window.location.href = authUrl;
-    console.log("🚀 ~ LoginComponent ~ handleLogin ~ authUrl:", authUrl)
-    console.log("🚀 ~ LoginComponent ~ handleLogin ~ authUrl:", authUrl)
+
   }
 
   public onClickSubmit() {
@@ -115,7 +116,7 @@ export class LoginComponent {
     };
 
     // localStorage.setItem('token', MOCK_TOKEN);
-      this.handleLogin();
+    this.handleLogin();
 
     // if (this.formGroup.get('email')?.value === 'master@gmail.com') {
     //   localStorage.setItem('role', mockAdminUser.role);

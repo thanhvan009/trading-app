@@ -22,6 +22,7 @@ export class AppComponent implements OnInit {
 
   public ngOnInit(): void {
     const currentUrl = location.pathname;
+    console.log("🚀 ~ AppComponent ~ ngOnInit ~ currentUrl:", currentUrl)
     // console.log("🚀 ~ AppComponent ~ ngOnInit ~ currentUrl:", currentUrl)
     // if (!localStorage.getItem('token')) {
     //   this.router.navigate(['/auth/login']);

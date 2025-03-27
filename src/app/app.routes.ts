@@ -9,9 +9,14 @@ export const routes: Routes = [
       import('./pages/auth/auth.routes').then((m) => m.routes),
   },
   {
-    path: 'callback/*',
+    path: 'callback',
     loadComponent: () =>
       import('./pages/callback/callback.component').then((m) => m.CallbackComponent),
+  },
+  {
+    path: 'authories',
+    loadComponent: () =>
+      import('./pages/IdP/IdP.component').then((m) => m.IdPComponent),
   },
   {
     path: 'dashboard',

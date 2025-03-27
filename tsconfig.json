@@ -25,6 +25,7 @@
       "dom",
       "ES2021.String"
     ],
+    "types": ["node"],
     "paths": {
       "@blocks/*": ["src/app/shared/components/blocks/*"],
       "@forms/*": ["src/app/shared/components/forms/*"],

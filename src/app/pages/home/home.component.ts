@@ -19,7 +19,6 @@ import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angul
     PageLayoutComponent,
     NgIf,
     ProgressBarComponent,
-    PageLayoutComponent,
     NgIf,
     NgFor,
     NgClass,

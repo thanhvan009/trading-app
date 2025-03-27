@@ -1,22 +1,32 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { ActivatedRoute, Router } from '@angular/router';
+import { mockAdminUser } from 'src/app/shared/mock-data/users.mock';
 
 @Component({
   selector: 'app-callback',
-  template: `<p>Loading...</p>`,
+  templateUrl: './callback.component.html',
+  styleUrls: ['./callback.component.scss'],
   standalone: true,
+  imports: [
+    MatProgressSpinnerModule,
+  ],
 })
 export class CallbackComponent implements OnInit {
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
+  ) { }
 
   ngOnInit() {
-    const hash = window.location.hash;
-    console.log('hash ', hash);
-    if (hash) {
-      const token = hash.split('=')[1].split('&')[0];
-      console.log('token ', token);
-      localStorage.setItem('auth_token', token);
-      this.router.navigate(['/dashboard']);
-    }
+    this.activatedRoute.queryParams.subscribe(() => {
+      const res = { ...mockAdminUser }
+      localStorage.setItem('token', res.token);
+      localStorage.setItem('role', res.role);
+      localStorage.setItem('user', JSON.stringify(res));
+      setTimeout(() => {
+        this.router.navigate(['/dashboard']);
+    }, 1000)
+    });
   }
 }
