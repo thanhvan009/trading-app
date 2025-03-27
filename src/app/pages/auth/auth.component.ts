@@ -12,21 +12,13 @@ import { ProgressBarComponent } from '@blocks/progress-bar/progress-bar.componen
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.scss'],
   standalone: true,
-  imports: [NgIf, ProgressBarComponent, RouterOutlet, AsyncPipe]
+  imports: [NgIf, ProgressBarComponent, RouterOutlet, AsyncPipe],
 })
 export class AuthComponent implements OnInit {
   public appName: string = environment.appName;
   public appVersion: string = environment.version;
 
-  constructor
-    (
-      public storeService: StoreService,
-    ) {
+  constructor(public storeService: StoreService) {}
 
-  }
-
-  public ngOnInit(): void {
-  }
-
-
+  public ngOnInit(): void {}
 }

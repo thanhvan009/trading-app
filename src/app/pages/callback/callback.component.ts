@@ -22,10 +22,11 @@ export class CallbackComponent implements OnInit {
     this.activatedRoute.queryParams.subscribe(() => {
       const res = { ...mockAdminUser }
       localStorage.setItem('token', res.token);
-      localStorage.setItem('role', res.role);
-      localStorage.setItem('user', JSON.stringify(res));
+      // localStorage.setItem('role', res.role);
+      // localStorage.setItem('user', JSON.stringify(res));
       setTimeout(() => {
-        this.router.navigate(['/dashboard']);
+        // this.router.navigate(['/dashboard']);
+        this.router.navigate(['/auth/role-selection']);
     }, 1000)
     });
   }

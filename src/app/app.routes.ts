@@ -1,5 +1,4 @@
 import { Routes } from '@angular/router';
-import { CallbackComponent } from './pages/callback/callback.component';
 import { authGuard } from './auth.guard';
 
 export const routes: Routes = [
