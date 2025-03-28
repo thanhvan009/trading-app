@@ -9,6 +9,10 @@ button {
         outline: none;
     }
 
+    &:disabled {
+        cursor: not-allowed;
+    }
+
     &.primary {
         color: #fff;
         border: none;

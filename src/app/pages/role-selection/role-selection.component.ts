@@ -33,40 +33,22 @@ export class RoleSelectionComponent {
     email: FormControl<string>;
     password: FormControl<string>;
   }>;
+  role = ''
 
   constructor(
     private router: Router,
     private storeService: StoreService,
     private appService: AppService
   ) {
-    this.initFormGroup();
   }
 
-  private initFormGroup(): void {
-    this.formGroup = new FormGroup({
-      email: new FormControl<string>(
-        {
-          value: '',
-          disabled: false,
-        },
-        {
-          validators: [Validators.required, Validators.email],
-          nonNullable: true,
-        }
-      ),
-      password: new FormControl<string>(
-        {
-          value: '',
-          disabled: false,
-        },
-        { validators: [Validators.required], nonNullable: true }
-      ),
-    });
+  ngOnInit(): void {
+    this.role = localStorage.getItem('role') ?? '';
   }
 
   onSelectRole(role: string) {
     localStorage.setItem('role', role);
-    this.router.navigate(['/auth/user-information']);
+    this.router.navigate(['/user-information']);
   }
 
   public async onClickSubmit(): Promise<void> {

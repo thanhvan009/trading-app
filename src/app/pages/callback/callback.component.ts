@@ -26,7 +26,7 @@ export class CallbackComponent implements OnInit {
       // localStorage.setItem('user', JSON.stringify(res));
       setTimeout(() => {
         // this.router.navigate(['/dashboard']);
-        this.router.navigate(['/auth/role-selection']);
+        this.router.navigate(['/role-selection']);
     }, 1000)
     });
   }

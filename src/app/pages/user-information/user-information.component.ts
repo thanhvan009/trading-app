@@ -166,6 +166,6 @@ export class UserInformation {
   }
 
   onBack() {
-    this.router.navigate(['/auth/role-selection']);
+    this.router.navigate(['/role-selection']);
   }
 }

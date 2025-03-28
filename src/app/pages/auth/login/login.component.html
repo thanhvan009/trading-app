@@ -146,7 +146,7 @@
                     <input id="check" [hidden]="false" type="checkbox" />
                     <span>Remember me for 30 days</span>
                   </label>
-                  <a routerLink="/auth/forgot-password" class="forgot-link">{{
+                  <a routerLink="/forgot-password" class="forgot-link">{{
                     "FORGOT_YOUR_PWD" | translate
                   }}</a>
                 </div>
@@ -168,7 +168,7 @@
                   }}</span>
                   <a
                     routerLink="{{
-                      isLoginScreen ? '/auth/sign-up' : '/auth/login'
+                      isLoginScreen ? '/sign-up' : '/login'
                     }}"
                     class="sign-up-link"
                     >{{

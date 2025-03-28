@@ -41,7 +41,7 @@ export class LoginComponent {
   constructor(
     private router: Router,
   ) {
-    this.isLoginScreen = this.router.url === '/auth/login';
+    this.isLoginScreen = this.router.url === '/login';
     if (localStorage.getItem('token') && localStorage.getItem('role')) {
       this.router.navigate(['/dashboard']);
     }
@@ -123,7 +123,7 @@ export class LoginComponent {
     //   localStorage.setItem('user', JSON.stringify(mockAdminUser));
     //   this.router.navigate(['/dashboard']);
     // } else {
-    //   this.router.navigate(['/auth/role-selection']);
+    //   this.router.navigate(['/role-selection']);
     // }
   }
 

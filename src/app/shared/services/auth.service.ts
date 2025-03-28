@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { isEmpty } from 'lodash';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,7 @@ export class AuthService {
 
   isUserSaved(): boolean {
     const user = localStorage.getItem('user');
-    return !!user;
+    return !isEmpty(user);
   }
 
   isAuthenticated(): boolean {
@@ -25,6 +26,13 @@ export class AuthService {
 
   logout(): void {
     localStorage.removeItem('token');
+    localStorage.removeItem('role');
+    localStorage.removeItem('user');
     window.location.href = '/';
+  }
+  clearLocalStorage(): void {
+    localStorage.removeItem('token');
+    localStorage.removeItem('role');
+    localStorage.removeItem('user');
   }
 }

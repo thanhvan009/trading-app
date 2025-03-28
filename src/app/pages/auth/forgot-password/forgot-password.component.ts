@@ -112,6 +112,6 @@ export class ForgotPasswordComponent {
     if (this.formGroup.invalid) {
       return;
     }
-    this.router.navigate(['/auth/login']);
+    this.router.navigate(['/login']);
   }
 }

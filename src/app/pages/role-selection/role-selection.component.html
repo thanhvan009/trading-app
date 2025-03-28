@@ -16,7 +16,7 @@
               Some quick example text to build on the card title and make up the bulk of the card's content.
               make up the bulk of the card's content.
             </div>
-            <button (click)="onSelectRole('Customer')">Select</button>
+            <button [disabled]="role" (click)="onSelectRole('Customer')">Select</button>
           </div>
         </div>
       </div>
@@ -31,7 +31,7 @@
               Some quick example text to build on the card title and make up the bulk of the card's content.
               make up the bulk of the card's content.
             </div>
-            <button (click)="onSelectRole('Trade')">Select</button>
+            <button [disabled]="role" (click)="onSelectRole('Trade')">Select</button>
           </div>
         </div>
       </div>
@@ -46,7 +46,7 @@
               Some quick example text to build on the card title and make up the bulk of the card's content.
               make up the bulk of the card's content.
             </div>
-            <button (click)="onSelectRole('Adjudicator')">Select</button>
+            <button [disabled]="role" (click)="onSelectRole('Adjudicator')">Select</button>
           </div>
         </div>
       </div>
